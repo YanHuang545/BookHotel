@@ -1,0 +1,25 @@
+<view class="page-root page-stack" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="Reviews" pageLabel="Reviews" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view class="card score-hero">
+    <view class="score-box">
+      <text class="score-num">{{score}}</text>
+      <text class="score-word">超赞</text>
+    </view>
+    <view class="score-copy">
+      <text class="score-title">{{reviews}} 条真实点评</text>
+      <text class="score-quote long-text">{{quote}}</text>
+    </view>
+  </view>
+
+  <view class="card review-card" wx:for="{{list}}" wx:key="name">
+    <view class="review-head">
+      <view class="review-who">
+        <text class="review-name">{{item.name}}</text>
+        <text class="review-date">{{item.date}}</text>
+      </view>
+      <text class="review-score">{{item.score}}</text>
+    </view>
+    <text class="review-body long-text">{{item.text}}</text>
+  </view>
+</view>

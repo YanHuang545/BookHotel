@@ -1,0 +1,56 @@
+<view class="page-root page-stack" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="Guests" pageLabel="Guests" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view class="page-body">
+    <view class="head">
+      <view class="head-copy">
+        <text class="kicker">TRAVELERS</text>
+        <text class="t-headline-md head-title">常用入住人</text>
+      </view>
+      <button class="add-btn" hover-class="none" bindtap="onOpenForm">
+        <text>添加</text>
+      </button>
+    </view>
+
+    <view wx:if="{{empty}}" class="card empty">
+      <text class="t-headline-sm">还没有入住人</text>
+      <text class="t-body-sm empty-desc">添加后可在入住填写页一键带入</text>
+    </view>
+
+    <block wx:else>
+      <view class="card guest-card" wx:for="{{guests}}" wx:key="id">
+        <view class="g-top">
+          <view class="g-left">
+            <view class="g-name-row">
+              <text class="g-name t-headline-sm">{{item.name}}</text>
+              <text wx:if="{{item.default}}" class="chip g-default">默认</text>
+            </view>
+            <text class="t-body-md g-phone">{{item.phoneMasked}}</text>
+          </view>
+          <button class="pick-btn {{item.on ? 'is-on' : ''}}" hover-class="none" bindtap="onPick" data-id="{{item.id}}">
+            <text>{{item.on ? '已选择' : '选择'}}</text>
+          </button>
+        </view>
+        <button class="def-btn" hover-class="none" bindtap="onDefault" data-id="{{item.id}}">
+          <text>设为默认主住客</text>
+        </button>
+      </view>
+    </block>
+  </view>
+
+  <sheet open="{{formOpen}}" bind:close="onCloseForm">
+    <view class="form-hd">
+      <text class="t-headline-sm">添加同住人</text>
+      <view class="form-close" bindtap="onCloseForm">
+        <icon-mask name="close" size="18" color="#181d1a"></icon-mask>
+      </view>
+    </view>
+    <text class="form-lab">姓名</text>
+    <input class="form-input" value="{{formName}}" bindinput="onName" placeholder="与证件一致" maxlength="20"/>
+    <text class="form-lab">手机</text>
+    <input class="form-input form-input-last" value="{{formPhone}}" bindinput="onPhone" type="number" maxlength="11" placeholder="用于接收入住确认"/>
+    <button class="save-btn" hover-class="none" bindtap="onSave">
+      <text>保存入住人</text>
+    </button>
+  </sheet>
+</view>

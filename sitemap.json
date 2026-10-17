@@ -1,0 +1,4 @@
+{
+  "desc": "栖岚小程序 sitemap",
+  "rules": [{ "action": "allow", "page": "*" }]
+}

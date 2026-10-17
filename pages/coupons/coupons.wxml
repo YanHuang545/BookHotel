@@ -1,0 +1,26 @@
+<view class="page-root page-stack" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="Coupons" pageLabel="Coupons" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view class="page-body">
+    <view class="gutter intro">
+      <text class="kicker">VOUCHERS</text>
+      <text class="t-headline-md intro-title">度假券包</text>
+      <text class="t-body-sm intro-desc">{{usableCount}} 张可在本单使用</text>
+    </view>
+
+    <view class="card coupon-card {{item.usable ? '' : 'is-muted'}}" wx:for="{{coupons}}" wx:key="id">
+      <view class="cp-gold">
+        <text class="t-headline-md cp-amt">{{item.amountText}}</text>
+        <text class="t-label-sm cp-off">OFF</text>
+      </view>
+      <view class="cp-main">
+        <text class="t-headline-sm cp-title">{{item.title}}</text>
+        <text class="t-body-sm cp-note">{{item.note}} · 至 {{item.expire}}</text>
+        <button wx:if="{{item.usable}}" class="use-btn {{item.on ? 'is-on' : ''}}" hover-class="none" bindtap="onApply" data-id="{{item.id}}">
+          <text>{{item.on ? '使用中' : '使用'}}</text>
+        </button>
+        <text wx:else class="t-label-sm cp-dead">已不可用</text>
+      </view>
+    </view>
+  </view>
+</view>

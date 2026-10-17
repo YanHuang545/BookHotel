@@ -1,0 +1,294 @@
+<view class="page-root page-stack has-dock" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="Room Checkout" pageLabel="Room Checkout" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view class="hold-bar">
+    <view class="hold-left">
+      <icon-mask name="check_circle" size="16" color="#032517"></icon-mask>
+      <text class="hold-txt">房间已为您保留 {{holdText}}</text>
+    </view>
+    <view class="hold-right">
+      <icon-mask name="wash" size="14" color="#78592d"></icon-mask>
+      <text class="hold-perk">栖岚·尊享礼遇已生效</text>
+    </view>
+  </view>
+
+  <view class="cko-col">
+    <view class="card hotel-card">
+      <view class="hotel-top">
+        <view class="hotel-thumb">
+          <image class="hotel-thumb-img" src="{{thumb}}" mode="aspectFill"></image>
+          <text class="chip thumb-chip">黑珍珠评级</text>
+        </view>
+        <view class="hotel-meta">
+          <view class="hotel-names">
+            <text class="hotel-name ellipsis">{{resortName}}</text>
+            <text class="hotel-room">{{roomName}} · 1间</text>
+          </view>
+          <view class="hotel-chips">
+            <text class="chip-md hotel-chip">含双人山野早餐</text>
+            <text class="chip-md hotel-chip hotel-chip-sec">私汤恒温泡池</text>
+          </view>
+        </view>
+      </view>
+      <view class="cko-dates">
+        <view class="dates-left">
+          <view class="date-col">
+            <text class="date-k">入住</text>
+            <view class="date-v">
+              <text class="date-day">{{search.inLabel}}</text>
+              <text class="date-week">{{search.inWeek}}</text>
+            </view>
+          </view>
+          <view class="nights-pill">
+            <text>共{{search.nights}}晚</text>
+          </view>
+          <view class="date-col">
+            <text class="date-k">离店</text>
+            <view class="date-v">
+              <text class="date-day">{{search.outLabel}}</text>
+              <text class="date-week">{{search.outWeek}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="cancel-col">
+          <view class="cancel-win">
+            <icon-mask name="search_off" size="14" color="#032517"></icon-mask>
+            <text class="cancel-win-txt">{{search.inLabel}}18:00前</text>
+          </view>
+          <text class="cancel-ok">可免费取消</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card guest-card">
+      <view class="guest-head">
+        <view class="guest-title">
+          <icon-mask name="person_pin" size="20" color="#032517"></icon-mask>
+          <text class="t-headline-sm">入住人信息</text>
+        </view>
+        <view class="guest-pick" bindtap="goGuests">
+          <text>从常用入住人选择</text>
+          <icon-mask name="chevron" size="16" color="#78592d"></icon-mask>
+        </view>
+      </view>
+      <view class="guest-row">
+        <view class="guest-kv">
+          <text class="guest-k">住客姓名</text>
+          <text class="guest-v">{{guestName}}</text>
+        </view>
+        <text class="chip guest-main">主住客</text>
+      </view>
+      <view class="guest-row guest-phone">
+        <view class="guest-kv">
+          <text class="guest-k">联系手机</text>
+          <text class="guest-v guest-phone-v">{{guestPhone}}</text>
+        </view>
+        <text class="guest-sms">接收确认短信</text>
+      </view>
+      <view class="add-mate" bindtap="openGuestForm">
+        <icon-mask name="add_circle" size="18" color="#032517"></icon-mask>
+        <text>添加同住人 (建议填写以便办理房卡)</text>
+      </view>
+      <view class="eta-row" bindtap="openEta">
+        <view class="eta-left">
+          <icon-mask name="schedule" size="18" color="#424843"></icon-mask>
+          <text class="eta-label">预计到店时间</text>
+        </view>
+        <view class="eta-right">
+          <text class="eta-val">{{eta}}</text>
+          <icon-mask name="chevron" size="16" color="#727973"></icon-mask>
+        </view>
+      </view>
+    </view>
+
+    <view class="card pref-card">
+      <view class="pref-head">
+        <view class="pref-head-main">
+          <view class="pref-title">
+            <icon-mask name="room_service" size="20" color="#78592d"></icon-mask>
+            <text class="t-headline-sm">定制住享诉求</text>
+          </view>
+          <text class="pref-sub">管家将依据山庄当日排房尽心满足</text>
+        </view>
+        <text class="chip pref-multi">多选</text>
+      </view>
+      <view class="pref-chips">
+        <view
+          wx:for="{{prefs}}"
+          wx:key="key"
+          class="pref-chip {{item.on ? 'is-on' : ''}}"
+          data-key="{{item.key}}"
+          bindtap="togglePref"
+        >
+          <icon-mask name="{{item.on ? 'check' : 'add'}}" size="14" color="{{item.on ? '#ffffff' : '#424843'}}"></icon-mask>
+          <text>{{item.key}}</text>
+        </view>
+      </view>
+      <textarea
+        class="remark"
+        value="{{remark}}"
+        maxlength="200"
+        placeholder="备注其他入住习惯或随行安排 (如庆祝纪念日、饮食忌口等)..."
+        bindinput="onRemark"
+      ></textarea>
+    </view>
+
+    <view class="card perk-banner">
+      <view class="perk-ico">
+        <icon-mask name="premium" size="22" color="#ffffff"></icon-mask>
+      </view>
+      <view class="perk-copy">
+        <view class="perk-title-row">
+          <text class="perk-title">栖岚会 · 旅人专享特权</text>
+          <text class="perk-lv">{{level}}</text>
+        </view>
+        <text class="perk-sub">入住即赠双人手冲晨茗 · 延迟退房至14:00</text>
+      </view>
+      <icon-mask name="check_circle" size="22" color="#78592d"></icon-mask>
+    </view>
+
+    <view class="card bill-card">
+      <text class="t-headline-sm">明细与优惠</text>
+      <view class="bill-row">
+        <text class="bill-k">房费总计 ({{nights}}晚 · 1间)</text>
+        <text class="bill-v">{{total}}</text>
+      </view>
+      <view class="bill-row bill-coupon" bindtap="goCoupons">
+        <view class="coupon-left">
+          <text class="bill-k">度假专享券</text>
+          <text class="chip coupon-chip">{{couponUsable}}张可用</text>
+        </view>
+        <view class="coupon-right">
+          <text class="chip coupon-off">-{{off}}</text>
+          <icon-mask name="chevron" size="16" color="#727973"></icon-mask>
+        </view>
+      </view>
+      <view class="bill-row">
+        <text class="bill-k">会员专属折让</text>
+        <text class="bill-member">免费升阶礼遇</text>
+      </view>
+      <view class="bill-row">
+        <text class="bill-k">税费与服务费</text>
+        <text class="bill-tax">已包含</text>
+      </view>
+      <view class="cko-pay-foot">
+        <text class="t-label-md">待支付金额</text>
+        <view class="pay-nums">
+          <text class="pay-strike">{{total}}</text>
+          <text class="pay-big">{{payPlain}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card policy-card">
+      <view class="policy-head">
+        <icon-mask name="gavel" size="18" color="#032517"></icon-mask>
+        <text class="policy-title">预订须知与无忧取消</text>
+      </view>
+      <view class="policy-list">
+        <view class="policy-row">
+          <icon-mask name="check_small" size="16" color="#032517"></icon-mask>
+          <text class="policy-p long-text">{{search.inLabel}} 18:00 前申请取消，全额原路退款；逾期退改将扣除首晚房费。</text>
+        </view>
+        <view class="policy-row">
+          <icon-mask name="check_small" size="16" color="#032517"></icon-mask>
+          <text class="policy-p long-text">山庄倡导生态隐逸体验，为保证静谧氛围，私汤泡池开放至每日 23:00。</text>
+        </view>
+        <view class="policy-row">
+          <icon-mask name="check_small" size="16" color="#032517"></icon-mask>
+          <text class="policy-p long-text">订单确认后山庄管家将致电沟通抵达路线与茶礼喜好。</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="dock dock-cko">
+    <view class="dock-cko-inner">
+      <view class="dock-pay" bindtap="openPrice">
+        <view class="dock-pay-row">
+          <text class="dock-pay-k">实付</text>
+          <text class="dock-pay-n">{{payPlain}}</text>
+        </view>
+        <view class="dock-off">
+          <text>明细已减{{off}}</text>
+          <view class="icon-up">
+            <icon-mask name="chevron" size="13" color="#78592d"></icon-mask>
+          </view>
+        </view>
+      </view>
+      <view class="pay-btn" bindtap="onPay">
+        <icon-mask name="lock" size="18" color="#ffffff"></icon-mask>
+        <text>微信支付 {{pay}}</text>
+      </view>
+    </view>
+  </view>
+
+  <sheet open="{{sheet === 'price'}}" bindclose="closeSheet">
+    <view class="sheet-head">
+      <text class="t-headline-sm">费用明细</text>
+      <view class="sheet-x" bindtap="closeSheet">
+        <icon-mask name="close" size="18" color="#181d1a"></icon-mask>
+      </view>
+    </view>
+    <view class="kv">
+      <text>{{priceSheet.roomName}} ({{priceSheet.nights}}晚)</text>
+      <text>{{priceSheet.total}}</text>
+    </view>
+    <view class="kv kv-sub">
+      <text>{{priceSheet.inLabel}} ({{priceSheet.inWeek}})</text>
+      <text>{{priceSheet.nightPrice}}</text>
+    </view>
+    <view wx:if="{{priceSheet.extraVisible}}" class="kv kv-sub">
+      <text>其后 {{priceSheet.extraNights}} 晚</text>
+      <text>{{priceSheet.extraPrice}}</text>
+    </view>
+    <view class="kv kv-off">
+      <text>专享优惠</text>
+      <text>-{{priceSheet.off}}</text>
+    </view>
+    <view class="kv kv-sub kv-last">
+      <text>税费与管家服务费</text>
+      <text>¥0 (已免)</text>
+    </view>
+    <view class="price-pay">
+      <text class="t-label-lg">实付总额</text>
+      <text class="price-pay-num">{{priceSheet.pay}}</text>
+    </view>
+  </sheet>
+
+  <sheet open="{{sheet === 'eta'}}" bindclose="closeSheet">
+    <view class="sheet-head">
+      <text class="t-headline-sm">预计到店</text>
+      <view class="sheet-x" bindtap="closeSheet">
+        <icon-mask name="close" size="18" color="#181d1a"></icon-mask>
+      </view>
+    </view>
+    <view class="opt-list">
+      <view
+        wx:for="{{etaList}}"
+        wx:key="t"
+        class="opt-btn {{item.on ? 'is-on' : ''}}"
+        data-key="{{item.t}}"
+        bindtap="setEta"
+      >
+        <text>{{item.t}}</text>
+      </view>
+    </view>
+  </sheet>
+
+  <sheet open="{{sheet === 'guest-form'}}" bindclose="closeSheet">
+    <view class="sheet-head">
+      <text class="t-headline-sm">添加同住人</text>
+      <view class="sheet-x" bindtap="closeSheet">
+        <icon-mask name="close" size="18" color="#181d1a"></icon-mask>
+      </view>
+    </view>
+    <text class="f-lab">姓名</text>
+    <input class="f-input" value="{{formName}}" placeholder="与证件一致" maxlength="20" bindinput="onFormName"/>
+    <text class="f-lab">手机</text>
+    <input class="f-input f-input-last" value="{{formPhone}}" type="number" maxlength="11" placeholder="用于接收入住确认" bindinput="onFormPhone"/>
+    <view class="save-btn" bindtap="saveGuest">
+      <text>保存入住人</text>
+    </view>
+  </sheet>
+</view>

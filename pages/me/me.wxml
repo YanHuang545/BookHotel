@@ -1,0 +1,62 @@
+<view class="page-root page-tab" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="Me" pageLabel="Me" showBack="{{false}}" showBrand="{{true}}"></nav-bar>
+
+  <view class="me-body">
+    <view class="card me-hero">
+      <view class="me-blob"></view>
+      <view class="mh-row">
+        <image class="mh-ava" src="{{avatar}}" mode="aspectFill"></image>
+        <view class="mh-meta">
+          <view class="mh-nm">
+            <text class="mh-nm-text">{{user.name}}</text>
+          </view>
+          <text class="t-label-sm mh-lv">{{user.level}} · {{user.member}}</text>
+        </view>
+      </view>
+      <view class="me-stats">
+        <view class="me-stat" bindtap="goResorts">
+          <icon-mask name="favorite" size="18" color="#ffddb4"></icon-mask>
+          <text class="t-headline-sm me-stat-n">{{favCount}}</text>
+          <text class="t-label-sm me-stat-l">收藏院落</text>
+        </view>
+        <view class="me-stat" bindtap="goCoupons">
+          <icon-mask name="coupon" size="18" color="#ffddb4"></icon-mask>
+          <text class="t-headline-sm me-stat-n">{{couponCount}}</text>
+          <text class="t-label-sm me-stat-l">可用优惠</text>
+        </view>
+        <view class="me-stat" bindtap="goGuests">
+          <icon-mask name="group" size="18" color="#ffddb4"></icon-mask>
+          <text class="t-headline-sm me-stat-n">{{guestCount}}</text>
+          <text class="t-label-sm me-stat-l">入住人</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{hasLast}}" class="card me-last" bindtap="goOrders">
+      <image class="me-last-img" src="{{last.cover}}" mode="aspectFill"></image>
+      <view class="me-last-copy">
+        <text class="t-label-sm me-last-k">最近一次山居</text>
+        <text class="t-headline-sm me-last-name ellipsis">{{last.resortName}}</text>
+        <text class="t-body-sm me-last-line">{{last.line}}</text>
+      </view>
+    </view>
+
+    <view class="card me-menu">
+      <view
+        class="me-row {{index < menu.length - 1 ? 'me-row-line' : ''}}"
+        wx:for="{{menu}}"
+        wx:key="go"
+        bindtap="onMenu"
+        data-go="{{item.go}}"
+      >
+        <view class="me-row-l">
+          <icon-mask name="{{item.icon}}" size="22" color="#032517"></icon-mask>
+          <text class="t-label-lg me-row-t">{{item.label}}</text>
+        </view>
+        <icon-mask name="chevron" size="20" color="#727973"></icon-mask>
+      </view>
+    </view>
+
+    <text class="t-label-sm me-foot">栖岚度假 · 山野为床 · 枕岚而憩</text>
+  </view>
+</view>

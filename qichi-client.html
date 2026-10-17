@@ -1,0 +1,2044 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>栖岚 QILAN · 官方预订</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
+<style>
+@layer base {
+  html, body { width: 100%; margin: 0; padding: 0; }
+  body { overscroll-behavior: none; background: #e5e9e4; }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+}
+::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+#app {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  background: #f6fbf5;
+}
+.app-page { display: none; }
+.app-page.is-active { display: block; }
+body.tabbar-hidden #tabbar { display: none; }
+.sheet-mask { display: none; }
+.sheet-mask.is-open { display: flex; }
+.toast-host {
+  position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%);
+  z-index: 80; pointer-events: none; width: min(86%, 360px);
+}
+.toast-host.is-tab-hidden { bottom: 28px; }
+.q-toast {
+  background: #032517; color: #fff; border-radius: 12px; padding: 10px 14px;
+  font-size: 13px; line-height: 18px; text-align: center;
+  box-shadow: 0 10px 28px rgba(3,37,23,.22);
+}
+.fav-on { color: #ba1a1a !important; font-variation-settings: 'FILL' 1; }
+.q-switch {
+  width: 44px; height: 26px; border-radius: 999px; background: #c1c8c2;
+  position: relative; flex-shrink: 0; border: 0; padding: 0;
+}
+.q-switch.is-on { background: #032517; }
+.q-switch i {
+  position: absolute; top: 3px; left: 3px; width: 20px; height: 20px;
+  border-radius: 50%; background: #fff; transition: transform .18s ease;
+  pointer-events: none;
+}
+.q-switch.is-on i { transform: translateX(18px); }
+.bubble-me { background: #032517; color: #fff; border-radius: 16px 16px 4px 16px; }
+.bubble-butler { background: #ffffff; color: #181d1a; border-radius: 16px 16px 16px 4px; box-shadow: 0 4px 16px -2px rgba(3,37,23,0.06); }
+.chip {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 600;
+  padding: 3px 7px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.chip-md {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 600;
+  padding: 3px 7px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.tab-link {
+  color: #727973;
+  border-radius: 14px;
+  padding: 6px 12px;
+}
+.tab-link.is-on {
+  color: #032517;
+  background: #c7ebd4;
+  font-weight: 600;
+}
+.tab-link.is-on .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 500;
+}
+.hero-host {
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+.hero-host.is-dragging { cursor: grabbing; }
+#hero-slider img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: auto;
+}
+/* Auxiliary copy only. Filters, dropdowns, and CTAs stay ≥12px (label-md). */
+.copy-sm {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 11px;
+  line-height: 14px;
+}
+.copy-sm-sb {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 600;
+}
+.price-cta {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+}
+.price-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 2px;
+  min-width: 0;
+}
+.price-num {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  line-height: 1;
+}
+.notice-list {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  column-gap: 8px;
+  row-gap: 10px;
+  align-items: start;
+}
+.notice-list .material-symbols-outlined {
+  font-size: 16px;
+  line-height: 16px;
+  width: 16px;
+  height: 16px;
+  display: block;
+  overflow: hidden;
+}
+.policy-list {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  column-gap: 6px;
+  row-gap: 10px;
+  align-items: start;
+}
+.policy-list .material-symbols-outlined {
+  font-size: 16px;
+  line-height: 16px;
+  width: 16px;
+  height: 16px;
+  display: block;
+  overflow: hidden;
+}
+.policy-list p {
+  margin: 0;
+  line-height: 16px;
+}
+.flash-bar {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 16px;
+  background: #ffffff;
+}
+.flash-bar .material-symbols-outlined { font-size: 14px; line-height: 1; }
+.flash-bar-label { color: #424843; font-size: 11px; letter-spacing: 0.02em; flex-shrink: 0; }
+.flash-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.flash-pill-hot { background: #ffdad6; color: #93000a; }
+.flash-pill-alert { background: #ba1a1a; color: #ffffff; }
+.flash-pill-muted { background: #e5e9e4; color: #727973; }
+.flash-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 4px;
+  background: #ffdad6;
+  color: #93000a;
+  font-weight: 700;
+  font-size: 12px;
+}
+@media (min-width: 768px) {
+  html { background: #e5e9e4; }
+  #app { box-shadow: 0 0 0 1px rgba(24,28,34,.06), 0 12px 40px rgba(24,28,34,.08); }
+}
+@media (max-width: 389px) {
+  .font-headline-md { letter-spacing: -0.02em; }
+}
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tailwind-config">
+tailwind.config = { darkMode: "class", theme: { extend: {
+  colors: {"surface-variant":"#dfe4df","on-tertiary-fixed-variant":"#2d4d3d","on-error":"#ffffff","surface-dim":"#d7dbd6","error":"#ba1a1a","on-primary-fixed-variant":"#2d4d3c","outline":"#727973","surface-container-low":"#f0f5f0","on-secondary":"#ffffff","on-surface":"#181d1a","on-tertiary-fixed":"#002113","surface-container-high":"#e5e9e4","on-tertiary-container":"#83a591","secondary":"#78592d","error-container":"#ffdad6","on-tertiary":"#ffffff","outline-variant":"#c1c8c2","surface-container":"#ebefea","on-error-container":"#93000a","inverse-on-surface":"#edf2ed","primary":"#032517","tertiary-fixed-dim":"#abcfb9","on-secondary-fixed":"#291800","on-primary-fixed":"#002113","secondary-fixed-dim":"#e9c08a","background":"#f6fbf5","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#5e4117","surface":"#f6fbf5","on-primary-container":"#83a590","tertiary-container":"#1b3b2b","surface-tint":"#456553","on-background":"#181d1a","on-primary":"#ffffff","surface-bright":"#f6fbf5","tertiary":"#032517","primary-fixed":"#c7ebd4","secondary-fixed":"#ffddb4","on-surface-variant":"#424843","inverse-surface":"#2c322e","primary-fixed-dim":"#abcfb8","inverse-primary":"#abcfb8","surface-container-highest":"#dfe4df","tertiary-fixed":"#c6ebd4","on-secondary-container":"#79592d","secondary-container":"#fed39c","primary-container":"#1b3b2b"},
+  borderRadius: {"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},
+  spacing: {"space-sm":"0.5rem","margin":"2rem","space-xs":"0.25rem","space-xl":"2.5rem","space-md":"1rem","gutter":"1.5rem","space-lg":"1.5rem","gutter-sm":"1rem","margin-sm":"1rem"},
+  fontFamily: {"headline-xl-mobile":["Newsreader"],"label-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-xl":["Newsreader"],"display-lg":["Newsreader"],"body-sm":["Plus Jakarta Sans"],"body-xl":["Plus Jakarta Sans"],"display-lg-mobile":["Newsreader"],"headline-md":["Newsreader"],"headline-lg":["Newsreader"]},
+  fontSize: {"headline-xl-mobile":["28px",{"lineHeight":"36px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"label-sm":["10px",{"lineHeight":"14px","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl":["40px",{"lineHeight":"48px","fontWeight":"400"}],"display-lg":["56px",{"lineHeight":"68px","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-xl":["18px",{"lineHeight":"28px","fontWeight":"400"}],"display-lg-mobile":["36px",{"lineHeight":"44px","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"500"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"500"}]}
+} } };
+</script>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<div id="app">
+<header id="app-header" class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.03)]">
+  <div class="h-16 px-4 flex items-center justify-between">
+    <div class="flex items-center gap-2 min-w-0">
+      <button type="button" id="hdr-back" class="hidden w-11 h-11 items-center justify-center text-on-surface rounded-full hover:bg-surface-container-high" data-action="back" aria-label="返回">
+        <span class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span>
+      </button>
+      <div id="hdr-brand" class="flex items-center gap-2 min-w-0">
+        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
+        <div class="flex flex-col min-w-0">
+          <span class="font-headline-sm text-headline-sm text-primary leading-none tracking-wider">栖岚 QILAN</span>
+          <span class="font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase">Resort &amp; Retreats</span>
+        </div>
+      </div>
+      <h1 id="hdr-title" class="hidden font-headline-md text-headline-md text-on-surface truncate max-w-[160px]"></h1>
+    </div>
+    <div class="flex items-center gap-2 shrink-0">
+      <span id="hdr-page" class="font-headline-md text-headline-md text-on-surface truncate max-w-[88px]">Home</span>
+      <div aria-label="WeChat Capsule" class="w-[87px] h-[32px] rounded-full bg-surface-container-highest/60 backdrop-blur-md flex items-center justify-around px-2 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)]">
+        <div class="w-4 h-4 flex items-center justify-center"><div class="w-1.5 h-1.5 rounded-full bg-on-surface"></div><div class="w-1 h-1 rounded-full bg-on-surface mx-0.5"></div><div class="w-1.5 h-1.5 rounded-full bg-on-surface"></div></div>
+        <div class="w-[1px] h-3.5 bg-outline-variant/50"></div>
+        <div class="w-4 h-4 flex items-center justify-center"><div class="w-3 h-3 rounded-full border-[1.5px] border-on-surface flex items-center justify-center"><div class="w-1 h-1 rounded-full bg-on-surface"></div></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="relative w-full pt-16 bg-surface min-h-screen">
+
+<section class="app-page" data-page="home">
+<div class="flex flex-col w-full pb-24">
+<section class="px-4 pt-3">
+<div class="flex items-end justify-between mb-2.5 gap-2">
+<div class="min-w-0">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">品牌矩阵 · Brand Lines</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">心之所栖，自成山岚</span>
+</div>
+<button type="button" class="shrink-0 whitespace-nowrap font-label-md text-label-md text-secondary flex items-center pb-px" data-nav="/brands">矩阵概念<span class="material-symbols-outlined text-[14px]">arrow_forward</span></button>
+</div>
+<div class="grid grid-cols-2 gap-2.5" id="home-brands"></div>
+</section>
+
+<section class="mt-5 px-4">
+<button type="button" class="w-full text-left rounded-xl p-4 bg-gradient-to-r from-primary-container via-tertiary-container to-primary text-on-primary shadow-sm relative overflow-hidden" data-nav="/me">
+<div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-secondary-fixed/10 pointer-events-none blur-xl"></div>
+<div class="relative z-10">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-start gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-[20px] shrink-0 h-7 flex items-center" style="font-variation-settings:'FILL' 1;">workspace_premium</span>
+<div class="min-w-0">
+<span class="font-headline-sm text-headline-sm text-secondary-fixed block">栖岚会 · 旅人尊享</span>
+<p class="font-body-sm text-body-sm text-on-primary-container mt-1">专属度假礼遇 · 泊心于山水</p>
+</div>
+</div>
+<span class="shrink-0 font-label-lg text-label-lg px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed">黑金礼遇</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-3.5 bg-primary/20 rounded-lg p-2.5 backdrop-blur-sm relative z-10">
+<div class="flex flex-col items-center text-center"><span class="material-symbols-outlined text-[18px] text-secondary-fixed">percent</span><span class="font-label-md text-label-md mt-0.5 text-surface-bright">专享88折起</span></div>
+<div class="flex flex-col items-center text-center"><span class="material-symbols-outlined text-[18px] text-secondary-fixed">schedule</span><span class="font-label-md text-label-md mt-0.5 text-surface-bright">14:00延迟退房</span></div>
+<div class="flex flex-col items-center text-center"><span class="material-symbols-outlined text-[18px] text-secondary-fixed">featured_seasonal_and_gifts</span><span class="font-label-md text-label-md mt-0.5 text-surface-bright">赠山野伴手礼</span></div>
+</div>
+</button>
+</section>
+
+<section class="mt-5 px-4">
+<div class="flex items-center justify-between mb-2.5 gap-2">
+<div class="flex items-center gap-1.5 min-w-0"><span class="material-symbols-outlined text-secondary text-[18px] shrink-0">verified</span><span class="font-headline-sm text-headline-sm text-on-surface truncate">超值度假套餐</span></div>
+<button type="button" class="shrink-0 font-label-lg text-label-lg px-2.5 py-1 rounded-full bg-secondary/10 text-secondary flex items-center gap-0.5" data-nav="/privileges">度假礼遇<span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+</div>
+<div class="flex flex-col gap-2.5">
+<button type="button" class="relative h-44 w-full rounded-xl overflow-hidden shadow-[0_4px_20px_-2px_rgba(3,37,23,0.05)] text-left" data-action="flash-buy">
+<img class="absolute inset-0 w-full h-full object-cover" alt="竹露大床房" id="flash-cover"/>
+<span class="absolute top-2.5 right-2.5 z-10 chip rounded-full bg-error text-on-error">仅剩2间</span>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent flex flex-col justify-end p-3">
+<div class="flex items-end justify-between text-on-primary gap-2">
+<div class="min-w-0 flex flex-col justify-end">
+<span class="font-headline-md text-headline-md text-surface-bright leading-none">竹露大床房 · 伴山私汤</span>
+<span class="font-body-sm text-body-sm text-surface-variant leading-none mt-1">栖岚·莫干山店 · 含次日双人手作晨食</span>
+</div>
+<div class="shrink-0 price-num"><span class="font-headline-sm text-headline-sm text-secondary-fixed leading-none">¥880</span><span class="copy-sm text-surface-variant leading-none">/套</span></div>
+</div>
+</div>
+</button>
+<button type="button" class="relative h-44 w-full rounded-xl overflow-hidden shadow-[0_4px_20px_-2px_rgba(3,37,23,0.05)] text-left" data-action="pick-package" data-id="R002" data-room="RD02">
+<img class="absolute inset-0 w-full h-full object-cover" alt="双廊海景" id="package-cover"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent flex flex-col justify-end p-3">
+<div class="flex items-end justify-between text-on-primary gap-2">
+<div class="min-w-0 flex flex-col justify-end">
+<span class="font-headline-md text-headline-md text-surface-bright leading-none">双廊海景一夜 · 避世礼包</span>
+<span class="font-body-sm text-body-sm text-surface-variant leading-none mt-1">含双人有机早餐 + 白族庭院下午茶 + 环海骑行体验</span>
+</div>
+<div class="shrink-0 price-num"><span class="font-headline-sm text-headline-sm text-secondary-fixed leading-none">¥1,660</span><span class="copy-sm text-surface-variant leading-none">/套</span></div>
+</div>
+</div>
+</button>
+</div>
+</section>
+
+<section class="mt-6 px-4">
+<div class="flex items-end justify-between mb-3 gap-2">
+<div class="min-w-0">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">精选院落推荐</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">寻幽入胜，山峦有居</span>
+</div>
+<button type="button" class="shrink-0 whitespace-nowrap font-label-md text-label-md text-primary flex items-center pb-px" data-nav="/resorts">查看全部<span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+</div>
+<div class="flex flex-col gap-4" id="home-resorts"></div>
+</section>
+
+<footer class="mt-8 mb-4 px-6 text-center flex flex-col items-center">
+<div class="w-12 h-[1px] bg-outline-variant mb-4"></div>
+<span class="font-headline-md text-headline-md text-primary tracking-widest">山野为床 · 枕岚而憩</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 max-w-[280px]">栖岚度假酒店集团旗下精品院落甄选 · 24小时山居管家专属服务</p>
+<div class="flex items-center gap-4 mt-3 text-on-surface-variant font-label-sm text-label-sm flex-wrap justify-center">
+<span>无忧取消</span><span>·</span><span>一客一换</span><span>·</span><span>山野手作</span><span>·</span><span>在地向导</span>
+</div>
+</footer>
+</div>
+</section>
+
+<section class="app-page" data-page="resorts">
+<div class="flex flex-col w-full pb-24">
+<section class="sticky top-16 z-30 bg-surface/95 backdrop-blur-md px-4 pt-2 pb-3 shadow-sm">
+<div class="flex items-center gap-2 bg-surface-container-lowest p-2 rounded-xl shadow-[0_2px_12px_rgba(3,37,23,0.04)]">
+<button type="button" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-surface-container-low" data-action="open-dest">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings:'FILL' 1;">location_on</span>
+<span class="font-headline-sm text-label-lg text-primary tracking-wide" data-bind="dest-name">莫干山</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+<button type="button" class="flex-1 flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-surface-container-low min-w-0" data-action="open-dates">
+<div class="flex flex-col text-left truncate">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-label-md text-on-surface" data-bind="date-range">10.18 - 10.20</span>
+<span class="font-label-sm text-label-sm px-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed" data-bind="nights-short">2晚</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate" data-bind="date-hint">周五入住 · 周日退房</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline shrink-0 ml-1">calendar_today</span>
+</button>
+<button type="button" aria-label="搜索" class="w-9 h-9 rounded-lg bg-primary text-on-primary flex items-center justify-center shrink-0" data-action="apply-search">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</button>
+</div>
+<div class="flex items-center gap-1 pt-3 w-full" id="filter-pills"></div>
+</section>
+<div class="px-4 pt-3 flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md text-on-surface-variant" id="resorts-summary">共 4 处院落可预订</span>
+</div>
+<button type="button" class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md" data-action="toggle-sort">
+<span class="material-symbols-outlined text-[14px]">swap_vert</span>
+<span id="sort-label">推荐排序</span>
+</button>
+</div>
+<div id="resorts-list" class="flex flex-col gap-4"></div>
+<div class="mt-2 mb-4 p-4 rounded-xl bg-primary-container text-on-primary flex items-end justify-between shadow-[0_8px_24px_-4px_rgba(3,37,23,0.18)]">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[20px] text-on-tertiary-fixed" style="font-variation-settings:'FILL' 1;">concierge</span></div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1"><span class="font-headline-sm text-label-lg text-primary-fixed truncate">山野管家服务</span><span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed shrink-0"></span></div>
+<p class="font-body-sm text-body-sm text-on-primary-container truncate">1对1定制专属路线与高铁专车接引</p>
+</div>
+</div>
+<button type="button" class="shrink-0 ml-2 h-9 px-4 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md flex items-center gap-0.5" data-action="butler">咨询管家<span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</section>
+
+<section class="app-page" data-page="resort">
+<div class="flex flex-col w-full pb-28" id="resort-root"></div>
+</section>
+
+<section class="app-page" data-page="checkout">
+<div class="flex flex-col w-full pb-28" id="checkout-root"></div>
+</section>
+
+<section class="app-page" data-page="orders">
+<div class="flex flex-col w-full pb-24" id="orders-root"></div>
+</section>
+
+<section class="app-page" data-page="me">
+<div class="flex flex-col w-full pb-24" id="me-root"></div>
+</section>
+
+<section class="app-page" data-page="brands">
+<div class="flex flex-col w-full pb-24" id="brands-root"></div>
+</section>
+
+<section class="app-page" data-page="privileges">
+<div class="flex flex-col w-full pb-24" id="privileges-root"></div>
+</section>
+
+<section class="app-page" data-page="gallery">
+<div class="flex flex-col w-full pb-8 bg-inverse-surface min-h-[calc(100vh-4rem)]" id="gallery-root"></div>
+</section>
+
+<section class="app-page" data-page="reviews">
+<div class="flex flex-col w-full pb-24" id="reviews-root"></div>
+</section>
+
+<section class="app-page" data-page="guests">
+<div class="flex flex-col w-full pb-24" id="guests-root"></div>
+</section>
+
+<section class="app-page" data-page="coupons">
+<div class="flex flex-col w-full pb-24" id="coupons-root"></div>
+</section>
+
+<section class="app-page" data-page="result">
+<div class="flex flex-col w-full pb-24" id="result-root"></div>
+</section>
+
+<section class="app-page" data-page="butler">
+<div class="flex flex-col w-full pb-8" id="butler-root"></div>
+</section>
+
+<section class="app-page" data-page="settings">
+<div class="flex flex-col w-full pb-24" id="settings-root"></div>
+</section>
+
+<section class="app-page" data-page="policy">
+<div class="flex flex-col w-full pb-24" id="policy-root"></div>
+</section>
+
+</main>
+
+<nav id="tabbar" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]">
+<div class="flex items-center justify-around h-16 px-2">
+<a class="tab-link is-on flex flex-col items-center justify-center min-w-[56px] min-h-[44px]" data-nav="/home" href="#/home"><span class="material-symbols-outlined text-[24px]">cottage</span><span class="font-label-md text-label-md mt-0.5">首页</span></a>
+<a class="tab-link flex flex-col items-center justify-center min-w-[56px] min-h-[44px]" data-nav="/resorts" href="#/resorts"><span class="material-symbols-outlined text-[24px]">apartment</span><span class="font-label-md text-label-md mt-0.5">住店</span></a>
+<a class="tab-link flex flex-col items-center justify-center min-w-[56px] min-h-[44px]" data-nav="/orders" href="#/orders"><span class="material-symbols-outlined text-[24px]">calendar_month</span><span class="font-label-md text-label-md mt-0.5">订单</span></a>
+<a class="tab-link flex flex-col items-center justify-center min-w-[56px] min-h-[44px]" data-nav="/me" href="#/me"><span class="material-symbols-outlined text-[24px]">spa</span><span class="font-label-md text-label-md mt-0.5">我的</span></a>
+</div>
+</nav>
+
+<div id="sheet-dest" class="sheet-mask fixed inset-0 z-[70] bg-on-surface/40 backdrop-blur-sm flex-col justify-end">
+<div class="w-full max-w-[480px] mx-auto bg-surface-container-lowest rounded-t-2xl p-5 pb-safe">
+<div class="flex items-center justify-between mb-4"><h3 class="font-headline-sm text-headline-sm">选择目的地</h3><button type="button" class="w-8 h-8 rounded-full bg-surface-container" data-action="close-sheet" data-sheet="dest"><span class="material-symbols-outlined text-[18px]">close</span></button></div>
+<div id="dest-options" class="flex flex-col gap-2"></div>
+</div>
+</div>
+<div id="sheet-dates" class="sheet-mask fixed inset-0 z-[70] bg-on-surface/40 backdrop-blur-sm flex-col justify-end">
+<div class="w-full max-w-[480px] mx-auto bg-surface-container-lowest rounded-t-2xl p-5 pb-safe">
+<div class="flex items-center justify-between mb-3"><h3 class="font-headline-sm text-headline-sm">选择入住离店</h3><button type="button" class="w-8 h-8 rounded-full bg-surface-container" data-action="close-sheet" data-sheet="dates"><span class="material-symbols-outlined text-[18px]">close</span></button></div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3" id="date-sheet-hint">先选入住日，再选离店日</p>
+<div class="grid grid-cols-7 gap-1 text-center font-label-sm text-label-sm text-outline mb-2"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+<div id="date-grid" class="grid grid-cols-7 gap-1"></div>
+</div>
+</div>
+<div id="sheet-guests" class="sheet-mask fixed inset-0 z-[70] bg-on-surface/40 backdrop-blur-sm flex-col justify-end">
+<div class="w-full max-w-[480px] mx-auto bg-surface-container-lowest rounded-t-2xl p-5 pb-safe">
+<div class="flex items-center justify-between mb-4"><h3 class="font-headline-sm text-headline-sm">房客人数</h3><button type="button" class="w-8 h-8 rounded-full bg-surface-container" data-action="close-sheet" data-sheet="guests"><span class="material-symbols-outlined text-[18px]">close</span></button></div>
+<div class="flex items-center justify-between bg-surface-container-low rounded-xl p-4">
+<div><p class="font-label-lg text-label-lg">成人</p><p class="font-body-sm text-body-sm text-on-surface-variant">每间最多 6 位</p></div>
+<div class="flex items-center gap-3">
+<button type="button" class="w-9 h-9 rounded-full bg-surface-container-highest" data-action="guest-step" data-delta="-1">−</button>
+<span class="w-6 text-center font-headline-sm" id="guest-step-val">2</span>
+<button type="button" class="w-9 h-9 rounded-full bg-primary text-on-primary" data-action="guest-step" data-delta="1">+</button>
+</div>
+</div>
+<button type="button" class="w-full mt-4 h-11 rounded-lg bg-primary text-on-primary font-label-lg" data-action="close-sheet" data-sheet="guests">确认</button>
+</div>
+</div>
+<div id="sheet-filter" class="sheet-mask fixed inset-0 z-[70] bg-on-surface/40 backdrop-blur-sm flex-col justify-end">
+<div class="w-full max-w-[480px] mx-auto bg-surface-container-lowest rounded-t-2xl p-5 pb-safe">
+<div class="flex items-center justify-between mb-4"><h3 class="font-headline-sm text-headline-sm" id="filter-sheet-title">筛选</h3><button type="button" class="w-8 h-8 rounded-full bg-surface-container" data-action="close-sheet" data-sheet="filter"><span class="material-symbols-outlined text-[18px]">close</span></button></div>
+<div id="filter-options" class="flex flex-col gap-2"></div>
+</div>
+</div>
+<div id="sheet-eta" class="sheet-mask fixed inset-0 z-[70] bg-on-surface/40 backdrop-blur-sm flex-col justify-end">
+<div class="w-full max-w-[480px] mx-auto bg-surface-container-lowest rounded-t-2xl p-5 pb-safe">
+<div class="flex items-center justify-between mb-4"><h3 class="font-headline-sm text-headline-sm">预计到店</h3><button type="button" class="w-8 h-8 rounded-full bg-surface-container" data-action="close-sheet" data-sheet="eta"><span class="material-symbols-outlined text-[18px]">close</span></button></div>
+<div id="eta-options" class="flex flex-col gap-2"></div>
+</div>
+</div>
+<div id="sheet-amenity" class="sheet-mask fixed inset-0 z-[70] bg-on-surface/40 backdrop-blur-sm flex-col justify-end">
+<div class="w-full max-w-[480px] mx-auto bg-surface-container-lowest rounded-t-2xl p-5 pb-safe">
+<div class="flex items-center justify-between mb-3"><h3 class="font-headline-sm text-headline-sm">房型设施</h3><button type="button" class="w-8 h-8 rounded-full bg-surface-container" data-action="close-sheet" data-sheet="amenity"><span class="material-symbols-outlined text-[18px]">close</span></button></div>
+<p class="copy-sm text-on-surface-variant" id="amenity-text"></p>
+</div>
+</div>
+<div id="sheet-price" class="sheet-mask fixed inset-0 z-[70] bg-black/40 backdrop-blur-sm flex-col justify-end">
+<div class="w-full max-w-[480px] mx-auto bg-surface-container-lowest rounded-t-2xl p-5 pb-safe" id="price-sheet-body"></div>
+</div>
+<div id="sheet-preview" class="sheet-mask fixed inset-0 z-[80] bg-black/92 flex-col items-center justify-center p-4">
+<button type="button" class="absolute top-6 right-4 w-10 h-10 rounded-full bg-white/15 text-white" data-action="close-sheet" data-sheet="preview"><span class="material-symbols-outlined">close</span></button>
+<img id="preview-img" alt="预览" class="max-h-[78vh] w-full max-w-[480px] object-contain rounded-lg"/>
+<p class="text-white/80 font-label-md mt-3" id="preview-cap"></p>
+</div>
+<div id="sheet-guest-form" class="sheet-mask fixed inset-0 z-[70] bg-on-surface/40 backdrop-blur-sm flex-col justify-end">
+<div class="w-full max-w-[480px] mx-auto bg-surface-container-lowest rounded-t-2xl p-5 pb-safe">
+<div class="flex items-center justify-between mb-4"><h3 class="font-headline-sm text-headline-sm">添加同住人</h3><button type="button" class="w-8 h-8 rounded-full bg-surface-container" data-action="close-sheet" data-sheet="guest-form"><span class="material-symbols-outlined text-[18px]">close</span></button></div>
+<label class="block font-label-md text-on-surface-variant mb-1">姓名</label>
+<input id="guest-name-input" class="w-full bg-surface-container-low rounded-lg px-3 py-2.5 mb-3 font-body-md" placeholder="与证件一致"/>
+<label class="block font-label-md text-on-surface-variant mb-1">手机</label>
+<input id="guest-phone-input" class="w-full bg-surface-container-low rounded-lg px-3 py-2.5 mb-4 font-body-md" placeholder="用于接收入住确认" inputmode="numeric"/>
+<button type="button" class="w-full h-11 rounded-lg bg-primary text-on-primary font-label-lg" data-action="save-guest">保存入住人</button>
+</div>
+</div>
+<div id="toast-host" class="toast-host"></div>
+</div>
+<script>
+(function () {
+  'use strict';
+  var OSS_BASE = 'https://mashangfei1112.oss-accelerate.aliyuncs.com/qichi-demo/photos/';
+  function ossUrl(name) { return OSS_BASE + name + '.jpg'; }
+  var STORE_KEY = 'qichi-client-v1';
+  var TAB_PAGES = { home: 1, resorts: 1, orders: 1, me: 1 };
+  var STACK_PARENT = { resort: '/resorts', checkout: '/resort', gallery: '/resort', reviews: '/resort', guests: '/checkout', coupons: '/checkout', brands: '/home', privileges: '/home', result: '/orders', orders: '/home', butler: '/me', settings: '/me', policy: '/settings' };
+  var BUTLER_TOPICS = [
+    { key: 'shuttle', label: '接驳安排', q: '周五抵达莫干山，需要高铁站接驳。', a: '接驳已记下。管家会在抵达前 24 小时再次确认车次与下山路口，请把车次号发我。' },
+    { key: 'onsen', label: '私汤预热', q: '到店希望私汤已预热。', a: '私汤可提前 40 分钟预热，开放至每日 23:00。已按你的预计到店时间标记。' },
+    { key: 'change', label: '改期咨询', q: '想了解改期与取消规则。', a: '入住日 18:00 前申请改期或取消，房费全额原路退回；逾期将扣除首晚。我可以帮你提交。' },
+    { key: 'diet', label: '膳食忌口', q: '随行有人海鲜过敏，晨茗和晚餐需要忌口。', a: '已记下海鲜过敏。晨茗改为桂花玄米，晚餐会避开海鲜并单独出菜。' }
+  ];
+  var POLICY_DOCS = {
+    booking: {
+      title: '预订须知',
+      kicker: 'STAY GUIDE',
+      lead: '把山岚写进日历之前，先把抵达、入住与院落节奏说清楚。',
+      blocks: [
+        ['确认与管家', '下单后席位保留 14 分 59 秒。支付成功即锁定房态，专属山林管家会在抵达前 24 小时再次确认接驳、车次与茶礼喜好。'],
+        ['入住与离店', '常规入住 15:00 起，离店 12:00 前。栖岚会旅人可延迟退房至 14:00，并获赠双人手冲晨茗。'],
+        ['山居节奏', '院落倡导生态隐逸。私汤泡池开放至每日 23:00；夜间请保持回廊轻步，把松风留给邻院。'],
+        ['随行与停车', '每院限登记入住人与同住人。免费停车位按院落预留，驶入前请把车牌发给管家。']
+      ]
+    },
+    cancel: {
+      title: '取消与改期',
+      kicker: 'FLEX POLICY',
+      lead: '山居可以改主意，只要赶在院落为你预热之前。',
+      blocks: [
+        ['免费窗口', '入住日 18:00 前申请取消或改期，房费全额原路退回，优惠券退回券包。'],
+        ['逾期规则', '超过免费窗口后的退改，将扣除首晚房费；其余晚数按未住原路退回。'],
+        ['不可抗力', '因封山、道路中断或极端天气无法抵达，管家核实后可免费改期一次，有效期 12 个月。'],
+        ['如何提交', '在行程册点「取消」，或在咨询管家页留下改期日期，阿岚会在值班时段回复。']
+      ]
+    },
+    privacy: {
+      title: '隐私与数据',
+      kicker: 'PRIVACY',
+      lead: '演示版数据只写在这台设备的浏览器里，不会上传账号体系。',
+      blocks: [
+        ['本地存储', '行程、入住人、优惠券与管家会话保存在本机 localStorage（qichi-client-v1），刷新后仍在。'],
+        ['收集范围', '仅使用你在页面填写的姓名、手机号、到店时间和忌口备注，用于生成订单与管家回复。'],
+        ['不会做什么', '本演示不发送短信、不发起真实支付、不对接微信登录，也不会把内容传到栖岚服务器。'],
+        ['你可清除', '设置页可清空本地筛选与管家会话。清除浏览器站点数据会同时去掉行程册。']
+      ]
+    },
+    member: {
+      title: '会员礼遇',
+      kicker: 'QILAN CLUB',
+      lead: '黑金礼遇与见山等级，把山居里多出来的那一点余闲还给你。',
+      blocks: [
+        ['见山 LV.2', '入住即赠双人手冲晨茗，延迟退房至 14:00，连住可叠加度假专享券。'],
+        ['管家一对一', '每笔待入住行程绑定专属管家阿岚，微信号 QILAN_MOGAN_VIP，值班 08:00–22:00。'],
+        ['山野茶点', '旗舰院落含山野茶点与私享竹林景；私汤旗舰含到店预热。'],
+        ['升级说明', '演示账号固定为林晚宁 · 见山 LV.2，不设真实积分与付费会员。']
+      ]
+    }
+  };
+  var WEEK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+
+  var DESTINATIONS = [
+    { id: 'mogan', name: '莫干山' },
+    { id: 'dali', name: '大理双廊' },
+    { id: 'huangshan', name: '黄山汤口' },
+    { id: 'qingcheng', name: '青城山' },
+    { id: 'all', name: '全部目的地' }
+  ];
+
+  var BRANDS = [
+    { id: 'shanye', name: '栖岚 · 山野', tag: '野奢静修', desc: '隐入松竹万亩间', long: '以松竹与晨雾为幕，把山居节奏放慢到一杯手冲的时间。适于静修、写作与短途隐逸。', cover: 'brand-shanye', tone: 'primary' },
+    { id: 'sitang', name: '栖岚奢 · 私汤', tag: '私汤旗舰', desc: '岩石暖泉独院私享', long: '天然温汤引入独院，夜灯与松影同浴。旗舰礼遇含管家预热与延迟退房。', cover: 'brand-sitang', tone: 'secondary' },
+    { id: 'yuanluo', name: '栖岚漫 · 院落', tag: '人文雅集', desc: '青瓦回廊茶香满庭', long: '青瓦、回廊与茶席相连，把古镇的慢步行进院落日常。适合雅集与小团围炉。', cover: 'brand-yuanluo', tone: 'surface' },
+    { id: 'meixue', name: '栖岚境 · 美学', tag: '先锋先锋', desc: '光影与现代几何叙事', long: '混凝土、螺旋楼梯与落地玻璃，用当代几何重新讲述山海光线。', cover: 'brand-meixue', tone: 'fixed' }
+  ];
+
+  var RESORTS = [
+    {
+      id: 'R001', name: '栖岚 · 莫干山竹露', en: 'QILAN Moganshan Forest & Hot Spring Retreat', dest: 'mogan', destLabel: '莫干山', brand: 'shanye',
+      cover: 'home-mogan', listCover: 'list-mogan', thumb: 'checkout-mogan',
+      gallery: ['hero-mogan-1', 'hero-mogan-2', 'hero-mogan-3', 'hero-mogan-4', 'hero-mogan-5'],
+      price: 880, score: 4.9, reviews: 128, badge: '米其林指南入围', listBadge: '栖岚旗舰', type: '独栋竹院',
+      loc: '德清莫干山筏头乡 · 距庾村文化市集15分钟车程', addr: '浙江省德清县莫干山筏头乡瓦屋村12号',
+      tags: ['含山野茶点', '私享竹林景', '管家一对一', '免费停车'], promo: '连住立减100',
+      soldOut: false, remain: 2, amenity: '山野茶宴', scoreWord: '超赞满意', listReviews: 89,
+      quote: '“隐世避暑绝佳”、“私汤竹林治愈”', diamond: '5钻奢华度假', series: '花筑奢 · 臻选黑标系列',
+      extras: ['含山野茶点', '私享竹林景', '管家一对一'],
+      rooms: [
+        { id: 'RM01', name: '竹露大床房', spec: '1张1.8米大床 · 32㎡ · 可住2人 · 2-3层 · 私享竹林景', price: 880, cover: 'room-zhulu', rec: true, photos: 5, gallery: ['room-zhulu', 'room-zhulu-2', 'room-zhulu-3', 'room-zhulu-4', 'room-zhulu-5'], amenity: '私汤泡池、全景落地窗、Marshall音响、Appelles备品', tags: ['含双早', '限时可退', '私汤泡池'], cancel: true },
+        { id: 'RM02', name: '听雨双床房', spec: '2张1.35米床 · 38㎡ · 可住2人 · 独立景观露台', price: 980, cover: 'room-tingyu', rec: false, photos: 4, gallery: ['room-tingyu', 'room-tingyu-2', 'room-tingyu-3', 'room-tingyu-4'], amenity: '带景观阳台、全屋地暖、卫洗丽智能马桶', tags: ['含双早', '不可取消', '全屋地暖'], cancel: false },
+        { id: 'RM03', name: '栖山套房 · 私汤地暖', spec: '1张2.0米床 · 58㎡ · 可住2-3人 · 独院露天私汤', price: 1480, cover: 'room-qishan', rec: false, photos: 8, gallery: ['room-qishan', 'room-qishan-2', 'room-qishan-3', 'room-qishan-4', 'room-qishan-5', 'room-qishan-6', 'room-qishan-7', 'room-qishan-8'], amenity: '独门独院、天然硫磺私汤、戴森吹风机全套、免费迎宾水果与依云水', tags: ['含双早', '限时可退', '独门独院'], cancel: true, remain: 1 }
+      ]
+    },
+    {
+      id: 'R002', name: '栖岚 · 大理双廊', en: 'QILAN Dali Shuanglang Waterfront Retreat', dest: 'dali', destLabel: '大理双廊', brand: 'sitang',
+      cover: 'home-dali', listCover: 'list-dali', thumb: 'package-dali',
+      gallery: ['package-dali', 'list-dali', 'home-dali', 'hero-mogan-5', 'brand-sitang'],
+      price: 1280, score: 4.9, reviews: 126, badge: '黑珍珠甄选推荐', listBadge: '仅剩1间', type: '海景套房',
+      loc: '大理双廊古镇环海东路 · 近南诏风情岛', addr: '云南省大理市双廊镇环海东路栖岚院',
+      tags: ['洱海一线', '临水露台', '落日观测点', '近艺术馆'], promo: '尊享游艇接驳',
+      soldOut: false, remain: 1, amenity: '海景套房', scoreWord: '极佳美景', listReviews: 126,
+      quote: '“落日把洱海铺成金箔”、“庭院下午茶值得专程”', diamond: '5钻临水度假', series: '栖岚奢 · 海景臻选',
+      extras: ['洱海一线', '临水露台', '落日特饮'],
+      rooms: [
+        { id: 'RD01', name: '临水大床房', spec: '1张1.8米大床 · 40㎡ · 可住2人 · 一线洱海景', price: 1280, cover: 'room-linshui-1', rec: true, photos: 6, gallery: ['room-linshui-1', 'room-linshui-2', 'room-linshui-3', 'room-linshui-4', 'room-linshui-5', 'room-linshui-6'], amenity: '临水露台、落日观景位、白族庭院下午茶', tags: ['含双早', '18:00前可退', '含下午茶'], cancel: true },
+        { id: 'RD02', name: '环海套房', spec: '1张2.0米床 · 62㎡ · 可住2-3人 · 独立观海阳台', price: 1660, cover: 'room-huanhai-1', rec: false, photos: 7, gallery: ['room-huanhai-1', 'room-huanhai-2', 'room-huanhai-3', 'room-huanhai-4', 'room-huanhai-5', 'room-huanhai-6', 'room-huanhai-7'], amenity: '游艇接驳、私人阳台、环海骑行体验', tags: ['度假礼包', '含下午茶', '游艇接驳'], cancel: true, remain: 1 }
+      ]
+    },
+    {
+      id: 'R003', name: '栖岚 · 黄山汤口', en: 'QILAN Huangshan Tangkou Onsen Lodge', dest: 'huangshan', destLabel: '黄山汤口', brand: 'sitang',
+      cover: 'home-huangshan', listCover: 'list-huangshan', thumb: 'list-huangshan',
+      gallery: ['home-huangshan', 'list-huangshan', 'hero-mogan-2', 'brand-sitang', 'hero-mogan-5'],
+      price: 960, score: 4.8, reviews: 64, badge: '天然真温泉认证', listBadge: '私汤名宿', type: '私汤泡池',
+      loc: '黄山汤口镇翡翠谷景区旁 · 缆车专线接送', addr: '安徽省黄山市汤口镇温泉风景区栖岚馆',
+      tags: ['天然温泉', '云海视野', '私厨徽菜', '迎客松线'], promo: '赠双人登山礼包',
+      soldOut: false, remain: 4, amenity: '私汤名宿', scoreWord: '温泉胜境', listReviews: 64,
+      quote: '“晨起便是云海”、“汤泉洗去登高一日尘”', diamond: '4钻温泉度假', series: '栖岚奢 · 汤泉山居',
+      extras: ['天然汤泉', '云海视野', '迎客松线'],
+      rooms: [
+        { id: 'RH01', name: '云海私汤房', spec: '1张1.8米大床 · 36㎡ · 可住2人 · 半露天天然汤池', price: 960, cover: 'room-yunhai-1', rec: true, photos: 5, gallery: ['room-yunhai-1', 'room-yunhai-2', 'room-yunhai-3', 'room-yunhai-4', 'room-yunhai-5'], amenity: '天然温泉、地暖、登山礼包', tags: ['含双早', '限时可退', '登山礼包'], cancel: true },
+        { id: 'RH02', name: '迎客松套房', spec: '1张2.0米床 · 52㎡ · 可住2人 · 山景露天汤池', price: 1380, cover: 'room-yingke-1', rec: false, photos: 6, gallery: ['room-yingke-1', 'room-yingke-2', 'room-yingke-3', 'room-yingke-4', 'room-yingke-5', 'room-yingke-6'], amenity: '私厨徽菜、缆车接驳、露天汤', tags: ['含登山礼包', '限时可退', '私厨徽菜'], cancel: true }
+      ]
+    },
+    {
+      id: 'R004', name: '栖岚 · 青城山前', en: 'QILAN Qingcheng Daoist Courtyard', dest: 'qingcheng', destLabel: '青城山', brand: 'yuanluo',
+      cover: 'home-qingcheng', listCover: 'list-qingcheng', thumb: 'list-qingcheng',
+      gallery: ['home-qingcheng', 'list-qingcheng', 'brand-yuanluo', 'brand-shanye', 'hero-mogan-4'],
+      price: 1050, score: 4.9, reviews: 51, badge: '清幽隐林', listBadge: '满房待候补', type: '山林别院',
+      loc: '都江堰青城山镇宿仙社区 · 清幽隐林', addr: '四川省都江堰市青城山镇青城前山道源路',
+      tags: ['道家素食', '山林别院', '静修禅院'], promo: '可预约下周末空房',
+      soldOut: true, remain: 0, amenity: '山林别院', scoreWord: '清幽', listReviews: 51,
+      quote: '“一夜只听见雨落竹叶”、“素斋清淡却难忘”', diamond: '4钻人文院落', series: '栖岚漫 · 山门别院',
+      extras: ['道家素食', '山林别院'],
+      rooms: [
+        { id: 'RQ01', name: '道源院大床房', spec: '1张1.8米大床 · 34㎡ · 可住2人 · 庭院竹影静音', price: 1050, cover: 'room-daoyuan-1', rec: true, photos: 4, gallery: ['room-daoyuan-1', 'room-daoyuan-2', 'room-daoyuan-3', 'room-daoyuan-4'], amenity: '素斋、地暖、静音庭院', tags: ['含素早', '限时可退', '静音庭院'], cancel: true }
+      ]
+    }
+  ];
+
+  var REVIEWS = {
+    R001: [
+      { name: '何清和', date: '2026.09.12', score: 5.0, text: '隐世避暑绝佳，晨雾从竹林漫到窗台，管家把私汤提前温好，像被山接住。' },
+      { name: '苏晚白', date: '2026.08.30', score: 4.9, text: '私汤竹林治愈，Marshall 放一张慢爵士刚刚好。早餐的手作晨食值得早起。' },
+      { name: '林予安', date: '2026.08.02', score: 4.8, text: '连住两晚被升到向林静音房，夜里只听见雨打竹叶。' }
+    ],
+    R002: [
+      { name: '赵汀兰', date: '2026.09.20', score: 5.0, text: '落日把洱海铺成金箔，庭院下午茶的乳扇和鲜花饼都新鲜。' },
+      { name: '马行舟', date: '2026.07.18', score: 4.8, text: '一线海景名不虚传，游艇接驳省去古镇拥堵，适合想避世的两人。' }
+    ],
+    R003: [
+      { name: '陈见山', date: '2026.10.01', score: 4.9, text: '晨起便是云海，汤泉洗去登高一日尘。徽菜私厨的臭鳜鱼克制且鲜。' },
+      { name: '吴青桐', date: '2026.06.22', score: 4.7, text: '缆车接驳准时，房间有松香。若遇雨，泡池上的雾更美。' }
+    ],
+    R004: [
+      { name: '叶栖迟', date: '2026.05.16', score: 5.0, text: '一夜只听见雨落竹叶。素斋清淡却难忘，适合把手机交给山门。' }
+    ]
+  };
+
+  var App = {
+    route: { name: 'home', path: '/home', params: {}, query: {} },
+    cache: {},
+    ui: { sheet: '', filterKey: '', slide: 0, preview: '', toast: '', orderTab: 'all', datePick: null },
+    data: null
+  };
+
+  function seedData() {
+    return {
+      search: { dest: 'mogan', destName: '莫干山', inKey: '2026-10-18', outKey: '2026-10-20', inLabel: '10月18日', outLabel: '10月20日', inWeek: '周五', outWeek: '周日', nights: 2, guests: 2 },
+      favorites: [],
+      bookings: [],
+      guests: [
+        { id: 'G001', name: '林晚宁', phone: '13800001111', default: true },
+        { id: 'G002', name: '周予白', phone: '13900002222', default: false }
+      ],
+      selectedGuestIds: ['G001'],
+      coupons: [
+        { id: 'C001', title: '满1500减100专享券', amount: 100, min: 1500, expire: '2026-12-31', usable: true, note: '度假季满减' },
+        { id: 'C002', title: '山野新客88折券', amount: 0, rate: 0.12, expire: '2026-11-30', usable: true, note: '房费 12% 折让，上限 200' },
+        { id: 'C003', title: '私汤体验抵扣券', amount: 80, min: 800, expire: '2026-10-10', usable: false, note: '已过期' }
+      ],
+      selectedCouponId: 'C001',
+      preferences: ['无烟清居', '高楼层向林静音', '到店私汤预热'],
+      eta: '18:00 - 20:00',
+      remark: '',
+      subscribe: [],
+      filter: { brand: '', area: '', price: '', amenity: '', sort: 'recommend', tag: '' },
+      user: { name: '林晚宁', phone: '13800001111', level: 'LV.2 见山', member: '黑金礼遇' },
+      messages: [
+        { id: 'M001', role: 'butler', name: '阿岚', text: '林晚宁，我是你的专属山林管家阿岚。接驳、私汤预热、改期和忌口都可以直接发给我。也可以加微信号 QILAN_MOGAN_VIP。', at: 0 }
+      ],
+      butlerDraft: '',
+      notify: { order: true, empty: true, offer: false, quiet: true },
+      lang: 'zh',
+      selectedRoomId: 'RM01',
+      selectedResortId: 'R001',
+      holdLeft: 14 * 60 + 59,
+      flashLeft: 2 * 3600 + 14 * 60 + 8,
+      fromFlash: false
+    };
+  }
+
+  function persist() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(App.data)); } catch (e) {}
+  }
+  function hydrate() {
+    var raw = seedData();
+    try {
+      var saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+      if (saved && typeof saved === 'object') {
+        raw = Object.assign(raw, saved);
+        if (!Array.isArray(raw.favorites)) raw.favorites = [];
+        if (!Array.isArray(raw.bookings)) raw.bookings = [];
+        if (!Array.isArray(raw.guests) || !raw.guests.length) raw.guests = seedData().guests;
+        if (!Array.isArray(raw.coupons)) raw.coupons = seedData().coupons;
+        if (!Array.isArray(raw.messages) || !raw.messages.length) raw.messages = seedData().messages;
+        if (!raw.notify || typeof raw.notify !== 'object') raw.notify = seedData().notify;
+        if (raw.lang !== 'en') raw.lang = 'zh';
+        if (typeof raw.butlerDraft !== 'string') raw.butlerDraft = '';
+      }
+    } catch (e) {}
+    App.data = raw;
+    App.data.fromFlash = false;
+  }
+
+  function toast(msg) {
+    var host = document.getElementById('toast-host');
+    host.innerHTML = '<div class="q-toast">' + escapeHtml(msg) + '</div>';
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { host.innerHTML = ''; }, 2200);
+  }
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+  function money(n) { return '¥' + Number(n).toLocaleString('zh-CN'); }
+  function maskPhone(p) { return String(p).replace(/^(\d{3})\d{4}(\d{4})$/, '$1 **** $2'); }
+  function findResort(id) { return RESORTS.filter(function (r) { return r.id === id; })[0] || RESORTS[0]; }
+  function findRoom(rid) {
+    for (var i = 0; i < RESORTS.length; i++) {
+      for (var j = 0; j < RESORTS[i].rooms.length; j++) {
+        if (RESORTS[i].rooms[j].id === rid) return { resort: RESORTS[i], room: RESORTS[i].rooms[j] };
+      }
+    }
+    return { resort: RESORTS[0], room: RESORTS[0].rooms[0] };
+  }
+  function isFav(id) { return App.data.favorites.indexOf(id) >= 0; }
+  function roomTotal(room) { return room.price * App.data.search.nights; }
+  function couponOff(total) {
+    var c = App.data.coupons.filter(function (x) { return x.id === App.data.selectedCouponId; })[0];
+    if (!c || !c.usable) return 0;
+    if (c.rate) return Math.min(200, Math.round(total * c.rate));
+    if (total >= (c.min || 0)) return c.amount || 0;
+    return 0;
+  }
+  function payable() {
+    var pair = findRoom(App.data.selectedRoomId);
+    var total = roomTotal(pair.room);
+    return Math.max(0, total - couponOff(total));
+  }
+
+  function parseHash(raw) {
+    var hash = (raw || location.hash || '#/home').replace(/^#/, '');
+    var parts = hash.split('?');
+    var pathPart = parts[0];
+    var queryPart = parts[1] || '';
+    var path = pathPart.indexOf('/') === 0 ? pathPart : '/' + pathPart;
+    var name = path.replace(/^\//, '').split('/')[0] || 'home';
+    var query = {};
+    new URLSearchParams(queryPart).forEach(function (v, k) { query[k] = v; });
+    return { name: name, path: path, params: {}, query: query };
+  }
+  function navigate(path, opts) {
+    opts = opts || {};
+    var dest = path.indexOf('#') === 0 ? path.slice(1) : path;
+    if (dest.indexOf('/') !== 0) dest = '/' + dest;
+    if (dest.indexOf('/resort') === 0) App.data.fromFlash = !!opts.flash;
+    var next = path.indexOf('#') === 0 ? path : '#' + (path.indexOf('/') === 0 ? path : '/' + path);
+    if (opts.replace) history.replaceState(null, '', next);
+    else if (location.hash !== next) location.hash = next;
+    if (opts.replace) applyRoute(parseHash(next));
+  }
+  function goBack(fallback) {
+    if (history.length > 1 && document.referrer !== '' || location.hash && history.length > 1) {
+      try { history.back(); return; } catch (e) {}
+    }
+    navigate(fallback || '/home', { replace: true });
+  }
+
+  function applyRoute(route) {
+    var names = { home:1, resorts:1, resort:1, checkout:1, orders:1, me:1, brands:1, privileges:1, gallery:1, reviews:1, guests:1, coupons:1, result:1, butler:1, settings:1, policy:1 };
+    if (!names[route.name]) {
+      navigate('/home', { replace: true });
+      return;
+    }
+    var prev = App.route && App.route.name;
+    if (prev && pages[prev] && pages[prev].hide) pages[prev].hide();
+    App.route = route;
+    var secs = document.querySelectorAll('.app-page');
+    for (var i = 0; i < secs.length; i++) secs[i].classList.toggle('is-active', secs[i].getAttribute('data-page') === route.name);
+    if (!App.cache[route.name]) {
+      if (pages[route.name] && pages[route.name].init) pages[route.name].init(route);
+      App.cache[route.name] = true;
+    }
+    if (pages[route.name] && pages[route.name].show) pages[route.name].show(route);
+    syncChrome(route);
+    persist();
+  }
+
+  function syncChrome(route) {
+    var isTab = !!TAB_PAGES[route.name];
+    var showBack = !isTab || route.name === 'orders';
+    var showBrand = isTab && route.name !== 'orders';
+    document.body.classList.toggle('tabbar-hidden', !isTab);
+    document.getElementById('toast-host').classList.toggle('is-tab-hidden', !isTab);
+    var back = document.getElementById('hdr-back');
+    var brand = document.getElementById('hdr-brand');
+    var title = document.getElementById('hdr-title');
+    var page = document.getElementById('hdr-page');
+    back.classList.toggle('hidden', !showBack);
+    back.classList.toggle('flex', showBack);
+    brand.classList.toggle('hidden', !showBrand);
+    title.classList.toggle('hidden', showBrand);
+    var titles = { resort: 'Resort Details', checkout: 'Room Checkout', brands: 'Brand Lines', privileges: '度假礼遇', gallery: 'Album', reviews: 'Reviews', guests: 'Guests', coupons: 'Coupons', result: 'Confirmed', orders: '行程册', me: 'Me', home: 'Home', resorts: 'Resorts', butler: '管家', settings: '设置', policy: '协议' };
+    title.textContent = titles[route.name] || '栖岚';
+    page.textContent = titles[route.name] || 'QILAN';
+    var links = document.querySelectorAll('.tab-link');
+    for (var i = 0; i < links.length; i++) {
+      var on = links[i].getAttribute('data-nav') === '/' + route.name;
+      links[i].classList.toggle('is-on', on);
+      if (on) links[i].setAttribute('aria-current', 'page');
+      else links[i].removeAttribute('aria-current');
+    }
+  }
+
+  function bindSearchFields(root) {
+    root = root || document;
+    var nodes = root.querySelectorAll('[data-bind]');
+    var s = App.data.search;
+    var map = {
+      'dest-name': s.destName,
+      'checkin-label': s.inLabel,
+      'checkout-label': s.outLabel,
+      'checkin-week': s.inWeek,
+      'checkout-week': s.outWeek,
+      nights: '共' + s.nights + '晚',
+      'nights-short': s.nights + '晚',
+      'guests-label': '房客 ' + s.guests + '人',
+      'date-range': s.inLabel.replace('月', '.').replace('日', '') + ' - ' + s.outLabel.replace('月', '.').replace('日', ''),
+      'date-hint': s.inWeek + '入住 · ' + s.outWeek + '退房'
+    };
+    for (var i = 0; i < nodes.length; i++) {
+      var key = nodes[i].getAttribute('data-bind');
+      if (map[key] != null) nodes[i].textContent = map[key];
+    }
+  }
+
+  function renderHomeBrands() {
+    var box = document.getElementById('home-brands');
+    box.innerHTML = BRANDS.map(function (b) {
+      return '<button type="button" class="relative aspect-[4/5] rounded-xl overflow-hidden text-left active:scale-[0.98] shadow-[0_4px_16px_-2px_rgba(3,37,23,0.10)]" data-action="brand-open" data-id="' + b.id + '">' +
+        '<img class="absolute inset-0 w-full h-full object-cover" alt="' + escapeHtml(b.name) + '" src="' + ossUrl(b.cover) + '"/>' +
+        '<div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/15"></div>' +
+        '<div class="absolute bottom-2.5 left-2.5 right-2.5 text-white">' +
+        '<h3 class="font-headline-md text-headline-md text-white leading-tight">' + escapeHtml(b.name) + '</h3>' +
+        '<p class="font-body-sm text-white/85 mt-1 leading-snug">' + escapeHtml(b.desc) + '</p></div></button>';
+    }).join('');
+  }
+
+  function renderHomeResorts() {
+    var box = document.getElementById('home-resorts');
+    box.innerHTML = RESORTS.map(function (r) {
+      if (r.soldOut) {
+        return '<article class="bg-surface-container rounded-xl overflow-hidden opacity-60">' +
+          '<div class="relative h-44 w-full"><img class="w-full h-full object-cover grayscale-[30%]" alt="' + escapeHtml(r.name) + '" src="' + ossUrl(r.cover) + '"/>' +
+          '<div class="absolute inset-0 bg-on-surface/20 flex items-center justify-center"><span class="bg-inverse-surface/90 text-inverse-on-surface font-headline-md text-headline-md px-4 py-1.5 rounded-lg tracking-widest">本周末档期已满</span></div></div>' +
+          '<div class="p-3.5"><h3 class="font-headline-md text-headline-md text-outline">' + escapeHtml(r.name) + '</h3>' +
+          '<p class="font-body-sm text-body-sm text-outline flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[14px]">pin_drop</span>' + escapeHtml(r.loc) + '</p>' +
+          '<div class="price-cta pt-2"><span class="copy-sm text-outline">可预约下周末空房</span>' +
+          '<button type="button" class="bg-surface-container-high text-outline h-9 px-4 rounded-lg font-label-md text-label-md" data-action="subscribe" data-id="' + r.id + '">订阅空房通知</button></div></div></article>';
+      }
+      return '<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_24px_-2px_rgba(3,37,23,0.06)]">' +
+        '<div class="relative h-44 w-full" data-nav="/resort?id=' + r.id + '"><img class="w-full h-full object-cover" alt="' + escapeHtml(r.name) + '" src="' + ossUrl(r.cover) + '"/>' +
+        '<span class="absolute top-3 left-3 chip rounded-full ' + (r.id === 'R002' ? 'bg-secondary text-on-secondary' : 'bg-primary/80 text-on-primary') + '">' + escapeHtml(r.badge) + '</span>' +
+        (r.remain === 1 ? '<span class="absolute top-3 right-12 chip rounded-full bg-error text-on-error">仅剩 1 间</span>' : '') +
+        '<button type="button" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/80 flex items-center justify-center" data-action="favorite" data-id="' + r.id + '"><span class="material-symbols-outlined text-[18px] ' + (isFav(r.id) ? 'fav-on' : '') + '">favorite</span></button></div>' +
+        '<div class="p-3.5 flex flex-col gap-2" data-nav="/resort?id=' + r.id + '"><div class="flex items-center justify-between gap-2"><h3 class="font-headline-sm text-primary truncate min-w-0 flex-1">' + escapeHtml(r.name) + '</h3>' +
+        '<div class="flex items-center gap-0.5 bg-surface-container px-1.5 py-0.5 rounded shrink-0"><span class="material-symbols-outlined text-[13px] text-secondary" style="font-variation-settings:\'FILL\' 1;">star</span><span class="chip px-0">' + r.score + '</span></div></div>' +
+        '<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">pin_drop</span>' + escapeHtml(r.loc) + '</p>' +
+        '<div class="flex items-end justify-between gap-2">' +
+        '<div class="min-w-0 flex flex-col justify-end gap-1">' +
+        '<div class="flex items-center gap-1 flex-wrap">' + r.tags.slice(0, 3).map(function (t) { return '<span class="chip-md bg-surface-container text-on-surface-variant">' + escapeHtml(t) + '</span>'; }).join('') + '</div>' +
+        '<span class="chip-md text-secondary bg-secondary/10 w-fit leading-none">' + escapeHtml(r.promo) + '</span></div>' +
+        '<div class="shrink-0 price-num"><span class="font-headline-sm text-headline-sm text-primary leading-none">' + money(r.price) + '</span><span class="copy-sm text-on-surface-variant leading-none">起/晚</span></div></div></div></article>';
+    }).join('');
+  }
+
+  function filteredResorts() {
+    var f = App.data.filter;
+    var s = App.data.search;
+    return RESORTS.filter(function (r) {
+      if (s.dest !== 'all' && f.area !== 'all' && f.area) {
+        if (r.dest !== f.area) return false;
+      } else if (s.dest !== 'all' && !f.area) {
+        /* keep all visible after dest search unless dest is specific and user chose search */ 
+      }
+      if (s.dest !== 'all' && App.ui.lockDest && r.dest !== s.dest) return false;
+      if (f.brand && r.brand !== f.brand) return false;
+      if (f.area && f.area !== 'all' && r.dest !== f.area) return false;
+      if (f.price === 'lt1000' && r.price >= 1000) return false;
+      if (f.price === 'gte1000' && r.price < 1000) return false;
+      if (f.amenity === 'sitang' && r.tags.concat(r.extras).join('').indexOf('汤') < 0 && r.brand !== 'sitang') return false;
+      if (f.amenity === 'breakfast' && r.tags.join('').indexOf('早') < 0 && r.tags.join('').indexOf('茶') < 0) return false;
+      if (f.amenity === 'cancel' && r.soldOut) return false;
+      if (f.tag === '江浙沪周边' && ['mogan'].indexOf(r.dest) < 0) return false;
+      if (f.tag === '私汤温泉' && r.brand !== 'sitang' && r.id !== 'R001' && r.id !== 'R003') return false;
+      if (f.tag === '临湖观景' && r.id !== 'R002') return false;
+      if (f.tag === '亲子度假' && r.id === 'R004') return false;
+      return true;
+    }).sort(function (a, b) {
+      if (f.sort === 'price') return a.price - b.price;
+      if (f.sort === 'score') return b.score - a.score;
+      return (a.soldOut ? 1 : 0) - (b.soldOut ? 1 : 0);
+    });
+  }
+  function renderResortList() {
+    var list = filteredResorts();
+    document.getElementById('resorts-summary').textContent = '共 ' + list.length + ' 处院落 · ' + App.data.search.inLabel.replace('月', '.').replace('日', '') + '–' + App.data.search.outLabel.replace('月', '.').replace('日', '') + ' 档期';
+    document.getElementById('sort-label').textContent = App.data.filter.sort === 'price' ? '低价优先' : App.data.filter.sort === 'score' ? '评分优先' : '推荐排序';
+    if (!list.length) {
+      document.getElementById('resorts-list').innerHTML = '<div class="rounded-xl bg-surface-container-low p-8 text-center"><span class="material-symbols-outlined text-[36px] text-outline">forest</span><p class="font-headline-sm mt-2">这档筛选下暂无院落</p><p class="font-body-sm text-on-surface-variant mt-1">试试清空品牌或价格条件</p><button type="button" class="mt-3 px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md" data-action="clear-filter">查看全部院落</button></div>';
+      return;
+    }
+    document.getElementById('resorts-list').innerHTML = list.map(function (r) {
+      if (r.soldOut) {
+        return '<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_-2px_rgba(3,37,23,0.05)]">' +
+          '<div class="relative w-full h-52">' +
+          '<img class="w-full h-full object-cover" alt="' + escapeHtml(r.name) + '" src="' + ossUrl(r.listCover) + '"/>' +
+          '<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-black/20"></div>' +
+          '<button type="button" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/70 flex items-center justify-center" data-action="favorite" data-id="' + r.id + '"><span class="material-symbols-outlined text-[18px] ' + (isFav(r.id) ? 'fav-on' : 'text-primary') + '">favorite</span></button>' +
+          '<div class="absolute bottom-3 left-3 text-on-primary"><div class="flex items-center gap-1.5"><span class="font-headline-sm">' + r.score + '</span><span class="font-label-md text-primary-fixed">' + escapeHtml(r.scoreWord) + '</span><span class="copy-sm text-surface-variant">' + r.listReviews + '条评价</span></div>' +
+          '<p class="copy-sm text-surface-container-low flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[11px]">near_me</span>' + escapeHtml(r.loc) + '</p></div></div>' +
+          '<div class="p-4 flex flex-col gap-2.5"><div class="flex items-center justify-between gap-2"><h2 class="font-headline-sm truncate min-w-0 flex-1">' + escapeHtml(r.name) + '</h2><span class="chip shrink-0 text-outline bg-surface-container-high rounded-full">满房待候补</span></div>' +
+          '<div class="flex flex-wrap gap-1">' + r.extras.map(function (t) { return '<span class="chip-md bg-surface-container-low text-on-surface-variant">' + escapeHtml(t) + '</span>'; }).join('') + '</div>' +
+          '<div class="price-cta"><div class="price-num"><span class="copy-sm-sb text-secondary">折后价</span><span class="font-headline-sm text-headline-sm font-bold leading-none">' + r.price.toLocaleString('zh-CN') + '</span><span class="copy-sm text-outline">/晚起</span></div>' +
+          '<button type="button" class="h-9 px-4 rounded-lg bg-surface-container-highest text-outline font-label-md text-label-md" data-action="subscribe" data-id="' + r.id + '">该档期已满</button></div></div></article>';
+      }
+      return '<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_-2px_rgba(3,37,23,0.05)]">' +
+        '<div class="relative w-full h-52">' +
+        '<img class="w-full h-full object-cover" alt="' + escapeHtml(r.name) + '" src="' + ossUrl(r.listCover) + '"/>' +
+        '<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-black/20"></div>' +
+        '<div class="absolute top-3 left-3 flex gap-1.5 flex-wrap"><span class="chip rounded-full bg-primary/80 text-on-primary">' + escapeHtml(r.listBadge) + '</span></div>' +
+        '<button type="button" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/70 flex items-center justify-center" data-action="favorite" data-id="' + r.id + '"><span class="material-symbols-outlined text-[18px] ' + (isFav(r.id) ? 'fav-on' : 'text-primary') + '">favorite</span></button>' +
+        '<div class="absolute bottom-3 left-3 text-on-primary"><div class="flex items-center gap-1.5"><span class="font-headline-sm">' + r.score + '</span><span class="font-label-md text-primary-fixed">' + escapeHtml(r.scoreWord) + '</span><span class="copy-sm text-surface-variant">' + r.listReviews + '条评价</span></div>' +
+        '<p class="copy-sm text-surface-container-low flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[11px]">near_me</span>' + escapeHtml(r.loc) + '</p></div></div>' +
+        '<div class="p-4 flex flex-col gap-2.5"><div class="flex items-center justify-between gap-2"><h2 class="font-headline-sm truncate min-w-0 flex-1">' + escapeHtml(r.name) + '</h2><span class="chip shrink-0 bg-surface-container text-on-surface-variant rounded-full">' + escapeHtml(r.type) + '</span></div>' +
+        '<div class="flex flex-wrap gap-1">' + r.extras.map(function (t) { return '<span class="chip-md bg-surface-container-low text-on-surface-variant">' + escapeHtml(t) + '</span>'; }).join('') + '</div>' +
+        '<div class="price-cta"><div class="price-num"><span class="copy-sm-sb text-secondary">折后价</span><span class="font-headline-sm text-headline-sm font-bold leading-none">' + r.price.toLocaleString('zh-CN') + '</span><span class="copy-sm text-outline">/晚起</span></div>' +
+        '<button type="button" class="h-9 px-5 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1" data-nav="/resort?id=' + r.id + '">进入选房<span class="material-symbols-outlined text-[16px]">arrow_forward</span></button></div></div></article>';
+    }).join('');
+    renderFilterPills();
+  }
+
+  function renderFilterPills() {
+    var f = App.data.filter;
+    var pills = [
+      { key: 'brand', label: '品牌系列', on: !!f.brand },
+      { key: 'area', label: '位置区域', on: !!f.area },
+      { key: 'price', label: '价格星级', on: !!f.price },
+      { key: 'amenity', label: '私汤/含早/免费取消', on: !!f.amenity }
+    ];
+    document.getElementById('filter-pills').innerHTML = pills.map(function (p) {
+      var grow = p.key === 'amenity' ? 'flex-[1.85]' : 'flex-1';
+      return '<button type="button" class="' + grow + ' min-w-0 flex items-center justify-center gap-0.5 px-1.5 py-1.5 rounded-full font-label-md text-label-md whitespace-nowrap ' + (p.on ? 'bg-primary text-on-primary' : 'bg-surface-container-lowest text-on-surface shadow-sm') + '" data-action="open-filter" data-key="' + p.key + '"><span class="truncate">' + p.label + '</span><span class="material-symbols-outlined text-[14px] shrink-0">expand_more</span></button>';
+    }).join('');
+  }
+
+  function renderResortDetail(id) {
+    var r = findResort(id);
+    App.data.selectedResortId = r.id;
+    if (!r.rooms.filter(function (x) { return x.id === App.data.selectedRoomId; }).length) {
+      App.data.selectedRoomId = r.rooms[0].id;
+    }
+    var room = findRoom(App.data.selectedRoomId).room;
+    var s = App.data.search;
+    var slide = App.ui.slide % r.gallery.length;
+    var html = '';
+    if (App.data.fromFlash) html += flashDealBarHtml(r);
+    html += '<div class="hero-host relative w-full aspect-[16/11] overflow-hidden bg-surface-container-high">';
+    html += '<div class="flex w-full h-full transition-transform duration-500" id="hero-slider" style="transform:translateX(-' + (slide * 100) + '%)">';
+    html += r.gallery.map(function (g, i) {
+      return '<div class="w-full h-full shrink-0"><img class="w-full h-full object-cover" alt="相册' + (i + 1) + '" src="' + ossUrl(g) + '" draggable="false" data-action="preview" data-src="' + ossUrl(g) + '" data-cap="' + escapeHtml(r.name) + ' ' + (i + 1) + '/' + r.gallery.length + '"/></div>';
+    }).join('');
+    html += '</div>';
+    html += '<div class="absolute top-3 right-3 flex gap-2"><button type="button" class="w-9 h-9 rounded-full bg-surface/85 backdrop-blur-md flex items-center justify-center" data-action="favorite" data-id="' + r.id + '"><span class="material-symbols-outlined text-[20px] ' + (isFav(r.id) ? 'fav-on' : '') + '">favorite</span></button>';
+    html += '<button type="button" class="w-9 h-9 rounded-full bg-surface/85 backdrop-blur-md flex items-center justify-center" data-action="share" data-id="' + r.id + '"><span class="material-symbols-outlined text-[20px]">share</span></button></div>';
+    html += '<button type="button" class="absolute bottom-3 left-4 px-2.5 py-1 rounded-full bg-primary/80 text-on-primary font-label-md text-label-md flex items-center gap-1" data-nav="/gallery?id=' + r.id + '"><span class="material-symbols-outlined text-[14px] text-secondary-fixed">auto_awesome</span>' + escapeHtml(r.series) + '</button>';
+    html += '<div class="absolute bottom-3 right-4 flex items-center gap-0.5 bg-on-surface/40 px-1.5 py-0.5 rounded-full" id="hero-dots">';
+    html += r.gallery.map(function (_, i) {
+      return '<button type="button" class="p-1" data-action="hero-dot" data-id="' + i + '" aria-label="第' + (i + 1) + '张"><span class="block rounded-full transition-all ' + (i === slide ? 'w-2.5 h-1.5 bg-surface' : 'w-1.5 h-1.5 bg-surface/50') + '"></span></button>';
+    }).join('') + '</div></div>';
+
+    html += '<div class="px-4 pt-4"><div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-3">';
+    html += '<div class="flex flex-col gap-0.5"><div class="flex items-center gap-2"><span class="font-headline-sm text-headline-sm leading-none truncate min-w-0">' + escapeHtml(r.name) + '</span><span class="chip shrink-0 bg-secondary-container text-on-secondary-container gap-0.5"><span class="material-symbols-outlined text-[11px]" style="font-variation-settings:\'FILL\' 1;">diamond</span>' + escapeHtml(r.diamond) + '</span></div>';
+    html += '<p class="copy-sm text-on-surface-variant leading-none">' + escapeHtml(r.en) + '</p></div>';
+    html += '<button type="button" class="flex items-center justify-between bg-surface-container-low p-2.5 rounded-lg w-full text-left" data-nav="/reviews?id=' + r.id + '"><div class="flex items-stretch gap-2 min-w-0 flex-1"><div class="w-9 h-9 rounded-lg bg-primary text-on-primary flex items-center justify-center font-headline-sm shrink-0 leading-none">' + r.score + '</div><div class="min-w-0 flex-1 h-9 flex flex-col justify-between"><span class="copy-sm-sb leading-none">超赞 · ' + r.reviews + '条真实房客点评</span><p class="copy-sm text-secondary truncate leading-none m-0">' + escapeHtml(r.quote) + '</p></div></div><span class="material-symbols-outlined text-outline text-[18px] shrink-0">chevron_right</span></button>';
+    html += '<div class="flex items-start justify-between gap-3"><div class="flex items-start gap-1.5"><span class="material-symbols-outlined text-primary text-[16px]">location_on</span><p class="copy-sm">' + escapeHtml(r.addr) + '</p></div>';
+    html += '<button type="button" class="shrink-0 text-secondary font-label-md text-label-md flex items-center" data-action="map" data-id="' + r.id + '">地图周边<span class="material-symbols-outlined text-[16px]">chevron_right</span></button></div></div></div>';
+
+    html += '<div class="px-4 py-2"><div class="bg-surface-container-lowest rounded-xl p-3.5 shadow-sm flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">calendar_month</span></div><div><div class="flex items-center gap-2"><span class="copy-sm-sb">' + s.inLabel + ' ' + s.inWeek + '</span><span class="copy-sm text-outline">至</span><span class="copy-sm-sb">' + s.outLabel + ' ' + s.outWeek + '</span></div><span class="copy-sm text-on-surface-variant">共' + s.nights + '晚 · ' + s.guests + '成人</span></div></div>';
+    html += '<button type="button" class="h-9 px-3 rounded-lg bg-surface-container font-label-md text-label-md flex items-center gap-0.5" data-action="open-dates">修改日期<span class="material-symbols-outlined text-[16px]">edit_calendar</span></button></div></div>';
+
+    html += '<div class="px-4 pt-3 flex flex-col gap-3"><div class="flex items-center justify-between"><h2 class="font-headline-sm flex items-center gap-1.5"><span>精选客房</span><span class="copy-sm-sb text-secondary">(' + r.rooms.length + '类房型可订)</span></h2><span class="copy-sm text-on-surface-variant">房费含税费服务费</span></div>';
+    html += r.rooms.map(function (rm) {
+      var on = rm.id === App.data.selectedRoomId;
+      var chips = rm.tags || [];
+      var specCut = (rm.spec || '').lastIndexOf(' · ');
+      var specMain = specCut >= 0 ? rm.spec.slice(0, specCut) : rm.spec;
+      var specTail = specCut >= 0 ? rm.spec.slice(specCut + 3) : '';
+      return '<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm"><div class="relative w-full aspect-[16/9]">' +
+        '<img class="w-full h-full object-cover" alt="' + escapeHtml(rm.name) + '" src="' + ossUrl(rm.cover) + '" data-action="preview" data-src="' + ossUrl(rm.cover) + '" data-cap="' + escapeHtml(rm.name) + '"/>' +
+        (rm.remain === 1 ? '<div class="absolute top-2.5 left-2.5 chip rounded-full bg-error text-on-error gap-0.5"><span class="material-symbols-outlined text-[11px]">schedule</span>仅剩1间</div>' : '') +
+        '<button type="button" class="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-on-surface/40 text-surface backdrop-blur-[2px] flex items-center justify-center" data-action="room-info" data-text="' + escapeHtml(rm.amenity) + '" aria-label="房型详情"><span class="material-symbols-outlined text-[16px]">info</span></button>' +
+        '<button type="button" class="absolute bottom-2 right-2 chip bg-on-surface/60 text-surface" data-nav="/gallery?id=' + r.id + '&room=' + rm.id + '">' + (rm.gallery ? rm.gallery.length : rm.photos) + '张实拍图</button></div>' +
+        '<div class="px-3 pt-2.5 pb-3 grid grid-cols-[1.2fr_1fr] items-stretch gap-2.5"><div class="min-w-0 flex flex-col"><h3 class="font-headline-sm text-[22px] font-bold leading-none">' + escapeHtml(rm.name) + '</h3>' +
+        '<p class="copy-sm text-on-surface-variant mt-1 leading-[15px]">' + escapeHtml(specMain) + (specTail ? '<br>' + escapeHtml(specTail) : '') + '</p>' +
+        '<div class="flex flex-wrap gap-1 mt-auto pt-1">' + chips.map(function (t) { return '<span class="chip-md bg-surface-container-high text-on-surface-variant">' + escapeHtml(t) + '</span>'; }).join('') + '</div></div>' +
+        '<div class="min-w-0 flex flex-col items-end justify-between gap-3">' +
+        '<div class="flex flex-col items-end gap-1"><div class="price-num"><span class="copy-sm-sb text-secondary leading-none">¥</span><span class="font-headline-sm text-[22px] text-secondary font-bold leading-none">' + rm.price.toLocaleString('zh-CN') + '</span><span class="copy-sm text-on-surface-variant leading-none">/晚</span></div>' +
+        '<span class="copy-sm-sb leading-none">' + s.nights + '晚合计 ' + money(roomTotal(rm)) + '</span></div>' +
+        '<button type="button" class="h-9 px-5 rounded-lg font-label-lg text-label-lg flex items-center ' + (on ? 'bg-primary text-on-primary shadow-sm' : 'bg-surface-container-high text-on-surface') + '" data-action="select-room" data-id="' + rm.id + '">' + (on ? '订这间' : '预订') + '</button></div></div></div>';
+    }).join('');
+    html += '</div>';
+
+    html += '<div class="px-4 pt-5"><div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm"><div class="flex justify-between mb-3"><h3 class="font-headline-sm">核心设施与服务</h3><span class="copy-sm text-outline">共24项优质配套</span></div>';
+    html += '<div class="grid grid-cols-2 gap-2.5">';
+    [['wifi', '极速Wi-Fi', '全院千兆光纤'], ['thermostat', '全屋地暖', '德国进口恒温'], ['air', '戴森吹风机', '全房型标配'], ['spa', '帕尔玛之水', '全套奢华洗护']].forEach(function (a) {
+      html += '<div class="flex items-center gap-2.5 p-2 rounded-lg bg-surface-container-low"><div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary"><span class="material-symbols-outlined text-[16px]">' + a[0] + '</span></div><div><span class="copy-sm-sb block">' + a[1] + '</span><span class="copy-sm text-on-surface-variant">' + a[2] + '</span></div></div>';
+    });
+    html += '</div><div class="flex items-center gap-3 p-3 rounded-lg bg-primary-fixed/40 mt-3"><div class="w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">room_service</span></div><div><p class="copy-sm-sb text-on-primary-fixed">一对一专属管家服务</p><p class="copy-sm text-on-primary-fixed-variant">从抵店山道迎接、定制徒步路线至晚间暖心甜汤全流程守护</p></div></div></div></div>';
+
+    html += '<div class="px-4 pt-3 pb-4"><div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm"><h3 class="font-headline-sm mb-3">预订与入住须知</h3>';
+    html += '<div class="notice-list">';
+    html += [['schedule', '入离时间：', '入住时间 14:00 之后，退房时间 12:00 之前。若提早抵达可寄存行李。'], ['volume_off', '静音时段：', '22:00 至次日 08:00 请保持庭院静谧，共同维护山林度假氛围。'], ['pets', '宠物政策：', '允许携带15kg以下中小型犬入住，需提前与管家报备并携带疫苗凭证。']].map(function (p) {
+      return '<span class="material-symbols-outlined text-primary">' + p[0] + '</span><p class="copy-sm m-0 leading-4"><span class="copy-sm-sb">' + p[1] + '</span><span class="copy-sm text-on-surface-variant">' + p[2] + '</span></p>';
+    }).join('') + '</div></div></div>';
+
+    html += '<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-40 bg-surface/90 backdrop-blur-xl pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.06)]"><div class="h-16 px-4 flex items-center justify-between"><div><div class="flex items-baseline gap-1"><span class="copy-sm text-on-surface-variant">' + s.nights + '晚合计</span><span class="font-headline-sm text-secondary font-bold">' + money(roomTotal(room)) + '</span></div>';
+    html += '<button type="button" class="flex items-center gap-0.5 text-outline font-label-md text-label-md" data-action="open-price">明细<span class="material-symbols-outlined text-[16px]">expand_less</span></button></div>';
+    html += '<div class="flex gap-2"><button type="button" class="w-11 h-11 rounded-lg bg-surface-container" data-action="butler"><span class="material-symbols-outlined text-[20px]">chat</span></button>';
+    html += '<button type="button" class="px-7 h-11 rounded-lg bg-primary text-on-primary font-label-lg" data-action="go-checkout">立即预订</button></div></div></div>';
+    document.getElementById('resort-root').innerHTML = html;
+    paintCountdown();
+    bindHeroSwipe();
+  }
+
+  function renderCheckout() {
+    var pair = findRoom(App.data.selectedRoomId);
+    var r = pair.resort, room = pair.room, s = App.data.search;
+    var total = roomTotal(room);
+    var off = couponOff(total);
+    var pay = Math.max(0, total - off);
+    var guest = App.data.guests.filter(function (g) { return App.data.selectedGuestIds[0] === g.id; })[0] || App.data.guests[0];
+    var prefs = ['无烟清居', '高楼层向林静音', '到店私汤预热', '加配羽绒枕', '连通房需求'];
+    var holdM = Math.floor(App.data.holdLeft / 60);
+    var holdS = App.data.holdLeft % 60;
+    var html = '';
+    html += '<div class="px-4 pt-3 pb-2 flex items-center justify-between text-on-surface-variant"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings:\'FILL\' 1;">verified</span><span class="font-label-md">房间已为您保留 ' + String(holdM).padStart(2, '0') + ':' + String(holdS).padStart(2, '0') + '</span></div><div class="flex items-center gap-1 text-secondary"><span class="material-symbols-outlined text-[14px]">spa</span><span class="font-label-sm">栖岚·尊享礼遇已生效</span></div></div>';
+    html += '<div class="px-4 space-y-4 pb-4"><div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm overflow-hidden"><div class="flex items-stretch gap-3.5"><div class="w-24 h-24 rounded-lg overflow-hidden relative shrink-0"><img class="w-full h-full object-cover" alt="' + escapeHtml(r.name) + '" src="' + ossUrl(r.thumb) + '"/><div class="absolute top-1 left-1 chip bg-primary/90 text-on-primary">黑珍珠评级</div></div>';
+    html += '<div class="min-w-0 flex-1 flex flex-col justify-between"><div><div class="font-headline-sm truncate leading-none">' + escapeHtml(r.name) + '</div><p class="font-body-sm text-on-surface-variant mt-0.5 leading-none">' + escapeHtml(room.name) + ' · 1间</p></div><div class="flex flex-wrap items-end gap-1 mt-auto"><span class="chip-md bg-surface-container-low">含双人山野早餐</span><span class="chip-md bg-surface-container-low text-secondary">私汤恒温泡池</span></div></div></div>';
+    html += '<div class="mt-3.5 -mx-4 -mb-4 px-4 py-3 bg-surface-container-low/60 flex justify-between"><div class="flex items-center gap-3"><div><span class="font-label-sm text-on-surface-variant block">入住</span><span class="font-headline-sm">' + s.inLabel + '</span><span class="font-body-sm text-on-surface-variant ml-1">' + s.inWeek + '</span></div><div class="text-center"><span class="chip text-secondary bg-secondary-fixed/50 rounded-full">共' + s.nights + '晚</span></div><div><span class="font-label-sm text-on-surface-variant block">离店</span><span class="font-headline-sm">' + s.outLabel + '</span><span class="font-body-sm text-on-surface-variant ml-1">' + s.outWeek + '</span></div></div>';
+    html += '<div class="text-right"><span class="font-label-sm text-primary flex items-center justify-end gap-0.5"><span class="material-symbols-outlined text-[14px]">search_off</span>' + s.inLabel + '18:00前</span><span class="font-label-sm text-primary font-bold">可免费取消</span></div></div></div>';
+
+    html += '<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm"><div class="flex justify-between mb-3"><h2 class="font-headline-sm flex items-center gap-1.5"><span class="material-symbols-outlined text-primary">person_pin</span>入住人信息</h2>';
+    html += '<button type="button" class="font-label-md text-secondary flex items-center" data-nav="/guests">从常用入住人选择<span class="material-symbols-outlined text-[16px]">chevron_right</span></button></div>';
+    html += '<div class="bg-surface-container-low rounded-lg p-3 flex items-center justify-between mb-3"><div class="flex gap-3 items-center"><span class="font-label-md text-on-surface-variant w-16">住客姓名</span><span class="font-body-lg font-medium">' + escapeHtml(guest.name) + '</span></div><span class="chip bg-primary-fixed text-on-primary-fixed-variant rounded-full">主住客</span></div>';
+    html += '<div class="bg-surface-container-low rounded-lg p-3 flex justify-between mb-3"><div class="flex gap-3"><span class="font-label-md text-on-surface-variant w-16">联系手机</span><span class="font-body-lg tracking-wide">' + maskPhone(guest.phone).replace('****', '****') + '</span></div><span class="font-body-sm text-on-surface-variant">接收确认短信</span></div>';
+    html += '<button type="button" class="w-full py-2.5 rounded-lg bg-surface-container-high/60 text-primary font-label-md flex items-center justify-center gap-1.5" data-action="open-guest-form"><span class="material-symbols-outlined text-[18px]">add_circle</span>添加同住人 (建议填写以便办理房卡)</button>';
+    html += '<button type="button" class="mt-4 w-full flex items-center justify-between" data-action="open-eta"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-on-surface-variant">schedule</span><span class="font-label-md">预计到店时间</span></div><div class="flex items-center gap-1 text-primary font-label-md"><span>' + escapeHtml(App.data.eta) + '</span><span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span></div></button></div>';
+
+    html += '<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm"><div class="flex items-start justify-between mb-3 gap-2"><div><h2 class="font-headline-sm flex items-center gap-1.5"><span class="material-symbols-outlined text-secondary">concierge</span>定制住享诉求</h2><p class="font-body-sm text-on-surface-variant mt-0.5">管家将依据山庄当日排房尽心满足</p></div><span class="chip text-outline-variant bg-surface-container shrink-0">多选</span></div><div class="flex flex-wrap gap-2 mb-3">';
+    html += prefs.map(function (p) {
+      var on = App.data.preferences.indexOf(p) >= 0;
+      return '<button type="button" class="px-3 py-1.5 rounded-full font-label-md flex items-center gap-1.5 ' + (on ? 'bg-primary text-on-primary' : 'bg-surface-container text-on-surface-variant') + '" data-action="toggle-pref" data-key="' + escapeHtml(p) + '"><span class="material-symbols-outlined text-[14px]">' + (on ? 'check' : 'add') + '</span>' + escapeHtml(p) + '</button>';
+    }).join('') + '</div>';
+    html += '<textarea id="remark-input" class="w-full bg-surface-container-low rounded-lg p-3 font-body-sm resize-none" rows="2" placeholder="备注其他入住习惯或随行安排 (如庆祝纪念日、饮食忌口等)...">' + escapeHtml(App.data.remark) + '</textarea></div>';
+
+    html += '<div class="bg-gradient-to-r from-secondary/15 via-surface-container to-secondary/10 rounded-xl p-3.5 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center"><span class="material-symbols-outlined">workspace_premium</span></div><div class="flex-1"><div class="flex items-center gap-1.5"><span class="font-label-lg text-secondary font-semibold">栖岚会 · 旅人专享特权</span><span class="bg-secondary text-on-secondary text-[11px] px-1.5 rounded font-bold">' + escapeHtml(App.data.user.level) + '</span></div><p class="font-body-sm text-on-surface-variant mt-0.5">入住即赠双人手冲晨茗 · 延迟退房至14:00</p></div><span class="material-symbols-outlined text-secondary">check_circle</span></div>';
+
+    html += '<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm space-y-3"><h2 class="font-headline-sm">明细与优惠</h2>';
+    html += '<div class="flex justify-between"><span class="font-body-md text-on-surface-variant">房费总计 (' + s.nights + '晚 · 1间)</span><span class="font-body-lg">' + money(total) + '</span></div>';
+    html += '<button type="button" class="w-full flex justify-between items-center py-1" data-nav="/coupons"><div class="flex items-center gap-1.5"><span class="font-body-md text-on-surface-variant">度假专享券</span><span class="chip bg-secondary-fixed text-on-secondary-fixed">2张可用</span></div><div class="flex items-center gap-1"><span class="chip bg-error-container text-on-error-container">-' + money(off) + '</span><span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span></div></button>';
+    html += '<div class="flex justify-between"><span class="font-body-md text-on-surface-variant">会员专属折让</span><span class="font-body-md text-primary">免费升阶礼遇</span></div>';
+    html += '<div class="flex justify-between"><span class="font-body-md text-on-surface-variant">税费与服务费</span><span class="font-body-sm text-on-surface-variant">已包含</span></div>';
+    html += '<div class="pt-3 -mx-4 -mb-4 px-4 py-3 bg-surface-container-high/40 rounded-b-xl flex justify-between"><span class="font-label-md">待支付金额</span><div class="text-right"><span class="font-body-sm text-outline line-through mr-1.5">' + money(total) + '</span><span class="font-headline-xl-mobile text-headline-xl-mobile text-error font-semibold leading-none">' + pay.toLocaleString('zh-CN') + '</span></div></div></div>';
+
+    html += '<div class="bg-surface-container-low rounded-xl p-4 space-y-2.5"><div class="flex items-center gap-1.5 text-primary"><span class="material-symbols-outlined text-[18px]">gavel</span><span class="font-label-lg font-semibold">预订须知与无忧取消</span></div>';
+    html += '<div class="policy-list font-body-sm text-on-surface-variant">';
+    html += '<span class="material-symbols-outlined text-primary">check_small</span><p>' + s.inLabel + ' 18:00 前申请取消，全额原路退款；逾期退改将扣除首晚房费。</p>';
+    html += '<span class="material-symbols-outlined text-primary">check_small</span><p>山庄倡导生态隐逸体验，为保证静谧氛围，私汤泡池开放至每日 23:00。</p>';
+    html += '<span class="material-symbols-outlined text-primary">check_small</span><p>订单确认后山庄管家将致电沟通抵达路线与茶礼喜好。</p></div></div></div>';
+
+    html += '<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-30 bg-surface/95 backdrop-blur-md px-4 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] pb-safe"><div class="flex items-end justify-between"><button type="button" class="text-left" data-action="open-price"><div class="flex items-baseline gap-1"><span class="font-body-sm text-on-surface-variant">实付</span><span class="font-headline-xl-mobile text-headline-xl-mobile text-error font-bold leading-none">' + pay.toLocaleString('zh-CN') + '</span></div><span class="font-label-sm text-secondary flex items-center">明细已减' + money(off) + '<span class="material-symbols-outlined text-[13px]">expand_less</span></span></button>';
+    html += '<button type="button" class="bg-primary text-on-primary px-6 h-12 rounded-lg font-label-lg flex items-center gap-2" data-action="pay"><span class="material-symbols-outlined">lock</span>微信支付 ' + money(pay) + '</button></div></div>';
+    document.getElementById('checkout-root').innerHTML = html;
+    var remark = document.getElementById('remark-input');
+    if (remark) remark.addEventListener('input', function () { App.data.remark = remark.value; persist(); });
+  }
+
+  function renderPriceSheet() {
+    var pair = findRoom(App.data.selectedRoomId);
+    var room = pair.room, s = App.data.search;
+    var total = roomTotal(room);
+    var off = couponOff(total);
+    var pay = total - off;
+    var body = document.getElementById('price-sheet-body');
+    body.innerHTML = '<div class="flex justify-between mb-4"><h4 class="font-headline-sm">费用明细</h4><button type="button" class="w-8 h-8 rounded-full bg-surface-container" data-action="close-sheet" data-sheet="price"><span class="material-symbols-outlined text-[18px]">close</span></button></div>' +
+      '<div class="flex justify-between font-body-md mb-2"><span>' + escapeHtml(room.name) + ' (' + s.nights + '晚)</span><span>' + money(total) + '</span></div>' +
+      '<div class="flex justify-between font-body-sm text-on-surface-variant mb-1"><span>' + s.inLabel + ' (' + s.inWeek + ')</span><span>' + money(room.price) + '</span></div>' +
+      (s.nights > 1 ? '<div class="flex justify-between font-body-sm text-on-surface-variant mb-1"><span>其后 ' + (s.nights - 1) + ' 晚</span><span>' + money(room.price * (s.nights - 1)) + '</span></div>' : '') +
+      '<div class="flex justify-between font-body-sm text-secondary mb-1"><span>专享优惠</span><span>-' + money(off) + '</span></div>' +
+      '<div class="flex justify-between font-body-sm text-on-surface-variant mb-3"><span>税费与管家服务费</span><span>¥0 (已免)</span></div>' +
+      '<div class="bg-surface-container-low p-3 rounded-xl flex justify-between"><span class="font-label-lg">实付总额</span><span class="font-headline-md text-secondary font-bold">' + money(pay) + '</span></div>';
+  }
+
+  function renderOrders() {
+    var tab = App.ui.orderTab || 'all';
+    var all = App.data.bookings.slice().sort(function (a, b) { return b.created - a.created; });
+    var list = all.filter(function (o) { return tab === 'all' || o.status === tab; });
+    var tabs = [['all', '全部'], ['hold', '待入住'], ['done', '已完成'], ['cancel', '已取消']];
+    var html = '<div class="px-4 pt-3"><div class="rounded-2xl bg-primary text-on-primary p-4 mb-4 relative overflow-hidden"><div class="absolute -right-6 -top-8 w-28 h-28 rounded-full bg-secondary-fixed/15"></div><p class="font-label-sm text-secondary-fixed-dim tracking-widest">MY STAYS</p><h2 class="font-headline-md mt-1">山居行程册</h2><p class="font-body-sm text-on-primary-container mt-1">管家会在抵达前 24 小时再次确认接驳</p><div class="flex gap-4 mt-3 font-label-md"><span>' + all.length + ' 笔行程</span><span>' + all.filter(function (o) { return o.status === 'hold'; }).length + ' 待入住</span></div></div>';
+    html += '<div class="flex gap-2 overflow-x-auto no-scrollbar mb-4">' + tabs.map(function (t) {
+      return '<button type="button" class="shrink-0 px-3 py-1.5 rounded-full font-label-md ' + (tab === t[0] ? 'bg-primary text-on-primary' : 'bg-surface-container-lowest') + '" data-action="order-tab" data-key="' + t[0] + '">' + t[1] + '</button>';
+    }).join('') + '</div>';
+    if (!list.length) {
+      html += '<div class="bg-surface-container-lowest rounded-2xl p-8 text-center"><span class="material-symbols-outlined text-[40px] text-outline">calendar_month</span><p class="font-headline-sm mt-2">这一栏还没有行程</p><p class="font-body-sm text-on-surface-variant mt-1">从住店页选一处院落，把山岚写进日历</p><button type="button" class="mt-4 px-5 py-2 rounded-lg bg-primary text-on-primary font-label-md" data-nav="/resorts">去住店</button></div></div>';
+    } else {
+      html += '<div class="flex flex-col gap-3 pb-4">' + list.map(function (o) {
+        var st = { hold: ['待入住', 'bg-secondary-fixed text-on-secondary-fixed'], done: ['已完成', 'bg-primary-fixed text-on-primary-fixed'], cancel: ['已取消', 'bg-surface-container-high text-outline'] }[o.status] || ['待入住', 'bg-secondary-fixed text-on-secondary-fixed'];
+        return '<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm"><div class="flex items-stretch">' +
+          '<div class="relative w-28 shrink-0 self-stretch overflow-hidden"><img class="absolute inset-0 w-full h-full object-cover" alt="" src="' + ossUrl(o.cover) + '"/></div>' +
+          '<div class="p-3 flex-1 min-w-0 flex flex-col justify-between"><div><div class="flex items-center justify-between gap-2"><h3 class="font-headline-sm truncate min-w-0 flex-1">' + escapeHtml(o.resortName) + '</h3><span class="chip rounded-full shrink-0 ' + st[1] + '">' + st[0] + '</span></div>' +
+          '<p class="copy-sm text-on-surface-variant mt-0.5">' + escapeHtml(o.roomName) + '</p>' +
+          '<p class="copy-sm-sb mt-1">' + escapeHtml(o.inLabel) + ' — ' + escapeHtml(o.outLabel) + ' · ' + o.nights + '晚</p></div>' +
+          '<div class="price-cta mt-2"><span class="font-headline-sm text-headline-sm text-secondary leading-none">' + money(o.pay) + '</span>' +
+          (o.status === 'hold' ? '<button type="button" class="h-9 px-3 rounded-lg bg-surface-container font-label-md text-label-md" data-action="cancel-order" data-id="' + o.id + '">取消</button>' : '<button type="button" class="h-9 px-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md" data-nav="/resort?id=' + o.resortId + '">再次预订</button>') +
+          '</div></div></div></article>';
+      }).join('') + '</div></div>';
+    }
+    document.getElementById('orders-root').innerHTML = html;
+  }
+
+  function renderMe() {
+    var u = App.data.user;
+    var html = '<div class="px-4 pt-3 pb-6"><div class="rounded-2xl p-4 bg-gradient-to-br from-primary-container via-tertiary-container to-primary text-on-primary relative overflow-hidden"><div class="absolute right-0 bottom-0 w-32 h-32 rounded-full bg-secondary-fixed/10 blur-2xl"></div>';
+    html += '<div class="flex items-center gap-3 relative z-10"><img class="w-14 h-14 rounded-full object-cover border-2 border-secondary-fixed/40" alt="头像" src="' + ossUrl('avatar-guest') + '"/><div><p class="font-headline-sm text-secondary-fixed">' + escapeHtml(u.name) + '</p><p class="font-label-sm text-on-primary-container mt-0.5">' + escapeHtml(u.level) + ' · ' + escapeHtml(u.member) + '</p></div></div>';
+    html += '<div class="grid grid-cols-3 gap-2 mt-4 relative z-10">';
+    [['favorite', App.data.favorites.length, '收藏院落', '/resorts'], ['confirmation_number', App.data.coupons.filter(function (c) { return c.usable; }).length, '可用优惠', '/coupons'], ['group', App.data.guests.length, '入住人', '/guests']].forEach(function (x) {
+      html += '<button type="button" class="bg-primary/25 rounded-xl py-2 text-center" data-nav="' + x[3] + '"><span class="material-symbols-outlined text-secondary-fixed text-[18px]">' + x[0] + '</span><div class="font-headline-sm">' + x[1] + '</div><div class="font-label-sm text-on-primary-container">' + x[2] + '</div></button>';
+    });
+    html += '</div></div>';
+    var last = App.data.bookings[0];
+    if (last) {
+      html += '<div class="mt-4 bg-surface-container-lowest rounded-2xl p-3 flex gap-3 shadow-sm" data-nav="/orders"><img class="w-20 h-20 rounded-xl object-cover" alt="" src="' + ossUrl(last.cover) + '"/><div class="min-w-0"><p class="font-label-sm text-secondary">最近一次山居</p><h3 class="font-headline-sm truncate">' + escapeHtml(last.resortName) + '</h3><p class="font-body-sm text-on-surface-variant">' + escapeHtml(last.inLabel) + ' · ' + last.nights + '晚</p></div></div>';
+    }
+    html += '<div class="mt-4 bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm">';
+    [['calendar_month', '我的订单', '/orders'], ['group', '常用入住人', '/guests'], ['confirmation_number', '优惠券包', '/coupons'], ['auto_awesome', '品牌矩阵', '/brands']].forEach(function (m) {
+      html += '<button type="button" class="w-full flex items-center justify-between px-4 py-3.5 border-b border-surface-container" data-nav="' + m[2] + '"><span class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">' + m[0] + '</span><span class="font-label-lg">' + m[1] + '</span></span><span class="material-symbols-outlined text-outline">chevron_right</span></button>';
+    });
+    html += '<button type="button" class="w-full flex items-center justify-between px-4 py-3.5 border-b border-surface-container" data-nav="/butler"><span class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">forum</span><span class="font-label-lg">咨询管家</span></span><span class="material-symbols-outlined text-outline">chevron_right</span></button>';
+    html += '<button type="button" class="w-full flex items-center justify-between px-4 py-3.5" data-nav="/settings"><span class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">settings</span><span class="font-label-lg">设置与协议</span></span><span class="material-symbols-outlined text-outline">chevron_right</span></button></div>';
+    html += '<p class="text-center font-label-sm text-outline mt-6">栖岚度假 · 山野为床 · 枕岚而憩</p></div>';
+    document.getElementById('me-root').innerHTML = html;
+  }
+
+  function formatMsgTime(at) {
+    if (!at) return '今日 09:12';
+    var d = new Date(at);
+    return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+  }
+
+  function copyText(text, ok) {
+    function done() { toast(ok || '已复制'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(fallback);
+    } else fallback();
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (err) { toast(text); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  function appendButler(role, text) {
+    App.data.messages.push({
+      id: 'M' + Date.now().toString(36),
+      role: role,
+      name: role === 'me' ? App.data.user.name : '阿岚',
+      text: text,
+      at: Date.now()
+    });
+    persist();
+  }
+
+  function replyButler(userText) {
+    var topic = BUTLER_TOPICS.filter(function (t) { return t.q === userText; })[0];
+    var hold = App.data.bookings.filter(function (o) { return o.status === 'hold'; })[0];
+    var reply = topic ? topic.a : '已收到。阿岚会在今日值班时段（08:00–22:00）跟进，紧急接驳可拨 400-800-9188。';
+    if (!topic && hold) reply += ' 你有一笔待入住：' + hold.resortName + '，' + hold.inLabel + ' 入住。';
+    appendButler('butler', reply);
+  }
+
+  function renderButler() {
+    var hold = App.data.bookings.filter(function (o) { return o.status === 'hold'; })[0];
+    var html = '<div class="relative h-48 overflow-hidden"><img class="w-full h-full object-cover" alt="山林管家" src="' + ossUrl('brand-sitang') + '"/>';
+    html += '<div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/55 to-transparent"></div>';
+    html += '<div class="absolute bottom-4 left-4 right-4 text-on-primary"><p class="font-label-sm text-secondary-fixed-dim tracking-widest">1:1 CONCIERGE</p><h2 class="font-headline-md mt-0.5">专属山林管家 · 阿岚</h2><p class="font-body-sm text-on-primary-container mt-1 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>在线 · 值班 08:00–22:00</p></div></div>';
+    html += '<div class="px-4 pt-3 pb-28">';
+    html += '<div class="bg-surface-container-lowest rounded-2xl p-3 shadow-sm grid grid-cols-2 gap-2">';
+    html += '<button type="button" class="rounded-xl bg-surface-container-low p-3 text-left" data-action="copy-wx"><p class="font-label-sm text-secondary">微信</p><p class="font-label-lg mt-0.5 break-all">QILAN_MOGAN_VIP</p><p class="font-body-sm text-on-surface-variant mt-1">点按复制</p></button>';
+    html += '<a class="rounded-xl bg-surface-container-low p-3 text-left block" href="tel:4008009188"><p class="font-label-sm text-secondary">值班电话</p><p class="font-label-lg mt-0.5">400-800-9188</p><p class="font-body-sm text-on-surface-variant mt-1">可直接拨打</p></a></div>';
+    if (hold) {
+      html += '<button type="button" class="mt-3 w-full bg-secondary-fixed text-on-secondary-fixed rounded-2xl p-3 text-left" data-nav="/orders"><p class="font-label-sm">当前待入住</p><p class="font-headline-sm mt-0.5">' + escapeHtml(hold.resortName) + '</p><p class="font-body-sm mt-0.5">' + escapeHtml(hold.inLabel) + ' — ' + escapeHtml(hold.outLabel) + ' · 接驳将再确认一次</p></button>';
+    } else {
+      html += '<div class="mt-3 rounded-2xl bg-primary-container text-on-primary p-3"><p class="font-label-sm text-secondary-fixed-dim">还没有行程</p><p class="font-body-sm text-on-primary-container mt-1">先从住店页锁一处院落，管家就能按档期安排接驳与预热。</p><button type="button" class="mt-2 px-3 py-1.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-label-md" data-nav="/resorts">去住店</button></div>';
+    }
+    html += '<p class="font-label-sm text-secondary tracking-widest mt-5">快捷吩咐</p><div class="flex flex-wrap gap-2 mt-2">';
+    html += BUTLER_TOPICS.map(function (t) {
+      return '<button type="button" class="px-3 py-1.5 rounded-full bg-surface-container-lowest font-label-md shadow-sm" data-action="butler-topic" data-key="' + t.key + '">' + t.label + '</button>';
+    }).join('') + '</div>';
+    html += '<div class="mt-4 flex flex-col gap-3" id="butler-thread">';
+    html += (App.data.messages || []).map(function (m) {
+      var mine = m.role === 'me';
+      return '<div class="flex ' + (mine ? 'justify-end' : 'justify-start') + '"><div class="max-w-[82%] px-3.5 py-2.5 ' + (mine ? 'bubble-me' : 'bubble-butler') + '"><p class="font-label-sm ' + (mine ? 'text-secondary-fixed-dim' : 'text-secondary') + '">' + escapeHtml(m.name || (mine ? '我' : '阿岚')) + ' · ' + formatMsgTime(m.at) + '</p><p class="font-body-md mt-1 leading-relaxed">' + escapeHtml(m.text) + '</p></div></div>';
+    }).join('') + '</div></div>';
+    html += '<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-30 bg-surface/95 backdrop-blur-md px-3 py-2.5 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.06)] flex items-end gap-2">';
+    html += '<textarea id="butler-input" rows="1" class="flex-1 bg-surface-container-low rounded-xl px-3 py-2.5 font-body-md resize-none max-h-24" placeholder="把车次、忌口或改期发给阿岚">' + escapeHtml(App.data.butlerDraft || '') + '</textarea>';
+    html += '<button type="button" class="h-11 px-4 rounded-xl bg-primary text-on-primary font-label-md shrink-0" data-action="butler-send">发送</button></div>';
+    document.getElementById('butler-root').innerHTML = html;
+    var input = document.getElementById('butler-input');
+    if (input) {
+      input.addEventListener('input', function () { App.data.butlerDraft = input.value; persist(); });
+      input.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Enter' && !ev.shiftKey) {
+          ev.preventDefault();
+          actions['butler-send']();
+        }
+      });
+    }
+    var thread = document.getElementById('butler-thread');
+    if (thread) thread.scrollIntoView({ block: 'end' });
+  }
+
+  function renderSettings() {
+    var n = App.data.notify;
+    var en = App.data.lang === 'en';
+    var rows = [
+      ['order', n.order, en ? 'Stay updates' : '订单动态', en ? 'Hold, check-in and cancel notices' : '待入住、入住提醒与取消回执'],
+      ['empty', n.empty, en ? 'Room-open alert' : '空房提醒', en ? 'Ping when a sold-out weekend frees up' : '满房档期释放时通知你'],
+      ['offer', n.offer, en ? 'Member offers' : '优惠推送', en ? 'Coupons and flash lodges' : '专享券与闪住档期'],
+      ['quiet', n.quiet, en ? 'Night quiet hours' : '夜间免打扰', en ? 'Mute 22:00–08:00 except shuttle' : '22:00–08:00 仅保留接驳电话']
+    ];
+    var html = '<div class="px-4 pt-3 pb-8">';
+    html += '<div class="rounded-2xl bg-primary text-on-primary p-4 relative overflow-hidden"><div class="absolute -right-8 -bottom-10 w-32 h-32 rounded-full bg-secondary-fixed/15"></div><p class="font-label-sm text-secondary-fixed-dim tracking-widest">SETTINGS</p><h2 class="font-headline-md mt-1">' + (en ? 'Settings & policies' : '设置与协议') + '</h2><p class="font-body-sm text-on-primary-container mt-1">' + (en ? 'Preferences stay on this phone. No real account.' : '偏好只写在这台设备上，没有真实账号体系。') + '</p></div>';
+    html += '<div class="mt-4 bg-surface-container-lowest rounded-2xl p-4 flex items-center gap-3 shadow-sm"><img class="w-12 h-12 rounded-full object-cover" alt="" src="' + ossUrl('avatar-guest') + '"/><div class="min-w-0"><p class="font-headline-sm">' + escapeHtml(App.data.user.name) + '</p><p class="font-label-sm text-on-surface-variant">' + escapeHtml(App.data.user.level) + ' · ' + escapeHtml(App.data.user.phone) + '</p></div></div>';
+    html += '<p class="font-label-sm text-secondary tracking-widest mt-5 mb-2">' + (en ? 'NOTIFICATIONS' : '通知偏好') + '</p><div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm">';
+    rows.forEach(function (r, i) {
+      html += '<div class="flex items-center justify-between px-4 py-3.5 ' + (i < rows.length - 1 ? 'border-b border-surface-container' : '') + '"><div class="pr-3 min-w-0"><p class="font-label-lg">' + r[2] + '</p><p class="font-body-sm text-on-surface-variant mt-0.5">' + r[3] + '</p></div><button type="button" class="q-switch' + (r[1] ? ' is-on' : '') + '" data-action="toggle-notify" data-key="' + r[0] + '" aria-pressed="' + (r[1] ? 'true' : 'false') + '" aria-label="' + r[2] + '"><i></i></button></div>';
+    });
+    html += '</div>';
+    html += '<p class="font-label-sm text-secondary tracking-widest mt-5 mb-2">' + (en ? 'LANGUAGE' : '显示语言') + '</p><div class="bg-surface-container-lowest rounded-2xl p-2 flex gap-2 shadow-sm">';
+    html += '<button type="button" class="flex-1 h-10 rounded-xl font-label-md ' + (en ? 'bg-surface-container' : 'bg-primary text-on-primary') + '" data-action="set-lang" data-key="zh">中文</button>';
+    html += '<button type="button" class="flex-1 h-10 rounded-xl font-label-md ' + (en ? 'bg-primary text-on-primary' : 'bg-surface-container') + '" data-action="set-lang" data-key="en">English</button></div>';
+    html += '<p class="font-label-sm text-secondary tracking-widest mt-5 mb-2">' + (en ? 'POLICIES' : '协议与须知') + '</p><div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm">';
+    [['booking', '预订须知', 'Stay guide'], ['cancel', '取消与改期', 'Cancel & change'], ['privacy', '隐私与数据', 'Privacy'], ['member', '会员礼遇', 'Member care']].forEach(function (p, i) {
+      html += '<button type="button" class="w-full flex items-center justify-between px-4 py-3.5 ' + (i < 3 ? 'border-b border-surface-container' : '') + '" data-nav="/policy?id=' + p[0] + '"><span class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">article</span><span class="text-left"><span class="font-label-lg block">' + (en ? p[2] : p[1]) + '</span><span class="font-body-sm text-on-surface-variant">' + (en ? p[1] : p[2]) + '</span></span></span><span class="material-symbols-outlined text-outline">chevron_right</span></button>';
+    });
+    html += '</div>';
+    html += '<button type="button" class="mt-4 w-full h-11 rounded-xl bg-surface-container-high font-label-md" data-action="clear-cache">' + (en ? 'Clear local filters & chat' : '清除本地筛选与管家会话') + '</button>';
+    html += '<p class="text-center font-label-sm text-outline mt-5">' + (en ? 'Demo build · no SMS or live payment' : '演示版本 · 不发送短信、不发起真实支付') + '</p></div>';
+    document.getElementById('settings-root').innerHTML = html;
+  }
+
+  function renderPolicy(id) {
+    var doc = POLICY_DOCS[id] || POLICY_DOCS.booking;
+    var html = '<article class="px-4 pt-3 pb-10"><p class="font-label-sm text-secondary tracking-widest">' + doc.kicker + '</p>';
+    html += '<h2 class="font-headline-lg mt-1">' + escapeHtml(doc.title) + '</h2>';
+    html += '<p class="font-body-lg text-on-surface-variant mt-2 leading-relaxed">' + escapeHtml(doc.lead) + '</p>';
+    html += '<div class="mt-5 space-y-4">' + doc.blocks.map(function (b, i) {
+      return '<section class="rounded-2xl bg-surface-container-lowest p-4 shadow-sm"><p class="font-label-sm text-secondary">' + String(i + 1).padStart(2, '0') + '</p><h3 class="font-headline-sm mt-1">' + escapeHtml(b[0]) + '</h3><p class="font-body-md text-on-surface-variant mt-2 leading-relaxed">' + escapeHtml(b[1]) + '</p></section>';
+    }).join('') + '</div>';
+    html += '<div class="mt-6 flex gap-2"><button type="button" class="flex-1 h-11 rounded-xl bg-primary text-on-primary font-label-md" data-action="back">返回设置</button>';
+    html += '<button type="button" class="flex-1 h-11 rounded-xl bg-surface-container-high font-label-md" data-nav="/butler">问管家</button></div></article>';
+    document.getElementById('policy-root').innerHTML = html;
+  }
+
+  function renderPrivileges() {
+    var perks = [
+      ['percent', '专享88折起', '见山等级入住即享房费折扣'],
+      ['schedule', '14:00 延迟退房', '把上午的山雾多留两小时'],
+      ['featured_seasonal_and_gifts', '赠山野伴手礼', '离店带走当季手作茶点'],
+      ['room_service', '一对一管家', '接驳、私汤预热、忌口交给阿岚'],
+      ['bakery_dining', '双人手冲晨茗', '入住即赠，不必另付'],
+      ['event_available', '18:00 前可退', '入住当日傍晚前免费取消']
+    ];
+    var packs = [
+      { cover: 'flash-zhulu', title: '竹露大床房 · 伴山私汤', sub: '栖岚·莫干山 · 含次日双人手作晨食', price: 880, resortId: 'R001', roomId: 'RM01', hot: true, remain: 2 },
+      { cover: 'package-dali', title: '双廊海景一夜 · 避世礼包', sub: '含双人有机早餐 + 白族庭院下午茶 + 环海骑行', price: 1660, resortId: 'R002', roomId: 'RD02' },
+      { cover: 'list-huangshan', title: '云海私汤房 · 汤口温泉夜', sub: '栖岚·黄山汤口 · 含双早 · 赠登山礼包', price: 960, resortId: 'R003', roomId: 'RH01' }
+    ];
+    var html = '<div class="px-4 pt-3 pb-8">';
+    html += '<div class="relative rounded-2xl overflow-hidden h-44 mb-4"><img class="w-full h-full object-cover" alt="" src="' + ossUrl('flash-zhulu') + '"/>';
+    html += '<div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-black/10"></div>';
+    html += '<div class="absolute bottom-3 left-4 right-4 text-on-primary"><p class="font-label-sm text-secondary-fixed-dim tracking-widest">RETREAT PRIVILEGES</p>';
+    html += '<h2 class="font-headline-md mt-0.5">度假礼遇</h2>';
+    html += '<p class="font-body-sm text-on-primary-container mt-1">折扣、延迟退房、晨茗与本季套餐，点进去就能订。</p>';
+    html += '<div class="mt-2 flex items-center gap-1.5"><span class="chip bg-error text-on-error">限时特惠</span><span class="copy-sm text-surface-variant">距结束</span><span class="js-countdown flex items-center gap-px"></span></div></div></div>';
+    html += '<h3 class="font-headline-sm mb-2">在店即享</h3><div class="grid grid-cols-2 gap-2 mb-5">';
+    perks.forEach(function (p) {
+      html += '<div class="rounded-xl bg-surface-container-lowest p-3 shadow-sm flex gap-2.5"><div class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[18px]">' + p[0] + '</span></div><div class="min-w-0"><p class="copy-sm-sb">' + p[1] + '</p><p class="copy-sm text-on-surface-variant mt-0.5">' + p[2] + '</p></div></div>';
+    });
+    html += '</div><div class="flex items-center justify-between mb-2.5"><h3 class="font-headline-sm">本季套餐</h3><span class="copy-sm text-on-surface-variant">含早 · 可退窗口见房型</span></div>';
+    html += '<div class="flex flex-col gap-3">';
+    packs.forEach(function (p) {
+      html += '<button type="button" class="relative h-44 w-full rounded-xl overflow-hidden shadow-[0_4px_20px_-2px_rgba(3,37,23,0.05)] text-left" data-action="pick-package" data-id="' + p.resortId + '" data-room="' + p.roomId + '">';
+      html += '<img class="absolute inset-0 w-full h-full object-cover" alt="' + escapeHtml(p.title) + '" src="' + ossUrl(p.cover) + '"/>';
+      if (p.hot) html += '<span class="absolute top-2.5 right-2.5 z-10 chip rounded-full bg-error text-on-error">仅剩' + p.remain + '间</span>';
+      html += '<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent flex flex-col justify-end p-3">';
+      html += '<div class="flex items-end justify-between text-on-primary gap-2"><div class="min-w-0 flex flex-col justify-end"><span class="font-headline-md text-headline-md text-surface-bright leading-none">' + escapeHtml(p.title) + '</span>';
+      html += '<span class="font-body-sm text-body-sm text-surface-variant leading-none mt-1">' + escapeHtml(p.sub) + '</span></div>';
+      html += '<div class="shrink-0 price-num"><span class="font-headline-sm text-headline-sm text-secondary-fixed leading-none">¥' + p.price.toLocaleString('zh-CN') + '</span><span class="copy-sm text-surface-variant leading-none">/套</span></div></div></div></button>';
+    });
+    html += '</div>';
+    html += '<div class="mt-5 flex gap-2"><button type="button" class="flex-1 h-11 rounded-xl bg-primary text-on-primary font-label-md" data-nav="/resorts">去选院落</button>';
+    html += '<button type="button" class="flex-1 h-11 rounded-xl bg-surface-container-high font-label-md" data-nav="/butler">问管家</button></div>';
+    html += '<p class="text-center copy-sm text-outline mt-4">演示套餐不发起真实支付</p></div>';
+    document.getElementById('privileges-root').innerHTML = html;
+    paintCountdown();
+  }
+
+  function renderBrands() {
+    var html = '<div class="px-4 pt-3 pb-8"><p class="font-label-sm text-secondary tracking-widest">BRAND LINES</p><h2 class="font-headline-md mt-1">心之所栖，自成山岚</h2><p class="font-body-sm text-on-surface-variant mt-1 mb-4">四条产品线共享同一套山居礼遇，只是把风景换成不同的入口。</p>';
+    html += BRANDS.map(function (b) {
+      return '<article class="mb-4 rounded-2xl overflow-hidden bg-surface-container-lowest shadow-sm"><div class="h-40"><img class="w-full h-full object-cover" alt="' + escapeHtml(b.name) + '" src="' + ossUrl(b.cover) + '"/></div>' +
+        '<div class="p-4"><span class="chip bg-surface-container text-on-surface-variant">' + escapeHtml(b.tag) + '</span><h3 class="font-headline-md mt-2">' + escapeHtml(b.name) + '</h3><p class="font-body-md text-on-surface-variant mt-1 leading-relaxed">' + escapeHtml(b.long) + '</p>' +
+        '<button type="button" class="mt-3 px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md" data-action="brand-open" data-id="' + b.id + '">查看该系列院落</button></div></article>';
+    }).join('') + '</div>';
+    document.getElementById('brands-root').innerHTML = html;
+  }
+
+  function renderGallery(id, roomId) {
+    var r = findResort(id);
+    var rm = null;
+    if (roomId && r.rooms) {
+      rm = r.rooms.filter(function (x) { return x.id === roomId; })[0] || null;
+    }
+    var shots = (rm && rm.gallery && rm.gallery.length) ? rm.gallery : r.gallery;
+    var title = rm ? rm.name : r.name;
+    var html = '<div class="px-4 pt-3 pb-8 text-inverse-on-surface"><div class="flex items-end justify-between mb-3"><div><p class="font-label-sm tracking-widest text-secondary-fixed-dim">ALBUM</p><h2 class="font-headline-md">' + escapeHtml(title) + '</h2></div><span class="font-label-md">' + shots.length + ' 张</span></div>';
+    html += '<div class="grid grid-cols-2 gap-2">' + shots.map(function (g, i) {
+      return '<button type="button" class="' + (i === 0 ? 'col-span-2 h-52' : 'h-36') + ' rounded-xl overflow-hidden" data-action="preview" data-src="' + ossUrl(g) + '" data-cap="' + escapeHtml(title) + ' ' + (i + 1) + ' / ' + shots.length + '"><img class="w-full h-full object-cover" alt="" src="' + ossUrl(g) + '"/></button>';
+    }).join('') + '</div></div>';
+    document.getElementById('gallery-root').innerHTML = html;
+  }
+
+  function renderReviews(id) {
+    var r = findResort(id);
+    var list = REVIEWS[r.id] || [];
+    var html = '<div class="px-4 pt-3 pb-8"><div class="rounded-2xl bg-surface-container-lowest p-4 shadow-sm flex items-center gap-4"><div class="w-16 h-16 rounded-2xl bg-primary text-on-primary flex flex-col items-center justify-center"><span class="font-headline-md leading-none">' + r.score + '</span><span class="font-label-sm">超赞</span></div><div><p class="font-headline-sm">' + r.reviews + ' 条真实点评</p><p class="font-body-sm text-secondary mt-1">' + escapeHtml(r.quote) + '</p></div></div>';
+    html += '<div class="mt-4 flex flex-col gap-3">' + list.map(function (rv) {
+      return '<article class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm"><div class="flex justify-between"><div><p class="font-label-lg">' + escapeHtml(rv.name) + '</p><p class="font-label-sm text-on-surface-variant">' + rv.date + '</p></div><span class="font-headline-sm text-secondary">' + rv.score + '</span></div><p class="font-body-md mt-2 leading-relaxed">' + escapeHtml(rv.text) + '</p></article>';
+    }).join('') + '</div></div>';
+    document.getElementById('reviews-root').innerHTML = html;
+  }
+
+  function renderGuests() {
+    var html = '<div class="px-4 pt-3 pb-8"><div class="flex justify-between items-end mb-3"><div><p class="font-label-sm text-secondary tracking-widest">TRAVELERS</p><h2 class="font-headline-md">常用入住人</h2></div><button type="button" class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md" data-action="open-guest-form">添加</button></div>';
+    if (!App.data.guests.length) {
+      html += '<div class="rounded-2xl bg-surface-container-low p-8 text-center"><p class="font-headline-sm">还没有入住人</p><p class="font-body-sm text-on-surface-variant mt-1">添加后可在入住填写页一键带入</p></div>';
+    } else {
+      html += App.data.guests.map(function (g) {
+        var on = App.data.selectedGuestIds.indexOf(g.id) >= 0;
+        return '<article class="bg-surface-container-lowest rounded-2xl p-4 mb-3 shadow-sm"><div class="flex justify-between"><div><div class="flex items-center gap-2"><h3 class="font-headline-sm">' + escapeHtml(g.name) + '</h3>' + (g.default ? '<span class="chip bg-primary-fixed text-on-primary-fixed-variant rounded-full">默认</span>' : '') + '</div><p class="font-body-md text-on-surface-variant mt-1">' + maskPhone(g.phone) + '</p></div>' +
+          '<button type="button" class="h-9 px-3 rounded-lg font-label-md ' + (on ? 'bg-primary text-on-primary' : 'bg-surface-container') + '" data-action="pick-guest" data-id="' + g.id + '">' + (on ? '已选择' : '选择') + '</button></div>' +
+          '<button type="button" class="mt-3 font-label-sm text-secondary" data-action="default-guest" data-id="' + g.id + '">设为默认主住客</button></article>';
+      }).join('');
+    }
+    html += '</div>';
+    document.getElementById('guests-root').innerHTML = html;
+  }
+
+  function renderCoupons() {
+    var html = '<div class="px-4 pt-3 pb-8"><p class="font-label-sm text-secondary tracking-widest">VOUCHERS</p><h2 class="font-headline-md">度假券包</h2><p class="font-body-sm text-on-surface-variant mt-1 mb-4">' + App.data.coupons.filter(function (c) { return c.usable; }).length + ' 张可在本单使用</p>';
+    html += App.data.coupons.map(function (c) {
+      var on = App.data.selectedCouponId === c.id;
+      return '<article class="relative mb-3 rounded-2xl overflow-hidden ' + (c.usable ? 'bg-surface-container-lowest' : 'bg-surface-container opacity-70') + ' shadow-sm"><div class="flex"><div class="w-24 bg-secondary text-on-secondary flex flex-col items-center justify-center py-5"><span class="font-headline-md">' + (c.amount ? money(c.amount) : '12%') + '</span><span class="font-label-sm">OFF</span></div>' +
+        '<div class="flex-1 p-4"><h3 class="font-headline-sm">' + escapeHtml(c.title) + '</h3><p class="font-body-sm text-on-surface-variant mt-1">' + escapeHtml(c.note) + ' · 至 ' + c.expire + '</p>' +
+        (c.usable ? '<button type="button" class="mt-2 px-3 py-1 rounded-lg font-label-md ' + (on ? 'bg-primary text-on-primary' : 'bg-surface-container') + '" data-action="apply-coupon" data-id="' + c.id + '">' + (on ? '使用中' : '使用') + '</button>' : '<span class="font-label-sm text-outline mt-2 inline-block">已不可用</span>') +
+        '</div></div></article>';
+    }).join('') + '</div>';
+    document.getElementById('coupons-root').innerHTML = html;
+  }
+
+  function renderResult(id) {
+    var o = App.data.bookings.filter(function (x) { return x.id === id; })[0] || App.data.bookings[0];
+    var html = '<div class="px-4 pt-6 pb-8 text-center"><div class="w-16 h-16 rounded-full bg-primary-fixed mx-auto flex items-center justify-center mb-3"><span class="material-symbols-outlined text-[32px] text-primary">check_circle</span></div>';
+    html += '<h2 class="font-headline-md">预订已锁定</h2><p class="font-body-sm text-on-surface-variant mt-1">管家将在 30 分钟内致电确认抵达行程</p>';
+    if (o) {
+      html += '<div class="mt-5 text-left bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm"><img class="w-full h-40 object-cover" alt="" src="' + ossUrl(o.cover) + '"/><div class="p-4"><p class="font-label-sm text-secondary">订单号 ' + escapeHtml(o.id) + '</p><h3 class="font-headline-sm mt-1">' + escapeHtml(o.resortName) + '</h3><p class="font-body-md text-on-surface-variant">' + escapeHtml(o.roomName) + '</p><p class="font-label-md mt-2">' + escapeHtml(o.inLabel) + ' — ' + escapeHtml(o.outLabel) + ' · ' + o.nights + '晚</p><p class="font-headline-sm text-secondary mt-2">' + money(o.pay) + '</p></div></div>';
+    }
+    html += '<div class="flex gap-2 mt-5"><button type="button" class="flex-1 h-11 rounded-lg bg-surface-container font-label-lg" data-nav="/orders">查看订单</button><button type="button" class="flex-1 h-11 rounded-lg bg-primary text-on-primary font-label-lg" data-nav="/home">回首页</button></div></div>';
+    document.getElementById('result-root').innerHTML = html;
+  }
+
+  var pages = {
+    home: {
+      init: function () {
+        document.getElementById('flash-cover').src = ossUrl('flash-zhulu');
+        document.getElementById('package-cover').src = ossUrl('package-dali');
+        renderHomeBrands();
+        startTimers();
+      },
+      show: function () { bindSearchFields(); renderHomeResorts(); },
+      hide: function () {}
+    },
+    resorts: {
+      init: function () {},
+      show: function () { bindSearchFields(); renderResortList(); },
+      hide: function () {}
+    },
+    resort: {
+      init: function () {},
+      show: function (route) {
+        var id = route.query.id || App.data.selectedResortId;
+        if (App.data.selectedResortId !== id) App.ui.slide = 0;
+        renderResortDetail(id);
+        startHero();
+        startTimers();
+      },
+      hide: function () { stopHero(); }
+    },
+    checkout: { init: function () {}, show: function () { renderCheckout(); }, hide: function () { closeSheet(); } },
+    orders: { init: function () {}, show: function () { renderOrders(); }, hide: function () {} },
+    me: { init: function () {}, show: function () { renderMe(); }, hide: function () {} },
+    brands: { init: function () {}, show: function () { renderBrands(); }, hide: function () {} },
+    privileges: { init: function () {}, show: function () { renderPrivileges(); startTimers(); }, hide: function () {} },
+    gallery: { init: function () {}, show: function (route) { renderGallery(route.query.id || App.data.selectedResortId, route.query.room); }, hide: function () {} },
+    reviews: { init: function () {}, show: function (route) { renderReviews(route.query.id || App.data.selectedResortId); }, hide: function () {} },
+    guests: { init: function () {}, show: function () { renderGuests(); }, hide: function () {} },
+    coupons: { init: function () {}, show: function () { renderCoupons(); }, hide: function () {} },
+    result: { init: function () {}, show: function (route) { renderResult(route.query.id); }, hide: function () {} },
+    butler: { init: function () {}, show: function () { renderButler(); }, hide: function () {} },
+    settings: { init: function () {}, show: function () { renderSettings(); }, hide: function () {} },
+    policy: { init: function () {}, show: function (route) { renderPolicy(route.query.id); }, hide: function () {} }
+  };
+
+  function openSheet(name) {
+    closeSheet();
+    App.ui.sheet = name;
+    var el = document.getElementById('sheet-' + name);
+    if (el) el.classList.add('is-open');
+  }
+  function closeSheet() {
+    App.ui.sheet = '';
+    var sheets = document.querySelectorAll('.sheet-mask');
+    for (var i = 0; i < sheets.length; i++) sheets[i].classList.remove('is-open');
+  }
+
+  function fillDestSheet() {
+    document.getElementById('dest-options').innerHTML = DESTINATIONS.map(function (d) {
+      var on = App.data.search.dest === d.id;
+      return '<button type="button" class="w-full text-left px-4 py-3 rounded-xl ' + (on ? 'bg-primary text-on-primary' : 'bg-surface-container-low') + '" data-action="set-dest" data-id="' + d.id + '">' + escapeHtml(d.name) + '</button>';
+    }).join('');
+    openSheet('dest');
+  }
+
+  function fillDateSheet() {
+    var days = [];
+    var start = new Date(2026, 9, 12);
+    for (var i = 0; i < 21; i++) {
+      var d = new Date(start.getTime() + i * 86400000);
+      var key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      days.push({ key: key, date: d.getDate(), week: WEEK[d.getDay()], month: d.getMonth() + 1 });
+    }
+    App.ui.datePick = App.ui.datePick || { inKey: App.data.search.inKey, outKey: App.data.search.outKey };
+    document.getElementById('date-grid').innerHTML = days.map(function (d) {
+      var pick = App.ui.datePick;
+      var on = d.key === pick.inKey || d.key === pick.outKey;
+      var mid = pick.inKey && pick.outKey && d.key > pick.inKey && d.key < pick.outKey;
+      return '<button type="button" class="h-12 rounded-lg font-label-md ' + (on ? 'bg-primary text-on-primary' : mid ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-surface-container-low') + '" data-action="pick-date" data-key="' + d.key + '" data-week="' + d.week + '" data-month="' + d.month + '" data-date="' + d.date + '">' + d.date + '</button>';
+    }).join('');
+    document.getElementById('date-sheet-hint').textContent = '入住 ' + App.data.search.inLabel + ' · 离店 ' + App.data.search.outLabel;
+    openSheet('dates');
+  }
+
+  function applyDateKey(key, week, month, date) {
+    var pick = App.ui.datePick || {};
+    if (!pick.inKey || (pick.inKey && pick.outKey)) {
+      pick = { inKey: key, outKey: '', inWeek: week, inMonth: month, inDate: date };
+    } else if (key <= pick.inKey) {
+      pick = { inKey: key, outKey: '', inWeek: week, inMonth: month, inDate: date };
+    } else {
+      pick.outKey = key;
+      pick.outWeek = week;
+      pick.outMonth = month;
+      pick.outDate = date;
+      var a = new Date(pick.inKey);
+      var b = new Date(pick.outKey);
+      var nights = Math.max(1, Math.round((b - a) / 86400000));
+      App.data.search.inKey = pick.inKey;
+      App.data.search.outKey = pick.outKey;
+      App.data.search.inLabel = pick.inMonth + '月' + pick.inDate + '日';
+      App.data.search.outLabel = pick.outMonth + '月' + pick.outDate + '日';
+      App.data.search.inWeek = pick.inWeek;
+      App.data.search.outWeek = pick.outWeek;
+      App.data.search.nights = nights;
+      persist();
+      bindSearchFields();
+      if (App.route.name === 'resort') renderResortDetail(App.data.selectedResortId);
+      if (App.route.name === 'checkout') renderCheckout();
+      closeSheet();
+      toast('已更新为 ' + App.data.search.nights + ' 晚');
+      App.ui.datePick = pick;
+      return;
+    }
+    App.ui.datePick = pick;
+    fillDateSheet();
+  }
+
+  function fillFilterSheet(key) {
+    App.ui.filterKey = key;
+    var opts = {
+      brand: [{ id: '', name: '不限品牌' }].concat(BRANDS.map(function (b) { return { id: b.id, name: b.name }; })),
+      area: [{ id: '', name: '不限区域' }].concat(DESTINATIONS),
+      price: [{ id: '', name: '不限价格' }, { id: 'lt1000', name: '¥1000 以下' }, { id: 'gte1000', name: '¥1000 及以上' }],
+      amenity: [{ id: '', name: '不限配套' }, { id: 'sitang', name: '私汤温泉' }, { id: 'breakfast', name: '含早/茶点' }, { id: 'cancel', name: '免费取消' }]
+    }[key] || [];
+    document.getElementById('filter-sheet-title').textContent = { brand: '品牌系列', area: '位置区域', price: '价格星级', amenity: '配套筛选' }[key] || '筛选';
+    var cur = App.data.filter[key] || '';
+    document.getElementById('filter-options').innerHTML = opts.map(function (o) {
+      return '<button type="button" class="w-full text-left px-4 py-3 rounded-xl font-label-md text-label-md ' + (cur === o.id ? 'bg-primary text-on-primary' : 'bg-surface-container-low') + '" data-action="set-filter" data-id="' + o.id + '">' + escapeHtml(o.name) + '</button>';
+    }).join('');
+    openSheet('filter');
+  }
+
+  function fillEtaSheet() {
+    var times = ['14:00 - 16:00', '16:00 - 18:00', '18:00 - 20:00', '20:00 - 22:00', '22:00 以后（需预约）'];
+    document.getElementById('eta-options').innerHTML = times.map(function (t) {
+      return '<button type="button" class="w-full text-left px-4 py-3 rounded-xl ' + (App.data.eta === t ? 'bg-primary text-on-primary' : 'bg-surface-container-low') + '" data-action="set-eta" data-key="' + escapeHtml(t) + '">' + escapeHtml(t) + '</button>';
+    }).join('');
+    openSheet('eta');
+  }
+
+  var heroTimer = 0;
+  var heroIgnoreClick = false;
+  function paintHero() {
+    var r = findResort(App.data.selectedResortId);
+    if (!r) return;
+    var n = r.gallery.length;
+    App.ui.slide = ((App.ui.slide % n) + n) % n;
+    var sl = document.getElementById('hero-slider');
+    if (sl) sl.style.transform = 'translateX(-' + (App.ui.slide * 100) + '%)';
+    var wrap = document.getElementById('hero-dots');
+    if (!wrap) return;
+    var dots = wrap.querySelectorAll('span');
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].className = 'block rounded-full transition-all ' + (i === App.ui.slide ? 'w-2.5 h-1.5 bg-surface' : 'w-1.5 h-1.5 bg-surface/50');
+    }
+  }
+  function goHero(i, fromAuto) {
+    App.ui.slide = i;
+    paintHero();
+    if (!fromAuto) startHero();
+  }
+  function startHero() {
+    stopHero();
+    heroTimer = setInterval(function () {
+      if (App.route.name !== 'resort') return;
+      goHero(App.ui.slide + 1, true);
+    }, 4000);
+  }
+  function stopHero() { if (heroTimer) clearInterval(heroTimer); heroTimer = 0; }
+  function bindHeroSwipe() {
+    var sl = document.getElementById('hero-slider');
+    if (!sl) return;
+    var host = sl.parentElement;
+    var sx = 0;
+    var sy = 0;
+    var pid = 0;
+    var tracking = false;
+    var dragging = false;
+    var basePct = 0;
+    function finish(e) {
+      if (!tracking || (e && e.pointerId !== pid)) return;
+      tracking = false;
+      host.classList.remove('is-dragging');
+      sl.style.transition = '';
+      var dx = e.clientX - sx;
+      var dy = e.clientY - sy;
+      if (dragging) {
+        heroIgnoreClick = true;
+        setTimeout(function () { heroIgnoreClick = false; }, 180);
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+          goHero(App.ui.slide + (dx < 0 ? 1 : -1));
+        } else {
+          paintHero();
+          startHero();
+        }
+      } else {
+        startHero();
+      }
+      dragging = false;
+    }
+    host.onpointerdown = function (e) {
+      if (e.button != null && e.button !== 0) return;
+      if (e.target.closest('[data-action="hero-dot"], [data-action="favorite"], [data-action="share"], [data-nav]')) return;
+      tracking = true;
+      dragging = false;
+      pid = e.pointerId;
+      sx = e.clientX;
+      sy = e.clientY;
+      basePct = -(App.ui.slide * 100);
+      sl.style.transition = 'none';
+      try { host.setPointerCapture(e.pointerId); } catch (err) {}
+      stopHero();
+    };
+    host.onpointermove = function (e) {
+      if (!tracking || e.pointerId !== pid) return;
+      var dx = e.clientX - sx;
+      var dy = e.clientY - sy;
+      if (!dragging) {
+        if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+        if (Math.abs(dy) > Math.abs(dx)) {
+          tracking = false;
+          sl.style.transition = '';
+          paintHero();
+          startHero();
+          return;
+        }
+        dragging = true;
+        host.classList.add('is-dragging');
+      }
+      sl.style.transform = 'translateX(calc(' + basePct + '% + ' + dx + 'px))';
+    };
+    host.onpointerup = finish;
+    host.onpointercancel = finish;
+  }
+
+  var tickTimer = 0;
+  function flashDealBarHtml(r) {
+    var remain = (r.soldOut || !r.remain)
+      ? '<span class="flash-pill flash-pill-muted">档期已满</span>'
+      : '<span class="flash-pill flash-pill-alert">仅剩' + r.remain + '间</span>';
+    return '<div class="flash-bar">' +
+      '<div class="flex items-center gap-1.5 min-w-0">' +
+      '<span class="flash-pill flash-pill-hot"><span class="material-symbols-outlined" style="font-variation-settings:\'FILL\' 1;">local_fire_department</span>限时特惠</span>' +
+      '<span class="flash-bar-label">距结束</span>' +
+      '<div class="js-countdown flex items-center gap-px font-mono"></div></div>' +
+      remain + '</div>';
+  }
+  function flashCountdownHtml() {
+    var t = Math.max(0, App.data.flashLeft);
+    var h = String(Math.floor(t / 3600)).padStart(2, '0');
+    var m = String(Math.floor((t % 3600) / 60)).padStart(2, '0');
+    var s = String(t % 60).padStart(2, '0');
+    return '<span class="flash-count">' + h + '</span><span class="flash-bar-label">:</span><span class="flash-count">' + m + '</span><span class="flash-bar-label">:</span><span class="flash-count">' + s + '</span>';
+  }
+  function paintCountdown() {
+    var html = flashCountdownHtml();
+    var nodes = document.querySelectorAll('.js-countdown');
+    for (var i = 0; i < nodes.length; i++) nodes[i].innerHTML = html;
+  }
+  function startTimers() {
+    paintCountdown();
+    if (tickTimer) return;
+    tickTimer = setInterval(function () {
+      if (App.data.flashLeft > 0) App.data.flashLeft--;
+      if (App.data.holdLeft > 0) App.data.holdLeft--;
+      paintCountdown();
+    }, 1000);
+  }
+
+  function doPay() {
+    var pair = findRoom(App.data.selectedRoomId);
+    var guest = App.data.guests.filter(function (g) { return g.id === App.data.selectedGuestIds[0]; })[0];
+    if (!guest) { toast('请先选择入住人'); navigate('/guests'); return; }
+    var total = roomTotal(pair.room);
+    var order = {
+      id: 'Q' + Date.now().toString().slice(-8),
+      resortId: pair.resort.id,
+      resortName: pair.resort.name,
+      roomId: pair.room.id,
+      roomName: pair.room.name,
+      cover: pair.resort.thumb,
+      inLabel: App.data.search.inLabel,
+      outLabel: App.data.search.outLabel,
+      nights: App.data.search.nights,
+      pay: payable(),
+      total: total,
+      status: 'hold',
+      created: Date.now(),
+      guestName: guest.name,
+      eta: App.data.eta,
+      prefs: App.data.preferences.slice()
+    };
+    App.data.bookings.unshift(order);
+    persist();
+    toast('预订成功 · 席位已锁定');
+    navigate('/result?id=' + order.id);
+  }
+
+  var actions = {
+    back: function () {
+      var fb = STACK_PARENT[App.route.name] || '/home';
+      if (App.route.name === 'checkout') fb = '/resort?id=' + App.data.selectedResortId;
+      if (App.route.name === 'gallery' || App.route.name === 'reviews') fb = '/resort?id=' + (App.route.query.id || App.data.selectedResortId);
+      if (history.length > 1) history.back();
+      else navigate(fb, { replace: true });
+    },
+    locate: function () {
+      App.data.search.dest = 'mogan';
+      App.data.search.destName = '莫干山';
+      persist();
+      bindSearchFields();
+      toast('已定位到莫干山筏头乡附近');
+    },
+    'open-dest': function () { fillDestSheet(); },
+    'open-dates': function () { fillDateSheet(); },
+    'open-guests': function () {
+      document.getElementById('guest-step-val').textContent = String(App.data.search.guests);
+      openSheet('guests');
+    },
+    'close-sheet': function (id, btn) { closeSheet(); },
+    'set-dest': function (id) {
+      var d = DESTINATIONS.filter(function (x) { return x.id === id; })[0];
+      if (!d) return;
+      App.data.search.dest = d.id;
+      App.data.search.destName = d.name;
+      App.ui.lockDest = d.id !== 'all';
+      persist();
+      bindSearchFields();
+      closeSheet();
+      if (App.route.name === 'resorts') renderResortList();
+    },
+    'pick-date': function (id, btn) {
+      applyDateKey(btn.getAttribute('data-key'), btn.getAttribute('data-week'), btn.getAttribute('data-month'), btn.getAttribute('data-date'));
+    },
+    'guest-step': function (id, btn) {
+      var delta = Number(btn.getAttribute('data-delta') || 0);
+      App.data.search.guests = Math.min(6, Math.max(1, App.data.search.guests + delta));
+      document.getElementById('guest-step-val').textContent = String(App.data.search.guests);
+      persist();
+      bindSearchFields();
+    },
+    'apply-search': function () {
+      App.ui.lockDest = App.data.search.dest !== 'all';
+      persist();
+      if (App.route.name !== 'resorts') navigate('/resorts');
+      else renderResortList();
+      toast('已按 ' + App.data.search.destName + ' · ' + App.data.search.nights + '晚 刷新空房');
+    },
+    'search-go': function () {
+      App.ui.lockDest = App.data.search.dest !== 'all';
+      persist();
+      navigate('/resorts');
+    },
+    'quick-tag': function (id, btn) {
+      App.data.filter.tag = btn.getAttribute('data-tag');
+      persist();
+      navigate('/resorts');
+    },
+    'open-filter': function (id, btn) { fillFilterSheet(btn.getAttribute('data-key')); },
+    'set-filter': function (id) {
+      App.data.filter[App.ui.filterKey] = id;
+      persist();
+      closeSheet();
+      renderResortList();
+    },
+    'clear-filter': function () {
+      App.data.filter = { brand: '', area: '', price: '', amenity: '', sort: App.data.filter.sort, tag: '' };
+      App.ui.lockDest = false;
+      App.data.search.dest = 'all';
+      App.data.search.destName = '全部目的地';
+      persist();
+      bindSearchFields();
+      renderResortList();
+    },
+    'toggle-sort': function () {
+      var order = ['recommend', 'price', 'score'];
+      var i = order.indexOf(App.data.filter.sort);
+      App.data.filter.sort = order[(i + 1) % order.length];
+      persist();
+      renderResortList();
+    },
+    favorite: function (id, btn, ev) {
+      if (ev) ev.stopPropagation();
+      var i = App.data.favorites.indexOf(id);
+      if (i >= 0) App.data.favorites.splice(i, 1);
+      else App.data.favorites.push(id);
+      persist();
+      if (App.route.name === 'home') renderHomeResorts();
+      if (App.route.name === 'resorts') renderResortList();
+      if (App.route.name === 'resort') renderResortDetail(App.data.selectedResortId);
+      if (App.route.name === 'me') renderMe();
+      toast(isFav(id) ? '已收入心愿清单' : '已取消收藏');
+    },
+    subscribe: function (id) {
+      if (App.data.subscribe.indexOf(id) < 0) App.data.subscribe.push(id);
+      persist();
+      toast('空房通知已订阅，档期释放时会提醒你');
+    },
+    butler: function () { navigate('/butler'); },
+    share: function () { toast('已复制隐世度假房型链接，可发给同行的人'); },
+    map: function (id) {
+      var r = findResort(id);
+      toast('导航：' + r.addr);
+    },
+    settings: function () { navigate('/settings'); },
+    'copy-wx': function () { copyText('QILAN_MOGAN_VIP', '微信号已复制：QILAN_MOGAN_VIP'); },
+    'butler-topic': function (id, btn) {
+      var key = btn.getAttribute('data-key');
+      var topic = BUTLER_TOPICS.filter(function (t) { return t.key === key; })[0];
+      if (!topic) return;
+      appendButler('me', topic.q);
+      replyButler(topic.q);
+      renderButler();
+    },
+    'butler-send': function () {
+      var input = document.getElementById('butler-input');
+      var text = ((input && input.value) || App.data.butlerDraft || '').trim();
+      if (!text) { toast('先写一句给阿岚'); return; }
+      App.data.butlerDraft = '';
+      appendButler('me', text);
+      replyButler(text);
+      renderButler();
+    },
+    'toggle-notify': function (id, btn) {
+      var key = btn.getAttribute('data-key');
+      if (!App.data.notify || typeof App.data.notify !== 'object') App.data.notify = seedData().notify;
+      App.data.notify[key] = !App.data.notify[key];
+      persist();
+      renderSettings();
+    },
+    'set-lang': function (id, btn) {
+      App.data.lang = btn.getAttribute('data-key') === 'en' ? 'en' : 'zh';
+      persist();
+      renderSettings();
+    },
+    'clear-cache': function () {
+      App.data.filter = { brand: '', area: '', price: '', amenity: '', sort: 'recommend', tag: '' };
+      App.data.messages = seedData().messages.slice();
+      App.data.butlerDraft = '';
+      persist();
+      toast('本地筛选与管家会话已清空');
+      renderSettings();
+    },
+    'brand-open': function (id) {
+      App.data.filter.brand = id;
+      App.data.filter.tag = '';
+      persist();
+      navigate('/resorts');
+    },
+    'flash-buy': function () {
+      App.data.selectedResortId = 'R001';
+      App.data.selectedRoomId = 'RM01';
+      persist();
+      navigate('/resort?id=R001', { flash: true });
+    },
+    'pick-package': function (id, btn) {
+      App.data.selectedResortId = id;
+      App.data.selectedRoomId = btn.getAttribute('data-room') || '';
+      persist();
+      navigate('/resort?id=' + id, { flash: true });
+    },
+    'select-room': function (id) {
+      App.data.selectedRoomId = id;
+      persist();
+      renderResortDetail(App.data.selectedResortId);
+    },
+    'room-info': function (id, btn) {
+      document.getElementById('amenity-text').textContent = '房型设施：' + (btn.getAttribute('data-text') || '');
+      openSheet('amenity');
+    },
+    'open-price': function () { renderPriceSheet(); openSheet('price'); },
+    'go-checkout': function () {
+      var r = findResort(App.data.selectedResortId);
+      if (r.soldOut) { toast('本周末档期已满，可订阅空房通知'); return; }
+      navigate('/checkout');
+    },
+    preview: function (id, btn) {
+      if (heroIgnoreClick) return;
+      document.getElementById('preview-img').src = btn.getAttribute('data-src');
+      document.getElementById('preview-cap').textContent = btn.getAttribute('data-cap') || '';
+      openSheet('preview');
+    },
+    'hero-dot': function (id) {
+      goHero(parseInt(id, 10) || 0);
+    },
+    'toggle-pref': function (id, btn) {
+      var key = btn.getAttribute('data-key');
+      var i = App.data.preferences.indexOf(key);
+      if (i >= 0) App.data.preferences.splice(i, 1);
+      else App.data.preferences.push(key);
+      persist();
+      renderCheckout();
+    },
+    'open-eta': function () { fillEtaSheet(); },
+    'set-eta': function (id, btn) {
+      App.data.eta = btn.getAttribute('data-key');
+      persist();
+      closeSheet();
+      renderCheckout();
+    },
+    'open-guest-form': function () { openSheet('guest-form'); },
+    'save-guest': function () {
+      var name = (document.getElementById('guest-name-input').value || '').trim();
+      var phone = (document.getElementById('guest-phone-input').value || '').trim();
+      if (name.length < 2) { toast('请填写与证件一致的姓名'); return; }
+      if (!/^1\d{10}$/.test(phone)) { toast('请填写 11 位手机号'); return; }
+      var g = { id: 'G' + Date.now().toString().slice(-6), name: name, phone: phone, default: false };
+      App.data.guests.push(g);
+      persist();
+      closeSheet();
+      toast('同住人已保存');
+      if (App.route.name === 'guests') renderGuests();
+      if (App.route.name === 'checkout') renderCheckout();
+    },
+    'pick-guest': function (id) {
+      App.data.selectedGuestIds = [id];
+      persist();
+      renderGuests();
+      toast('已设为本次主住客');
+    },
+    'default-guest': function (id) {
+      App.data.guests.forEach(function (g) { g.default = g.id === id; });
+      App.data.selectedGuestIds = [id];
+      persist();
+      renderGuests();
+    },
+    'apply-coupon': function (id) {
+      var c = App.data.coupons.filter(function (x) { return x.id === id; })[0];
+      if (!c || !c.usable) { toast('该券不可用'); return; }
+      App.data.selectedCouponId = id;
+      persist();
+      renderCoupons();
+      toast('已选用 ' + c.title);
+    },
+    pay: function () { doPay(); },
+    'order-tab': function (id, btn) {
+      App.ui.orderTab = btn.getAttribute('data-key');
+      renderOrders();
+    },
+    'cancel-order': function (id) {
+      App.data.bookings.forEach(function (o) {
+        if (o.id === id && o.status === 'hold') o.status = 'cancel';
+      });
+      persist();
+      renderOrders();
+      toast('行程已取消，房费将按规则原路退回');
+    }
+  };
+
+  function onAppClick(e) {
+    var nav = e.target.closest('[data-nav]');
+    if (nav && !e.target.closest('[data-action]')) {
+      e.preventDefault();
+      navigate(nav.getAttribute('data-nav'));
+      return;
+    }
+    var btn = e.target.closest('[data-action]');
+    if (!btn) {
+      if (e.target.classList.contains('sheet-mask')) closeSheet();
+      return;
+    }
+    e.preventDefault();
+    var action = btn.getAttribute('data-action');
+    var id = btn.getAttribute('data-id') || '';
+    try {
+      if (actions[action]) actions[action](id, btn, e);
+    } catch (err) {
+      console.error(err);
+      toast('操作未完成，请重试');
+    }
+  }
+
+  function boot() {
+    try {
+      hydrate();
+      document.getElementById('app').addEventListener('click', onAppClick);
+      window.addEventListener('hashchange', function () { applyRoute(parseHash()); });
+      if (!location.hash) history.replaceState(null, '', '#/home');
+      applyRoute(parseHash());
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
+</body>
+</html>

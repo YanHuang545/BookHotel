@@ -1,0 +1,67 @@
+<view class="page-root page-stack page-butler" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="管家" pageLabel="管家" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view class="butler-hero">
+    <image class="hero-img" src="{{heroUrl}}" mode="aspectFill"></image>
+    <view class="hero-grad"></view>
+    <view class="hero-copy">
+      <text class="hero-kicker">1:1 CONCIERGE</text>
+      <text class="t-headline-md hero-title">专属山林管家 · 阿岚</text>
+      <view class="hero-status">
+        <view class="online-dot"></view>
+        <text class="t-body-sm hero-status-txt">在线 · 值班 08:00–22:00</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="butler-body">
+    <view class="card contact-wrap">
+      <view class="contact-cell" bindtap="onCopyWx">
+        <text class="t-label-sm contact-lab">微信</text>
+        <text class="t-label-lg contact-wx">QILAN_MOGAN_VIP</text>
+        <text class="t-body-sm contact-hint">点按复制</text>
+      </view>
+      <view class="contact-cell" bindtap="onCall">
+        <text class="t-label-sm contact-lab">值班电话</text>
+        <text class="t-label-lg contact-phone">400-800-9188</text>
+        <text class="t-body-sm contact-hint">可直接拨打</text>
+      </view>
+    </view>
+
+    <view wx:if="{{hold}}" class="card hold-card" bindtap="onHold">
+      <text class="t-label-sm hold-lab">当前待入住</text>
+      <text class="t-headline-sm hold-name">{{hold.resortName}}</text>
+      <text class="t-body-sm hold-meta">{{hold.inLabel}} — {{hold.outLabel}} · 接驳将再确认一次</text>
+    </view>
+    <view wx:else class="card empty-trip">
+      <text class="t-label-sm empty-kicker">还没有行程</text>
+      <text class="t-body-sm empty-desc">先从住店页锁一处院落，管家就能按档期安排接驳与预热。</text>
+      <button class="empty-cta" hover-class="none" bindtap="onGoResorts">
+        <text>去住店</text>
+      </button>
+    </view>
+
+    <text class="gutter topic-lab">快捷吩咐</text>
+    <view class="topic-wrap">
+      <button class="topic-chip" hover-class="none" wx:for="{{topics}}" wx:key="key" bindtap="onTopic" data-key="{{item.key}}">
+        <text>{{item.label}}</text>
+      </button>
+    </view>
+
+    <view class="thread">
+      <view class="msg-row {{item.mine ? 'is-mine' : 'is-butler'}}" wx:for="{{messages}}" wx:key="id" id="msg-{{item.id}}">
+        <view class="bubble {{item.mine ? 'bubble-me' : 'bubble-butler'}}">
+          <text class="bubble-meta {{item.mine ? 'meta-me' : 'meta-butler'}}">{{item.name}} · {{item.time}}</text>
+          <text class="bubble-text long-text">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="dock butler-dock">
+    <textarea class="butler-input" value="{{draft}}" bindinput="onDraft" confirm-type="send" bindconfirm="onSend" placeholder="把车次、忌口或改期发给阿岚" maxlength="500"></textarea>
+    <button class="send-btn" hover-class="none" bindtap="onSend">
+      <text>发送</text>
+    </button>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+:host {
+  display: inline-block;
+  flex: none;
+  line-height: 0;
+}
+.icon-mask {
+  display: inline-block;
+  flex: none;
+  line-height: 0;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}

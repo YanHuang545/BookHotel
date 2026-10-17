@@ -1,0 +1,186 @@
+.page-body { padding-top: 12px; }
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 16px 12px;
+  min-width: 0;
+}
+
+.head-copy { flex: 1; min-width: 0; }
+
+.kicker {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 700;
+  color: var(--secondary);
+  letter-spacing: 0.1em;
+}
+
+.head-title { display: block; }
+
+.add-btn {
+  flex: none;
+  width: auto;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+.empty {
+  width: auto;
+  margin: 0 16px;
+  padding: 32px 16px;
+  border-radius: 16px;
+  background: var(--surface-container-low);
+  text-align: center;
+}
+
+.empty-desc {
+  display: block;
+  color: var(--on-surface-variant);
+  margin-top: 4px;
+}
+
+.guest-card {
+  width: auto;
+  margin: 0 16px 12px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--surface-container-lowest);
+  box-shadow: 0 1px 2px rgba(3, 37, 23, 0.06);
+}
+
+.g-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.g-left { flex: 1; min-width: 0; }
+
+.g-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+
+.g-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.g-default {
+  flex: none;
+  border-radius: 999px;
+  background: var(--primary-fixed);
+  color: var(--on-primary-fixed-variant);
+}
+
+.g-phone {
+  display: block;
+  color: var(--on-surface-variant);
+  margin-top: 4px;
+}
+
+.pick-btn {
+  flex: none;
+  width: auto;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--surface-container);
+  color: var(--on-surface);
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 36px;
+  font-weight: 600;
+}
+
+.pick-btn.is-on {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.def-btn {
+  display: inline-flex;
+  width: auto;
+  margin-top: 12px;
+  padding: 0;
+  background: transparent;
+  color: var(--secondary);
+  font-family: var(--sans);
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 700;
+}
+
+.form-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  min-width: 0;
+}
+
+.form-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.form-lab {
+  display: block;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  margin-bottom: 4px;
+}
+
+.form-input {
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  padding: 0 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: var(--surface-container-low);
+  font-size: 14px;
+}
+
+.form-input-last { margin-bottom: 16px; }
+
+.save-btn {
+  width: 100%;
+  height: 44px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 44px;
+  font-weight: 600;
+}

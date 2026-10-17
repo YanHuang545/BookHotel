@@ -1,0 +1,341 @@
+<view class="page-root page-stack has-dock" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="Resort Details" pageLabel="Resort Details" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view wx:if="{{showFlash}}" class="flash-bar">
+    <view class="flash-left">
+      <view class="flash-pill flash-pill-hot">
+        <icon-mask name="fire" size="14" color="#93000a"></icon-mask>
+        <text>限时特惠</text>
+      </view>
+      <text class="flash-bar-label">距结束</text>
+      <view class="flash-count-row">
+        <text class="flash-count">{{flash.h}}</text>
+        <text class="flash-bar-label">:</text>
+        <text class="flash-count">{{flash.m}}</text>
+        <text class="flash-bar-label">:</text>
+        <text class="flash-count">{{flash.s}}</text>
+      </view>
+    </view>
+    <text class="flash-pill {{flashMuted ? 'flash-pill-muted' : 'flash-pill-alert'}}">{{flashRemain}}</text>
+  </view>
+
+  <view class="hero-host">
+    <swiper
+      class="hero-swiper"
+      circular
+      autoplay
+      interval="4000"
+      indicator-dots="{{false}}"
+      current="{{heroIndex}}"
+      bindchange="onHeroChange"
+    >
+      <swiper-item wx:for="{{gallery}}" wx:key="src">
+        <view class="hero-slide" data-src="{{item.src}}" data-cap="{{item.cap}}" bindtap="onPreview">
+          <image class="hero-img" src="{{item.src}}" mode="aspectFill"></image>
+        </view>
+      </swiper-item>
+    </swiper>
+    <view class="hero-actions">
+      <view class="hero-icon-btn" catchtap="onFavorite">
+        <icon-mask name="favorite" size="20" color="{{favOn ? '#ba1a1a' : '#181d1a'}}"></icon-mask>
+      </view>
+      <view class="hero-icon-btn" catchtap="onShare">
+        <icon-mask name="share" size="20" color="#181d1a"></icon-mask>
+      </view>
+    </view>
+    <view class="hero-series" catchtap="goGallery">
+      <icon-mask name="awesome" size="14" color="#ffddb4"></icon-mask>
+      <text class="hero-series-txt">{{resort.series}}</text>
+    </view>
+    <view class="hero-dots">
+      <view
+        wx:for="{{gallery}}"
+        wx:key="src"
+        class="hero-dot-hit"
+        data-i="{{index}}"
+        catchtap="onHeroDot"
+      >
+        <view class="hero-dot {{heroIndex === index ? 'is-on' : ''}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card info-card">
+    <view class="info-head">
+      <view class="info-name-row">
+        <text class="info-name ellipsis">{{resort.name}}</text>
+        <view class="chip diamond-chip">
+          <icon-mask name="diamond" size="11" color="#79592d"></icon-mask>
+          <text>{{resort.diamond}}</text>
+        </view>
+      </view>
+      <text class="copy-sm info-en long-text">{{resort.en}}</text>
+    </view>
+    <view class="review-row" bindtap="goReviews">
+      <view class="review-main">
+        <view class="score-box">
+          <text class="score-num">{{resort.score}}</text>
+        </view>
+        <view class="review-copy">
+          <text class="copy-sm-sb">超赞 · {{resort.reviews}}条真实房客点评</text>
+          <text class="copy-sm review-quote ellipsis">{{resort.quote}}</text>
+        </view>
+      </view>
+      <icon-mask name="chevron" size="18" color="#727973"></icon-mask>
+    </view>
+    <view class="addr-row">
+      <view class="addr-main">
+        <icon-mask name="location" size="16" color="#032517"></icon-mask>
+        <text class="copy-sm long-text">{{resort.addr}}</text>
+      </view>
+      <view class="map-btn" catchtap="onMap">
+        <text class="map-btn-txt">地图周边</text>
+        <icon-mask name="chevron" size="16" color="#78592d"></icon-mask>
+      </view>
+    </view>
+  </view>
+
+  <view class="card date-card">
+    <view class="date-left">
+      <view class="date-ico">
+        <icon-mask name="calendar" size="18" color="#032517"></icon-mask>
+      </view>
+      <view class="date-copy">
+        <view class="date-range">
+          <text class="copy-sm-sb">{{search.inLabel}} {{search.inWeek}}</text>
+          <text class="copy-sm date-to">至</text>
+          <text class="copy-sm-sb">{{search.outLabel}} {{search.outWeek}}</text>
+        </view>
+        <text class="copy-sm date-meta">{{dateMeta}}</text>
+      </view>
+    </view>
+    <view class="date-edit" bindtap="openDates">
+      <text>修改日期</text>
+      <icon-mask name="edit_cal" size="16" color="#181d1a"></icon-mask>
+    </view>
+  </view>
+
+  <view class="sec-head">
+    <view class="sec-title-row">
+      <text class="t-headline-sm">精选客房</text>
+      <text class="copy-sm-sb sec-count">({{resort.roomCount}}类房型可订)</text>
+    </view>
+    <text class="copy-sm sec-note">房费含税费服务费</text>
+  </view>
+
+  <view class="card room-card" wx:for="{{rooms}}" wx:key="id">
+    <view class="room-cover">
+      <image class="room-cover-img" src="{{item.cover}}" mode="aspectFill" data-src="{{item.cover}}" data-cap="{{item.name}}" bindtap="onPreview"></image>
+      <view wx:if="{{item.remainOne}}" class="chip remain-chip">
+        <icon-mask name="schedule" size="11" color="#ffffff"></icon-mask>
+        <text>仅剩1间</text>
+      </view>
+      <view class="room-info-btn" data-text="{{item.amenity}}" catchtap="onRoomInfo">
+        <icon-mask name="info" size="16" color="#f6fbf5"></icon-mask>
+      </view>
+      <view class="chip room-shots" data-id="{{item.id}}" catchtap="goRoomGallery">
+        <text>{{item.photos}}张实拍图</text>
+      </view>
+    </view>
+    <view class="room-body">
+      <view class="room-left">
+        <text class="room-name">{{item.name}}</text>
+        <text class="copy-sm room-spec long-text">{{item.specMain}}</text>
+        <text wx:if="{{item.specTail}}" class="copy-sm room-spec long-text">{{item.specTail}}</text>
+        <view class="room-tags">
+          <text class="chip-md room-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+        </view>
+      </view>
+      <view class="room-right">
+        <view class="room-price-wrap">
+          <view class="price-num">
+            <text class="copy-sm-sb price-yen">¥</text>
+            <text class="room-price">{{item.priceText}}</text>
+            <text class="copy-sm price-unit">/晚</text>
+          </view>
+          <text class="copy-sm-sb">{{nights}}晚合计 {{item.nightsTotal}}</text>
+        </view>
+        <view class="room-cta {{item.selected ? 'is-on' : ''}}" data-id="{{item.id}}" bindtap="onSelectRoom">
+          <text>{{item.selected ? '订这间' : '预订'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card amenity-card">
+    <view class="amenity-head">
+      <text class="t-headline-sm">核心设施与服务</text>
+      <text class="copy-sm amenity-note">共24项优质配套</text>
+    </view>
+    <view class="amenity-grid">
+      <view class="amenity-cell">
+        <view class="amenity-ico">
+          <icon-mask name="wifi" size="16" color="#032517"></icon-mask>
+        </view>
+        <view class="amenity-copy">
+          <text class="copy-sm-sb">极速Wi-Fi</text>
+          <text class="copy-sm amenity-sub">全院千兆光纤</text>
+        </view>
+      </view>
+      <view class="amenity-cell">
+        <view class="amenity-ico">
+          <icon-mask name="thermostat" size="16" color="#032517"></icon-mask>
+        </view>
+        <view class="amenity-copy">
+          <text class="copy-sm-sb">全屋地暖</text>
+          <text class="copy-sm amenity-sub">德国进口恒温</text>
+        </view>
+      </view>
+      <view class="amenity-cell">
+        <view class="amenity-ico">
+          <icon-mask name="air" size="16" color="#032517"></icon-mask>
+        </view>
+        <view class="amenity-copy">
+          <text class="copy-sm-sb">戴森吹风机</text>
+          <text class="copy-sm amenity-sub">全房型标配</text>
+        </view>
+      </view>
+      <view class="amenity-cell">
+        <view class="amenity-ico">
+          <icon-mask name="wash" size="16" color="#032517"></icon-mask>
+        </view>
+        <view class="amenity-copy">
+          <text class="copy-sm-sb">帕尔玛之水</text>
+          <text class="copy-sm amenity-sub">全套奢华洗护</text>
+        </view>
+      </view>
+    </view>
+    <view class="butler-banner">
+      <view class="butler-ico">
+        <icon-mask name="room_service" size="18" color="#ffffff"></icon-mask>
+      </view>
+      <view class="butler-copy">
+        <text class="copy-sm-sb butler-title">一对一专属管家服务</text>
+        <text class="copy-sm butler-sub long-text">从抵店山道迎接、定制徒步路线至晚间暖心甜汤全流程守护</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card notice-card">
+    <text class="t-headline-sm notice-title">预订与入住须知</text>
+    <view class="notice-list">
+      <view class="notice-row">
+        <icon-mask name="schedule" size="16" color="#032517"></icon-mask>
+        <text class="copy-sm long-text"><text class="copy-sm-sb">入离时间：</text><text class="notice-body">入住时间 14:00 之后，退房时间 12:00 之前。若提早抵达可寄存行李。</text></text>
+      </view>
+      <view class="notice-row">
+        <icon-mask name="volume_off" size="16" color="#032517"></icon-mask>
+        <text class="copy-sm long-text"><text class="copy-sm-sb">静音时段：</text><text class="notice-body">22:00 至次日 08:00 请保持庭院静谧，共同维护山林度假氛围。</text></text>
+      </view>
+      <view class="notice-row">
+        <icon-mask name="pets" size="16" color="#032517"></icon-mask>
+        <text class="copy-sm long-text"><text class="copy-sm-sb">宠物政策：</text><text class="notice-body">允许携带15kg以下中小型犬入住，需提前与管家报备并携带疫苗凭证。</text></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="dock">
+    <view class="dock-inner">
+      <view class="dock-price">
+        <view class="dock-total-row">
+          <text class="copy-sm dock-nights">{{nights}}晚合计</text>
+          <text class="dock-sum">{{dockTotal}}</text>
+        </view>
+        <view class="dock-detail" bindtap="openPrice">
+          <text>明细</text>
+          <view class="icon-up">
+            <icon-mask name="chevron" size="16" color="#727973"></icon-mask>
+          </view>
+        </view>
+      </view>
+      <view class="dock-actions">
+        <view class="dock-chat" bindtap="goButler">
+          <icon-mask name="chat" size="20" color="#181d1a"></icon-mask>
+        </view>
+        <view class="dock-book" bindtap="goCheckout">
+          <text>立即预订</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <sheet open="{{sheet === 'price'}}" bindclose="closeSheet">
+    <view class="sheet-head">
+      <text class="t-headline-sm">费用明细</text>
+      <view class="sheet-x" bindtap="closeSheet">
+        <icon-mask name="close" size="18" color="#181d1a"></icon-mask>
+      </view>
+    </view>
+    <view class="kv">
+      <text>{{priceSheet.roomName}} ({{priceSheet.nights}}晚)</text>
+      <text>{{priceSheet.total}}</text>
+    </view>
+    <view class="kv kv-sub">
+      <text>{{priceSheet.inLabel}} ({{priceSheet.inWeek}})</text>
+      <text>{{priceSheet.nightPrice}}</text>
+    </view>
+    <view wx:if="{{priceSheet.extraVisible}}" class="kv kv-sub">
+      <text>其后 {{priceSheet.extraNights}} 晚</text>
+      <text>{{priceSheet.extraPrice}}</text>
+    </view>
+    <view class="kv kv-off">
+      <text>专享优惠</text>
+      <text>-{{priceSheet.off}}</text>
+    </view>
+    <view class="kv kv-sub kv-last">
+      <text>税费与管家服务费</text>
+      <text>¥0 (已免)</text>
+    </view>
+    <view class="price-pay">
+      <text class="t-label-lg">实付总额</text>
+      <text class="price-pay-num">{{priceSheet.pay}}</text>
+    </view>
+  </sheet>
+
+  <sheet open="{{sheet === 'amenity'}}" bindclose="closeSheet">
+    <view class="sheet-head sheet-head-sm">
+      <text class="t-headline-sm">房型设施</text>
+      <view class="sheet-x" bindtap="closeSheet">
+        <icon-mask name="close" size="18" color="#181d1a"></icon-mask>
+      </view>
+    </view>
+    <text class="copy-sm amenity-sheet-txt long-text">{{amenityText}}</text>
+  </sheet>
+
+  <sheet open="{{sheet === 'dates'}}" bindclose="closeSheet">
+    <view class="sheet-head sheet-head-sm">
+      <text class="t-headline-sm">选择入住离店</text>
+      <view class="sheet-x" bindtap="closeSheet">
+        <icon-mask name="close" size="18" color="#181d1a"></icon-mask>
+      </view>
+    </view>
+    <text class="date-hint">{{dateHint}}</text>
+    <view class="cal-week">
+      <text>日</text><text>一</text><text>二</text><text>三</text><text>四</text><text>五</text><text>六</text>
+    </view>
+    <view class="cal-grid">
+      <view
+        wx:for="{{dateDays}}"
+        wx:key="key"
+        class="cal-cell {{item.on ? 'is-on' : ''}} {{item.mid ? 'is-mid' : ''}}"
+        data-key="{{item.key}}"
+        data-week="{{item.week}}"
+        data-month="{{item.month}}"
+        data-date="{{item.date}}"
+        bindtap="onPickDate"
+      >
+        <text>{{item.date}}</text>
+      </view>
+    </view>
+  </sheet>
+
+  <sheet open="{{sheet === 'preview'}}" mode="preview" bindclose="closeSheet">
+    <view class="preview-close" bindtap="closeSheet">
+      <icon-mask name="close" size="22" color="#ffffff"></icon-mask>
+    </view>
+    <view class="preview-img-wrap">
+      <image class="preview-img" src="{{previewSrc}}" mode="aspectFit"></image>
+    </view>
+    <text class="preview-cap">{{previewCap}}</text>
+  </sheet>
+</view>

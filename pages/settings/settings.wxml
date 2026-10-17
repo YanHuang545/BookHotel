@@ -1,0 +1,64 @@
+<view class="page-root page-stack" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="设置" pageLabel="设置" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view class="page-body">
+    <view class="card st-hero">
+      <view class="st-blob"></view>
+      <view class="st-hero-copy">
+        <text class="st-kicker">SETTINGS</text>
+        <text class="t-headline-md st-hero-title">{{copy.settingsTitle}}</text>
+        <text class="t-body-sm st-hero-desc">{{copy.settingsLead}}</text>
+      </view>
+    </view>
+
+    <view class="card st-user">
+      <image class="st-ava" src="{{avatarUrl}}" mode="aspectFill"></image>
+      <view class="st-user-main">
+        <text class="st-name t-headline-sm">{{user.name}}</text>
+        <text class="st-meta t-label-sm">{{user.level}} · {{user.phone}}</text>
+      </view>
+    </view>
+
+    <text class="sec-lab">{{copy.notifyLab}}</text>
+    <view class="card st-group">
+      <view class="nf-row" wx:for="{{notifyRows}}" wx:key="key">
+        <view class="nf-copy">
+          <text class="t-label-lg nf-title">{{item.title}}</text>
+          <text class="t-body-sm nf-desc">{{item.desc}}</text>
+        </view>
+        <view class="q-switch {{item.on ? 'is-on' : ''}}" bindtap="onToggleNotify" data-key="{{item.key}}">
+          <view class="q-switch-knob"></view>
+        </view>
+      </view>
+    </view>
+
+    <text class="sec-lab">{{copy.langLab}}</text>
+    <view class="card lang-row">
+      <button class="lang-btn {{en ? '' : 'is-on'}}" hover-class="none" bindtap="onLang" data-key="zh">
+        <text>中文</text>
+      </button>
+      <button class="lang-btn {{en ? 'is-on' : ''}}" hover-class="none" bindtap="onLang" data-key="en">
+        <text>English</text>
+      </button>
+    </view>
+
+    <text class="sec-lab">{{copy.policyLab}}</text>
+    <view class="card st-group">
+      <view class="pol-row" wx:for="{{policies}}" wx:key="id" bindtap="onPolicy" data-id="{{item.id}}">
+        <view class="pol-left">
+          <icon-mask name="article" size="20" color="#032517"></icon-mask>
+          <view class="pol-copy">
+            <text class="t-label-lg pol-title">{{item.title}}</text>
+            <text class="t-body-sm pol-sub">{{item.sub}}</text>
+          </view>
+        </view>
+        <icon-mask name="chevron" size="20" color="#727973"></icon-mask>
+      </view>
+    </view>
+
+    <button class="card clear-btn" hover-class="none" bindtap="onClear">
+      <text>{{copy.clearLab}}</text>
+    </button>
+    <text class="foot t-label-sm">{{copy.foot}}</text>
+  </view>
+</view>

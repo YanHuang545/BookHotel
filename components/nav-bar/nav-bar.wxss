@@ -1,0 +1,97 @@
+.hd {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  box-sizing: border-box;
+  background: rgba(246, 251, 245, 0.82);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.03);
+}
+.hd-inner {
+  height: 100%;
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+}
+.hd-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+.hd-back {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.hd-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.hd-ava {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #032517;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.hd-brand-txt {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.hd-name {
+  font-family: -apple-system, "PingFang SC", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #032517;
+  letter-spacing: 0.08em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hd-sub {
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 700;
+  color: #424843;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.hd-title {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 500;
+  color: #181d1a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 160px;
+}
+.hd-page {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  color: #181d1a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 88px;
+  flex: none;
+  margin-left: 8px;
+}

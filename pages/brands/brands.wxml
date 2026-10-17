@@ -1,0 +1,25 @@
+<view class="page-root page-stack" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="Brand Lines" pageLabel="Brand Lines" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view class="page-body">
+    <view class="gutter intro">
+      <text class="kicker">BRAND LINES</text>
+      <text class="t-headline-md intro-title">心之所栖，自成山岚</text>
+      <text class="t-body-sm intro-desc">四条产品线共享同一套山居礼遇，只是把风景换成不同的入口。</text>
+    </view>
+
+    <view class="card brand-card" wx:for="{{brands}}" wx:key="id">
+      <view class="brand-cover-wrap">
+        <image class="brand-cover" src="{{item.coverUrl}}" mode="aspectFill"></image>
+      </view>
+      <view class="brand-body">
+        <text class="chip brand-tag">{{item.tag}}</text>
+        <text class="t-headline-md brand-name">{{item.name}}</text>
+        <text class="t-body-md brand-long long-text">{{item.long}}</text>
+        <button class="brand-cta" hover-class="none" bindtap="onOpenBrand" data-id="{{item.id}}">
+          <text>查看该系列院落</text>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

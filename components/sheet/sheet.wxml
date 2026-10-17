@@ -1,0 +1,5 @@
+<view class="sheet-mask {{open ? 'is-open' : ''}} {{mode === 'preview' ? 'is-preview' : ''}}" catchtap="onMask">
+  <view class="sheet-panel {{mode === 'preview' ? 'sheet-preview' : ''}}" catchtap="noop">
+    <slot></slot>
+  </view>
+</view>

@@ -1,0 +1,75 @@
+<view class="page-root page-stack" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="度假礼遇" pageLabel="度假礼遇" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view class="page-body">
+    <view class="card hero">
+      <image class="hero-img" src="{{heroUrl}}" mode="aspectFill"></image>
+      <view class="hero-grad"></view>
+      <view class="hero-copy">
+        <text class="hero-kicker">RETREAT PRIVILEGES</text>
+        <text class="t-headline-md hero-title">度假礼遇</text>
+        <text class="t-body-sm hero-desc">折扣、延迟退房、晨茗与本季套餐，点进去就能订。</text>
+        <view class="hero-cd">
+          <text class="chip chip-hot">限时特惠</text>
+          <text class="copy-sm cd-label">距结束</text>
+          <view class="cd-nums">
+            <text class="flash-count">{{flash.h}}</text>
+            <text class="flash-bar-label">:</text>
+            <text class="flash-count">{{flash.m}}</text>
+            <text class="flash-bar-label">:</text>
+            <text class="flash-count">{{flash.s}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <text class="gutter t-headline-sm sec-title">在店即享</text>
+    <view class="perk-grid">
+      <view class="perk-cell" wx:for="{{perks}}" wx:key="icon">
+        <view class="perk-card">
+          <view class="perk-ico">
+            <icon-mask name="{{item.icon}}" size="18" color="#78592d"></icon-mask>
+          </view>
+          <view class="perk-copy">
+            <text class="copy-sm-sb perk-name">{{item.title}}</text>
+            <text class="copy-sm perk-desc">{{item.desc}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="pack-head">
+      <text class="t-headline-sm">本季套餐</text>
+      <text class="copy-sm pack-hint">含早 · 可退窗口见房型</text>
+    </view>
+
+    <view class="pack-list">
+      <view class="card pack-card" wx:for="{{packs}}" wx:key="resortId" bindtap="onPickPack" data-id="{{item.resortId}}" data-room="{{item.roomId}}">
+        <image class="pack-cover" src="{{item.coverUrl}}" mode="aspectFill"></image>
+        <text wx:if="{{item.hot}}" class="chip pack-hot">仅剩{{item.remain}}间</text>
+        <view class="pack-grad">
+          <view class="pack-row">
+            <view class="pack-copy">
+              <text class="t-headline-md pack-title">{{item.title}}</text>
+              <text class="t-body-sm pack-sub">{{item.sub}}</text>
+            </view>
+            <view class="price-num pack-price">
+              <text class="t-headline-sm pack-yen">{{item.priceText}}</text>
+              <text class="copy-sm pack-unit">/套</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="btn-row">
+      <button class="btn-pri" hover-class="none" bindtap="onGoResorts">
+        <text>去选院落</text>
+      </button>
+      <button class="btn-sec" hover-class="none" bindtap="onGoButler">
+        <text>问管家</text>
+      </button>
+    </view>
+    <text class="foot copy-sm">演示套餐不发起真实支付</text>
+  </view>
+</view>

@@ -1,0 +1,32 @@
+.sheet-mask {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(24, 29, 26, 0.40);
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.sheet-mask.is-open { display: flex; }
+.sheet-mask.is-preview {
+  z-index: 80;
+  background: rgba(0, 0, 0, 0.92);
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+.sheet-panel {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px 16px 0 0;
+  padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+.sheet-preview {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

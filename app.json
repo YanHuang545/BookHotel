@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/resorts/resorts",
+    "pages/orders/orders",
+    "pages/me/me",
+    "pages/resort/resort",
+    "pages/checkout/checkout",
+    "pages/brands/brands",
+    "pages/privileges/privileges",
+    "pages/gallery/gallery",
+    "pages/reviews/reviews",
+    "pages/guests/guests",
+    "pages/coupons/coupons",
+    "pages/result/result",
+    "pages/butler/butler",
+    "pages/settings/settings",
+    "pages/policy/policy"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundColor": "#f6fbf5",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#727973",
+    "selectedColor": "#032517",
+    "backgroundColor": "#f6fbf5",
+    "list": [
+      { "pagePath": "pages/home/home", "text": "首页" },
+      { "pagePath": "pages/resorts/resorts", "text": "住店" },
+      { "pagePath": "pages/orders/orders", "text": "订单" },
+      { "pagePath": "pages/me/me", "text": "我的" }
+    ]
+  },
+  "usingComponents": {
+    "nav-bar": "/components/nav-bar/nav-bar",
+    "icon-mask": "/components/icon-mask/icon-mask",
+    "sheet": "/components/sheet/sheet"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

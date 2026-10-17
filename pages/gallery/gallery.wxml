@@ -1,0 +1,34 @@
+<view class="page-root page-stack gallery-page" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="Album" pageLabel="Album" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view class="gal-head">
+    <view class="gal-titles">
+      <text class="gal-kicker">ALBUM</text>
+      <text class="gal-title">{{title}}</text>
+    </view>
+    <text class="gal-count">{{count}} 张</text>
+  </view>
+
+  <view class="gal-grid">
+    <view
+      wx:for="{{shots}}"
+      wx:key="src"
+      class="gal-cell {{item.wide ? 'is-wide' : ''}}"
+      data-src="{{item.src}}"
+      data-cap="{{item.cap}}"
+      bindtap="onPreview"
+    >
+      <image class="gal-img" src="{{item.src}}" mode="aspectFill"></image>
+    </view>
+  </view>
+
+  <sheet open="{{sheet === 'preview'}}" mode="preview" bindclose="closeSheet">
+    <view class="preview-close" bindtap="closeSheet">
+      <icon-mask name="close" size="22" color="#ffffff"></icon-mask>
+    </view>
+    <view class="preview-img-wrap">
+      <image class="preview-img" src="{{previewSrc}}" mode="aspectFit"></image>
+    </view>
+    <text class="preview-cap">{{previewCap}}</text>
+  </sheet>
+</view>

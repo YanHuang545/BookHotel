@@ -1,0 +1,20 @@
+<view class="hd" style="height: {{navBarHeight}}px; padding-top: {{statusBarHeight}}px; padding-right: {{capsulePad}}px;">
+  <view class="hd-inner">
+    <view class="hd-left">
+      <view wx:if="{{showBack}}" class="hd-back" bindtap="onBack">
+        <icon-mask name="back" size="22" color="#181d1a"></icon-mask>
+      </view>
+      <view wx:if="{{showBrand}}" class="hd-brand">
+        <view class="hd-ava">
+          <icon-mask name="person" size="18" color="#ffffff"></icon-mask>
+        </view>
+        <view class="hd-brand-txt">
+          <text class="hd-name">栖岚 QILAN</text>
+          <text class="hd-sub">Resort & Retreats</text>
+        </view>
+      </view>
+      <text wx:elif="{{title}}" class="hd-title">{{title}}</text>
+    </view>
+    <text class="hd-page">{{pageLabel || title}}</text>
+  </view>
+</view>

@@ -1,0 +1,184 @@
+<view class="page-root page-tab" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="Home" pageLabel="Home" showBack="{{false}}" showBrand="{{true}}"></nav-bar>
+
+  <view class="h-body">
+    <view class="h-sec-head">
+      <view class="h-sec-copy">
+        <text class="t-headline-sm h-sec-title">品牌矩阵 · Brand Lines</text>
+        <text class="t-label-sm h-sec-sub">心之所栖，自成山岚</text>
+      </view>
+      <view class="h-link-sec" bindtap="goBrands">
+        <text class="t-label-md h-link-sec-t">矩阵概念</text>
+        <icon-mask name="arrow" size="14" color="#78592d"></icon-mask>
+      </view>
+    </view>
+
+    <view class="h-brand-grid">
+      <view class="h-brand" wx:for="{{brands}}" wx:key="id" bindtap="onBrand" data-id="{{item.id}}">
+        <image class="h-brand-img" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="h-brand-shade"></view>
+        <view class="h-brand-meta">
+          <text class="t-headline-md h-brand-name">{{item.name}}</text>
+          <text class="t-body-sm h-brand-desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card h-mem" bindtap="goMe">
+      <view class="h-mem-blob"></view>
+      <view class="h-mem-top">
+        <view class="h-mem-lead">
+          <icon-mask name="premium" size="20" color="#e9c08a"></icon-mask>
+          <view class="h-mem-copy">
+            <text class="t-headline-sm h-mem-title">栖岚会 · 旅人尊享</text>
+            <text class="t-body-sm h-mem-sub">专属度假礼遇 · 泊心于山水</text>
+          </view>
+        </view>
+        <text class="h-mem-badge t-label-lg">黑金礼遇</text>
+      </view>
+      <view class="h-mem-perks">
+        <view class="h-mem-perk">
+          <icon-mask name="percent" size="18" color="#ffddb4"></icon-mask>
+          <text class="t-label-md h-mem-perk-t">专享88折起</text>
+        </view>
+        <view class="h-mem-perk">
+          <icon-mask name="schedule" size="18" color="#ffddb4"></icon-mask>
+          <text class="t-label-md h-mem-perk-t">14:00延迟退房</text>
+        </view>
+        <view class="h-mem-perk">
+          <icon-mask name="gifts" size="18" color="#ffddb4"></icon-mask>
+          <text class="t-label-md h-mem-perk-t">赠山野伴手礼</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="h-pack-head">
+      <view class="h-pack-title-row">
+        <icon-mask name="verified" size="18" color="#78592d"></icon-mask>
+        <text class="t-headline-sm h-pack-title">超值度假套餐</text>
+      </view>
+      <view class="h-perk-btn" bindtap="goPrivileges">
+        <text class="t-label-lg h-perk-btn-t">度假礼遇</text>
+        <icon-mask name="chevron" size="16" color="#78592d"></icon-mask>
+      </view>
+    </view>
+
+    <view class="card h-pack" bindtap="flashBuy">
+      <image class="h-pack-img" src="{{flashCover}}" mode="aspectFill"></image>
+      <text class="chip h-pack-remain">仅剩2间</text>
+      <view class="h-pack-shade">
+        <view class="h-pack-row">
+          <view class="h-pack-copy">
+            <text class="t-headline-md h-pack-name">竹露大床房 · 伴山私汤</text>
+            <text class="t-body-sm h-pack-sub">栖岚·莫干山店 · 含次日双人手作晨食</text>
+          </view>
+          <view class="price-num">
+            <text class="t-headline-sm h-pack-price">¥880</text>
+            <text class="copy-sm h-pack-unit">/套</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card h-pack" bindtap="pickDali">
+      <image class="h-pack-img" src="{{packCover}}" mode="aspectFill"></image>
+      <view class="h-pack-shade">
+        <view class="h-pack-row">
+          <view class="h-pack-copy">
+            <text class="t-headline-md h-pack-name">双廊海景一夜 · 避世礼包</text>
+            <text class="t-body-sm h-pack-sub">含双人有机早餐 + 白族庭院下午茶 + 环海骑行体验</text>
+          </view>
+          <view class="price-num">
+            <text class="t-headline-sm h-pack-price">¥1,660</text>
+            <text class="copy-sm h-pack-unit">/套</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="h-list-head">
+      <view class="h-sec-copy">
+        <text class="t-headline-sm h-sec-title">精选院落推荐</text>
+        <text class="t-label-sm h-sec-sub">寻幽入胜，山峦有居</text>
+      </view>
+      <view class="h-link-pri" bindtap="goResorts">
+        <text class="t-label-md h-link-pri-t">查看全部</text>
+        <icon-mask name="chevron" size="16" color="#032517"></icon-mask>
+      </view>
+    </view>
+
+    <view class="card h-resort {{item.soldOut ? 'h-resort-out' : ''}}" wx:for="{{resorts}}" wx:key="id">
+      <block wx:if="{{item.soldOut}}">
+        <view class="h-resort-cover">
+          <image class="h-resort-img h-resort-img-out" src="{{item.cover}}" mode="aspectFill"></image>
+          <view class="h-resort-full">
+            <text class="t-headline-md h-resort-full-t">本周末档期已满</text>
+          </view>
+        </view>
+        <view class="h-resort-body">
+          <text class="t-headline-md h-resort-out-name">{{item.name}}</text>
+          <view class="h-loc">
+            <icon-mask name="pin" size="14" color="#727973"></icon-mask>
+            <text class="t-body-sm h-loc-out-t">{{item.loc}}</text>
+          </view>
+          <view class="price-cta h-resort-cta">
+            <text class="copy-sm h-loc-out-t">可预约下周末空房</text>
+            <view class="h-sub-btn" bindtap="onSubscribe" data-id="{{item.id}}">
+              <text class="t-label-md h-sub-btn-t">订阅空房通知</text>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="h-resort-cover" bindtap="onResort" data-id="{{item.id}}">
+          <image class="h-resort-img" src="{{item.cover}}" mode="aspectFill"></image>
+          <text class="chip h-badge {{item.badgeSec ? 'h-badge-sec' : 'h-badge-pri'}}">{{item.badge}}</text>
+          <text wx:if="{{item.remainOne}}" class="chip h-remain">仅剩 1 间</text>
+          <view class="h-fav" catchtap="onFav" data-id="{{item.id}}">
+            <icon-mask name="favorite" size="18" color="{{item.fav ? '#ba1a1a' : '#181d1a'}}"></icon-mask>
+          </view>
+        </view>
+        <view class="h-resort-body" bindtap="onResort" data-id="{{item.id}}">
+          <view class="h-resort-title-row">
+            <text class="t-headline-sm h-resort-name ellipsis">{{item.name}}</text>
+            <view class="h-score">
+              <icon-mask name="star" size="13" color="#78592d"></icon-mask>
+              <text class="chip h-score-n">{{item.score}}</text>
+            </view>
+          </view>
+          <view class="h-loc">
+            <icon-mask name="pin" size="14" color="#424843"></icon-mask>
+            <text class="t-body-sm h-loc-t">{{item.loc}}</text>
+          </view>
+          <view class="h-resort-foot">
+            <view class="h-tags-col">
+              <view class="h-tags">
+                <text class="chip-md h-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+              </view>
+              <text class="chip-md h-promo">{{item.promo}}</text>
+            </view>
+            <view class="price-num">
+              <text class="t-headline-sm h-price">{{item.price}}</text>
+              <text class="copy-sm h-price-unit">起/晚</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="h-foot">
+      <view class="h-foot-line"></view>
+      <text class="t-headline-md h-foot-title">山野为床 · 枕岚而憩</text>
+      <text class="t-body-sm h-foot-copy">栖岚度假酒店集团旗下精品院落甄选 · 24小时山居管家专属服务</text>
+      <view class="h-foot-tags">
+        <text class="t-label-sm h-foot-tag">无忧取消</text>
+        <text class="t-label-sm h-foot-dot">·</text>
+        <text class="t-label-sm h-foot-tag">一客一换</text>
+        <text class="t-label-sm h-foot-dot">·</text>
+        <text class="t-label-sm h-foot-tag">山野手作</text>
+        <text class="t-label-sm h-foot-dot">·</text>
+        <text class="t-label-sm h-foot-tag">在地向导</text>
+      </view>
+    </view>
+  </view>
+</view>

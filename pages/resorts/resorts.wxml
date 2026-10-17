@@ -1,0 +1,182 @@
+<view class="page-root page-tab" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="Resorts" pageLabel="Resorts" showBack="{{false}}" showBrand="{{true}}"></nav-bar>
+
+  <view class="rs-sticky" style="top: {{navBarHeight}}px;">
+    <view class="rs-search">
+      <view class="rs-dest" bindtap="openDest">
+        <icon-mask name="location" size="18" color="#032517"></icon-mask>
+        <text class="t-label-lg rs-dest-name">{{destName}}</text>
+        <icon-mask name="expand" size="16" color="#727973"></icon-mask>
+      </view>
+      <view class="rs-dates" bindtap="openDates">
+        <view class="rs-dates-copy">
+          <view class="rs-dates-top">
+            <text class="t-label-md rs-range">{{dateRange}}</text>
+            <text class="t-label-sm rs-nights">{{nightsShort}}</text>
+          </view>
+          <text class="t-body-sm rs-hint ellipsis">{{dateHint}}</text>
+        </view>
+        <icon-mask name="calendar" size="18" color="#727973"></icon-mask>
+      </view>
+      <view class="rs-go" bindtap="applySearch">
+        <icon-mask name="search" size="20" color="#ffffff"></icon-mask>
+      </view>
+    </view>
+    <view class="rs-pills">
+      <view
+        class="rs-pill {{item.on ? 'rs-pill-on' : 'rs-pill-off'}} {{item.amenity ? 'rs-pill-wide' : ''}}"
+        wx:for="{{pills}}"
+        wx:key="key"
+        bindtap="openFilter"
+        data-key="{{item.key}}"
+      >
+        <text class="t-label-md rs-pill-t ellipsis">{{item.label}}</text>
+        <icon-mask name="expand" size="14" color="{{item.on ? '#ffffff' : '#181d1a'}}"></icon-mask>
+      </view>
+    </view>
+  </view>
+  <view class="rs-sticky-spacer"></view>
+
+  <view class="rs-body">
+    <view class="rs-sum">
+      <view class="rs-sum-l">
+        <view class="rs-dot"></view>
+        <text class="t-label-md rs-sum-t">{{summary}}</text>
+      </view>
+      <view class="rs-sort" bindtap="toggleSort">
+        <icon-mask name="swap" size="14" color="#424843"></icon-mask>
+        <text class="t-label-md rs-sort-t">{{sortLabel}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{empty}}" class="card rs-empty">
+      <icon-mask name="forest" size="36" color="#727973"></icon-mask>
+      <text class="t-headline-sm rs-empty-t">这档筛选下暂无院落</text>
+      <text class="t-body-sm rs-empty-s">试试清空品牌或价格条件</text>
+      <view class="rs-empty-btn" bindtap="clearFilter">
+        <text class="t-label-md rs-empty-btn-t">查看全部院落</text>
+      </view>
+    </view>
+
+    <view class="card rs-card" wx:for="{{list}}" wx:key="id">
+      <view class="rs-cover">
+        <image class="rs-cover-img" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="rs-cover-shade"></view>
+        <view wx:if="{{!item.soldOut}}" class="rs-badges">
+          <text class="chip rs-badge">{{item.listBadge}}</text>
+        </view>
+        <view class="rs-fav" catchtap="onFav" data-id="{{item.id}}">
+          <icon-mask name="favorite" size="18" color="{{item.fav ? '#ba1a1a' : '#032517'}}"></icon-mask>
+        </view>
+        <view class="rs-cover-meta">
+          <view class="rs-score-row">
+            <text class="t-headline-sm rs-score">{{item.score}}</text>
+            <text class="t-label-md rs-score-w">{{item.scoreWord}}</text>
+            <text class="copy-sm rs-reviews">{{item.listReviews}}条评价</text>
+          </view>
+          <view class="rs-loc">
+            <icon-mask name="near" size="11" color="#f0f5f0"></icon-mask>
+            <text class="copy-sm rs-loc-t">{{item.loc}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="rs-info">
+        <view class="rs-name-row">
+          <text class="t-headline-sm rs-name ellipsis">{{item.name}}</text>
+          <text class="chip rs-type {{item.soldOut ? 'rs-type-out' : ''}}">{{item.soldOut ? '满房待候补' : item.type}}</text>
+        </view>
+        <view class="rs-extras">
+          <text class="chip-md rs-extra" wx:for="{{item.extras}}" wx:for-item="ex" wx:key="*this">{{ex}}</text>
+        </view>
+        <view class="price-cta">
+          <view class="price-num">
+            <text class="copy-sm-sb rs-off">折后价</text>
+            <text class="t-headline-sm rs-price">{{item.price}}</text>
+            <text class="copy-sm rs-price-unit">/晚起</text>
+          </view>
+          <view wx:if="{{item.soldOut}}" class="rs-cta rs-cta-out" bindtap="onSubscribe" data-id="{{item.id}}">
+            <text class="t-label-md rs-cta-out-t">该档期已满</text>
+          </view>
+          <view wx:else class="rs-cta rs-cta-in" bindtap="goResort" data-id="{{item.id}}">
+            <text class="t-label-md rs-cta-in-t">进入选房</text>
+            <icon-mask name="arrow" size="16" color="#ffffff"></icon-mask>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card rs-butler" bindtap="goButler">
+      <view class="rs-butler-l">
+        <view class="rs-butler-ava">
+          <icon-mask name="concierge" size="20" color="#002113"></icon-mask>
+        </view>
+        <view class="rs-butler-copy">
+          <view class="rs-butler-title-row">
+            <text class="t-label-lg rs-butler-title ellipsis">山野管家服务</text>
+            <view class="rs-butler-live"></view>
+          </view>
+          <text class="t-body-sm rs-butler-sub ellipsis">1对1定制专属路线与高铁专车接引</text>
+        </view>
+      </view>
+      <view class="rs-butler-btn">
+        <text class="t-label-md rs-butler-btn-t">咨询管家</text>
+        <icon-mask name="chevron" size="16" color="#291800"></icon-mask>
+      </view>
+    </view>
+  </view>
+
+  <sheet open="{{sheet === 'dest'}}" bind:close="onSheetClose">
+    <view class="rs-sheet-hd">
+      <text class="t-headline-sm">选择目的地</text>
+      <view class="rs-sheet-x" bindtap="onSheetClose">
+        <icon-mask name="close" size="18" color="#181d1a"></icon-mask>
+      </view>
+    </view>
+    <view class="rs-sheet-list">
+      <view class="rs-opt {{item.on ? 'rs-opt-on' : ''}}" wx:for="{{dests}}" wx:key="id" bindtap="setDest" data-id="{{item.id}}">
+        <text class="t-label-md {{item.on ? 'rs-opt-on-t' : ''}}">{{item.name}}</text>
+      </view>
+    </view>
+  </sheet>
+
+  <sheet open="{{sheet === 'dates'}}" bind:close="onSheetClose">
+    <view class="rs-sheet-hd">
+      <text class="t-headline-sm">选择入住离店</text>
+      <view class="rs-sheet-x" bindtap="onSheetClose">
+        <icon-mask name="close" size="18" color="#181d1a"></icon-mask>
+      </view>
+    </view>
+    <text class="t-body-sm rs-date-hint">{{dateHintSheet}}</text>
+    <view class="rs-week">
+      <text class="t-label-sm rs-week-t" wx:for="{{weekdays}}" wx:key="*this">{{item}}</text>
+    </view>
+    <view class="rs-grid">
+      <view
+        class="rs-day {{item.on ? 'rs-day-on' : ''}} {{item.mid ? 'rs-day-mid' : ''}}"
+        wx:for="{{days}}"
+        wx:key="key"
+        bindtap="pickDate"
+        data-key="{{item.key}}"
+        data-week="{{item.week}}"
+        data-month="{{item.month}}"
+        data-date="{{item.date}}"
+      >
+        <text class="t-label-md {{item.on ? 'rs-day-on-t' : ''}}">{{item.date}}</text>
+      </view>
+    </view>
+  </sheet>
+
+  <sheet open="{{sheet === 'filter'}}" bind:close="onSheetClose">
+    <view class="rs-sheet-hd">
+      <text class="t-headline-sm">{{filterTitle}}</text>
+      <view class="rs-sheet-x" bindtap="onSheetClose">
+        <icon-mask name="close" size="18" color="#181d1a"></icon-mask>
+      </view>
+    </view>
+    <view class="rs-sheet-list">
+      <view class="rs-opt {{item.on ? 'rs-opt-on' : ''}}" wx:for="{{filterOpts}}" wx:key="id" bindtap="setFilter" data-id="{{item.id}}">
+        <text class="t-label-md {{item.on ? 'rs-opt-on-t' : ''}}">{{item.name}}</text>
+      </view>
+    </view>
+  </sheet>
+</view>

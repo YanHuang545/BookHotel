@@ -1,0 +1,66 @@
+<view class="page-root page-tab" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="行程册" pageLabel="行程册" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view class="od-body">
+    <view class="card od-hero">
+      <view class="od-hero-blob"></view>
+      <text class="t-label-sm od-kicker">MY STAYS</text>
+      <text class="t-headline-md od-hero-title">山居行程册</text>
+      <text class="t-body-sm od-hero-sub">管家会在抵达前 24 小时再次确认接驳</text>
+      <view class="od-counts">
+        <text class="t-label-md od-count">{{countAll}} 笔行程</text>
+        <text class="t-label-md od-count">{{countHold}} 待入住</text>
+      </view>
+    </view>
+
+    <view class="od-pills-wrap">
+      <scroll-view scroll-x enable-flex enhanced show-scrollbar="{{false}}" class="pills od-pills">
+        <view
+          class="pill od-pill {{item.on ? 'od-pill-on' : 'od-pill-off'}}"
+          wx:for="{{tabs}}"
+          wx:key="key"
+          bindtap="onTab"
+          data-key="{{item.key}}"
+        >
+          <text class="t-label-md {{item.on ? 'od-pill-on-t' : 'od-pill-off-t'}}">{{item.label}}</text>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view wx:if="{{empty}}" class="card od-empty">
+      <icon-mask name="calendar" size="40" color="#727973"></icon-mask>
+      <text class="t-headline-sm od-empty-t">这一栏还没有行程</text>
+      <text class="t-body-sm od-empty-s">从住店页选一处院落，把山岚写进日历</text>
+      <view class="od-empty-btn" bindtap="goResorts">
+        <text class="t-label-md od-empty-btn-t">去住店</text>
+      </view>
+    </view>
+
+    <view wx:else class="od-list">
+      <view class="card od-card" wx:for="{{list}}" wx:key="id">
+        <view class="od-cover">
+          <image class="od-cover-img" src="{{item.cover}}" mode="aspectFill"></image>
+        </view>
+        <view class="od-info">
+          <view class="od-info-top">
+            <view class="od-name-row">
+              <text class="t-headline-sm od-name ellipsis">{{item.resortName}}</text>
+              <text class="chip od-st {{item.stCls}}">{{item.stLabel}}</text>
+            </view>
+            <text class="copy-sm od-room">{{item.roomName}}</text>
+            <text class="copy-sm-sb od-dates">{{item.dates}}</text>
+          </view>
+          <view class="price-cta od-cta">
+            <text class="t-headline-sm od-pay">{{item.pay}}</text>
+            <view wx:if="{{item.isHold}}" class="od-btn od-btn-cancel" bindtap="cancelOrder" data-id="{{item.id}}">
+              <text class="t-label-md od-btn-cancel-t">取消</text>
+            </view>
+            <view wx:else class="od-btn od-btn-again" bindtap="rebook" data-id="{{item.resortId}}">
+              <text class="t-label-md od-btn-again-t">再次预订</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

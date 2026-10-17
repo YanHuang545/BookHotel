@@ -1,0 +1,26 @@
+<view class="page-root page-stack" style="padding-top: {{navBarHeight}}px;">
+  <nav-bar title="协议" pageLabel="协议" showBack="{{true}}" showBrand="{{false}}"></nav-bar>
+
+  <view class="page-body">
+    <view class="gutter">
+      <text class="kicker">{{doc.kicker}}</text>
+      <text class="t-headline-lg doc-title">{{doc.title}}</text>
+      <text class="t-body-lg doc-lead long-text">{{doc.lead}}</text>
+    </view>
+
+    <view class="card block" wx:for="{{doc.blocks}}" wx:key="n">
+      <text class="t-label-sm block-n">{{item.n}}</text>
+      <text class="t-headline-sm block-title">{{item.title}}</text>
+      <text class="t-body-md block-body long-text">{{item.body}}</text>
+    </view>
+
+    <view class="btn-row">
+      <button class="btn-pri" hover-class="none" bindtap="onBack">
+        <text>返回设置</text>
+      </button>
+      <button class="btn-sec" hover-class="none" bindtap="onButler">
+        <text>问管家</text>
+      </button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,91 @@
+.score-hero {
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(3, 37, 23, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+.score-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: #032517;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.score-num {
+  font-family: var(--serif);
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 500;
+}
+.score-word {
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.score-copy { min-width: 0; flex: 1; }
+.score-title {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  display: block;
+}
+.score-quote {
+  font-size: 12px;
+  line-height: 16px;
+  color: #78592d;
+  margin-top: 4px;
+  display: block;
+}
+
+.review-card {
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(3, 37, 23, 0.05);
+}
+.review-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+.review-who { min-width: 0; flex: 1; }
+.review-name {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  display: block;
+}
+.review-date {
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 700;
+  color: #424843;
+  display: block;
+}
+.review-score {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  color: #78592d;
+  flex: none;
+}
+.review-body {
+  font-size: 14px;
+  line-height: 22px;
+  margin-top: 8px;
+  display: block;
+}
